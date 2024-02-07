@@ -1,0 +1,17 @@
+#Commit Process
+--------------------------------------------------------
+(a)Sync change click Before and after for
+(b)Open Changeg file then click on Plus(+) Buttons 
+(c)Then Enter Commit Message then press Sync change buttons
+#Deployment Process 
+-------------------------------------------------------
+(a)First Open Repos then select commit options inside see your commit message after
+(b)Then click Pipelines options then inside click Filter-pipelines search bar put inside in AU LIKE --------
+                    bp-single-tablet-service-AU-OD-CI
+Then click search result then click run pipeline then change 
+Branch options select Features/Upgrade options Then click 
+Run.
+(b)Process Completed then waiting for mail ya check Release pipelines. 
+
+https://dev.azure.com/bp-digital/DST-RP_Convenience/_git/bp-single-tablet-UK?path=/template.yaml
+feature/hotfix_28thNov2022 - Branch
