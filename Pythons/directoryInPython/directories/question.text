@@ -1,0 +1,22 @@
+Another small programming challenge:
+
+1. I would like to search for a few strings inside all files in current directory (and subdirectories as well - the entire tree)
+
+2. I should be easily able to add more strings to my list of strings to be searched without changing the source code
+
+3. I need the output in the following format
+
+-----------------------------------
+The following patterns were found:
+
+Pattern 1: search string 1
+line number: line
+line number: line
+line number: line
+
+Pattern 2: search string 2
+line number: line
+line number: line
+line number: line
+
+ 

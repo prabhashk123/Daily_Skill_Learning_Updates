@@ -1581,6 +1581,12 @@ with open(r'data1.csv','w') as csvfile:
 
     content.writerow({'name':'Shrey','age':'22','city':'Prayag'})
     content.writerow({'name':'Shreya','age':'22','city':'LKO'})
+---------------------------------------------------------------------
+self is a object prefence call
+Encapsulation means storing or placing data in a single place to make it easily readable and compact in one place
+@kovidhKumar Encapsulation means storing or placing data in a single place to make it easily readable and compact in one place.
+__double underscore is private key of python access inside class only if access when getter and setter method to access outside class only
+@staticmethod only bound class not object so self is not required
 
 
 
