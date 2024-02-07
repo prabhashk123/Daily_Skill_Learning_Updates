@@ -223,6 +223,568 @@ print("Wallet:",c1._Customer__wallet)
 ->parameter are optional in a Function.				   ->A method must have at least one parameter:self.
 
 ----------------------------------------------------------------------------
+nextday=>
+
+Static method
+Aggregation and Association
+Inheritance
+Custom Exception
+Special methods
+
+Static
+---------
+class Product:
+    discount=10   #static variable
+    def __init__(self,brand,price):
+        self.brand=brand
+        self.price=price
+
+    def purchase(self):
+        print("purchasing:",self.brand)
+        total=self.price-self.price*Product.discount/100
+        print("Final Price of",self.brand,"is:",total)
+    def return_prod(self):
+        print("returning:",self.brand)
+
+def enable_dis():
+    Product.discount=50
+def disable_dis():
+    Product.discount=0
+
+print("Normal season")
+p1=Product("OPPO",22000)
+p1.purchase()
+
+print("Without any discount")
+disable_dis()
+p1.purchase()
+
+print("Festive Season")
+enable_dis()
+p1.purchase()
+
+----------------------------------------------------------------------
+
+STATIC METHOD
+-------------------
+->it is class level method
+->to define static method we have to give @staticmethod keyword
+->it does not contain self keyword 
+->calling
+ className.method_name
+ 
+
+ex
+---
+class Product:
+    discount=10   #static variable
+    def __init__(self,brand,price):
+        self.brand=brand
+        self.price=price
+
+    def purchase(self):
+        print("purchasing:",self.brand)
+        total=self.price-self.price*Product.discount/100
+        print("Final Price of",self.brand,"is:",total)
+    def return_prod(self):
+        print("returning:",self.brand)
+    @staticmethod
+    def enable_dis():
+        Product.discount=50
+    @staticmethod
+    def disable_dis():
+        Product.discount=0
+
+print("Normal season")
+p1=Product("OPPO",22000)
+p1.purchase()
+
+print("Without any discount")
+Product.disable_dis()
+p1.purchase()
+
+print("Festive Season")
+Product.enable_dis()
+p1.purchase()
+
+---------------------------------------------------------------------------------------------------------------
+
+
+RELATIONS
+-----------------
+AGGREGATION AND ASSOCIATION
+-----------------------------
+
+Aggregation
+-------------
+->when two classes have their independent existance, i.e life cycle of both are not dependent on each other
+->one class is using another class at some point of time
+->it is has-a relation, represented by diamond symbol
+->object of one class will be used as an attribute of another class  #in coding part
+--------------------------------------------------------
+ex->we have a customer class
+
+Customer:
+custId
+custName
+phone
+
+
+->we have address class
+Address:
+door
+street
+pin
+city
+
+->here both addresss class and customer class are independent of each other
+->but at some point of time customer can use any particular address
+LIKE->customer has-a address
+
+
+-------------------------------
+class Customer:
+    def __init__(self,cust_id,name,wallet,addr):
+        self.cust_id=cust_id
+        self.name=name
+        self.wallet=wallet
+        self.addr=addr
+    def data(self):
+        print(self.cust_id,self.name,self.wallet)
+    def deliver(self):
+        print("delivery address",self.addr.city,"for",self.name)
+
+class Address:
+    def __init__(self,door,street,city,pin):
+        self.door=door
+        self.street=street
+        self.pin=pin
+        self.city=city
+    def detail(self):
+        print(self.door,self.street,self.city,self.pin)
+#outsider
+
+
+a1=Address(314,"7th","Mysore",511109)
+# a1.detail()
+a2=Address(214,"8th","Goa",34566)
+# a2.detail()
+
+c1=Customer(22,"john",2000,a2)
+c1.deliver()
+
+
+-------------------------------------------------------------------------------------------------
+
+
+
+
+ASSOCIATION
+----------------
+->it is a weaker relation
+->when one class is dependent on another class
+->ex- department(class) will not exists without college(class)
+->account cannot exists without customer
+->in association we will send obj of one class as an attribute of another class #coding part
+
+class Customer:
+    def __init__(self,custId,name):
+        self.name=name
+        self.custId=custId
+
+    def pay(self,payment):
+        print(payment.type,payment.price)
+
+class Payment:
+    def __init__(self,type,price):
+        self.price=price
+        self.type=type
+
+
+p1=Payment("Upi",200)
+c1=Customer(1,"JOy")
+c1.pay(p1)
+
+-------------------------------------------------------------------------
+"""Uses of class attribute """
+--------------------------------------------------
+class Customercare:
+    helpline=9570588189
+class Custromer:
+    def call_support(self):
+        print("Calling",Customercare.helpline)
+Custromer().call_support()
+
+---------------------------------------------------------------
+"""Uses of classmethod -means private of class attribute"""
+---------------------------------------------------------------
+class CustomerCare:
+    __helplineno=9709938919
+    @classmethod
+    def get_helpline(cls):
+        return cls.__helplineno
+class Customers:
+    def call_supports(self):
+        print("Calling",CustomerCare.get_helpline())
+Customers().call_supports()
+-------------------------------------------------------------------
+
+INHERITANCE
+------------------
+->when a class can inherit or use the properties of another class this is known as inheritance
+->classes will be having parent child relation
+->All the properties of parent class will be inherited by child class(except private properties)
+->common functionalities will be defined in base/parent class
+->it will increse the reusability of a code, instead of writing evertime from scratch we can inherit 
+the properties of base class and we can add extra features in child class
+->parent class cannot use the properties of child class
+
+Syntax
+----------
+class Parent:
+     pass
+	 
+class Child(Parent):
+    pass	 
+
+
+
+
+Example
+--------------
+FeaturePhone:
+   price 
+   brand
+   camera
+   type
+   
+   buy()
+   exchange()
+
+
+SmartPhone:
+   price
+   brand
+   camera
+   os
+   ram
+
+   buy()
+   insure()   
+
+--------------------------------
+Phone:
+   price 
+   brand
+   camera
+   
+   buy()
+   
+   
+FeaturePhone(Phone):
+   type
+   exchange()
+   
+SmartPhone(Phone):
+   os
+   ram
+   insure()   
+   
+   
+---------------------------------------------------------
+
+class Phone:
+    def __init__(self,brand,price,camera):
+        self.brand=brand
+        self.price=price
+        self.camera=camera
+    def buy(self):
+        print("Buying",self.brand)
+               
+class FeaturePhone(Phone):
+    pass
+
+class SmartPhone(Phone):
+    pass
+
+p1=SmartPhone("Apple",22222,"16MP")
+p1.buy()	
+	
+       
+---------------------------------------------------------------
+
+Method Overriding
+----------------------
+->when same name method is defined in both parent and child class
+
+
+super()
+----------------
+->it is a keyword used to invoke parent class method and constructor 
+
+
+class Phone:
+    def __init__(self,brand,price,camera):
+        self.brand=brand
+        self.price=price
+        self.camera=camera
+    def buy(self):
+        print("Buying",self.brand,"phone")
+
+class FeaturePhone(Phone):
+    pass
+
+class SmartPhone(Phone):
+    def __init__(self,brand,price,camera,os,ram):
+        super().__init__(brand,price,camera)
+        self.os=os
+        self.ram=ram
+        pass
+    def buy(self):
+        super().buy()
+        print("Buying a Smartphone",self.brand,"ram:",self.ram)
+    def insure(self):
+        print("Insurance of",self.brand,"phone")
+
+
+
+p1=SmartPhone("Apple",22222,"16MP",'Oreo','4GB')
+p1.buy()
+p1.insure()
+-------------------------------------------------
+
+
+TYPES OF INHERITANCE
+-------------------------
+
+Single
+---------------
+Parent
+  |
+Child
+
+
+
+Multilevel
+------------------
+GrandParent
+     |
+ Parent
+     |
+   Child
+
+
+Multiple
+---------------
+parent1   parent2
+\            /
+   Child
+   
+   
+Hierarchical   
+--------------
+    Parent
+  /         \
+child1  child2
+   
+
+Multilevel
+----------------------
+class Product:
+    def detail(self):
+        print("I m a product")
+
+
+class Phone(Product):
+
+    def __init__(self,brand,price,camera):
+        self.brand=brand
+        self.price=price
+        self.camera=camera
+    def buy(self):
+        print("Buying",self.brand,"phone")
+
+class FeaturePhone(Phone):
+    pass
+
+class SmartPhone(Phone):
+    def __init__(self,brand,price,camera,os,ram):
+        super().__init__(brand,price,camera)
+        self.os=os
+        self.ram=ram
+        pass
+    def buy(self):
+        super().buy()
+        print("Buying a Smartphone",self.brand,"ram:",self.ram)
+    def insure(self):
+        print("Insurance of",self.brand,"phone")
+
+
+
+p1=SmartPhone("Apple",22222,"16MP",'Oreo','4GB')
+p1.buy()
+p1.insure()
+p1.detail()
+----------------------------------------------------------
+
+Multiple
+---------------
+class Product:
+    def detail(self):
+        print("I m a product")
+
+class Phone:
+    def __init__(self,brand,price,camera):
+        self.brand=brand
+        self.price=price
+        self.camera=camera
+    def buy(self):
+        print("Buying",self.brand,"phone")
+
+    def detail(self):
+        print("I m a Phone")
+
+class SmartPhone(Product,Phone):
+    def __init__(self,brand,price,camera,os,ram):
+        super().__init__(brand,price,camera)
+        self.os=os
+        self.ram=ram
+        pass
+    def buy(self):
+        super().buy()
+        print("Buying a Smartphone",self.brand,"ram:",self.ram)
+    def insure(self):
+        print("Insurance of",self.brand,"phone")
+
+
+
+p1=SmartPhone("Apple",22222,"16MP",'Oreo','4GB')
+p1.buy()
+p1.insure()
+p1.detail()
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+CUSTOM EXCEPTION
+-----------------------------
+try:
+except:
+
+->User defined exception
+
+
+ex1
+------------
+age=int(input("enter your age"))
+
+try:
+    if age<18:
+        raise Exception
+    else:
+        v_id=input("Do u have voter id?Y or N")
+        if v_id=="N":
+            raise Exception
+        print("You are eligible to vote")
+
+except:
+    print("Some Error occured")
+
+-------------------------------------------------------------------
+ex2
+---
+
+age=int(input("enter your age"))
+
+try:
+    if age<18:
+        raise Exception("age")
+    else:
+        v_id=input("Do u have voter id?Y or N")
+        if v_id=="N":
+            raise Exception("id")
+        print("You are eligible to vote")
+
+except Exception as e:
+    if(str(e)=="age"):
+        print("You r not eligible to vote as your age is less than 18")
+    elif(str(e)=="id"):
+        print("You cannot vote without voter Id")
+    else:
+        print("Some Error occured")
+--------------------------------------------------------------------------------		
+
+ex3
+----------------
+class InvalidAge(Exception):
+    pass
+
+class VoterId(Exception):
+    pass
+
+age=int(input("enter your age"))
+
+try:
+    if age<18:
+        raise InvalidAge
+    else:
+        v_id=input("Do u have voter id?Y or N")
+        if v_id=="N":
+            raise VoterId
+        print("You are eligible to vote")
+
+
+except VoterId:
+    print("You cannot vote without voter id")
+
+except InvalidAge:
+    print("You are not eligible to vote as your age is less than 18")
+
+except:
+    print("Some Error occured")	
+--------------------------------------------
+#example of class method and static method
+
+# Python program to demonstrate
+# use of class method and static method.
+
+from datetime import date
+class Person:
+	def __init__(self, name, age):
+		self.name = name
+		self.age = age
+
+	# a class method to create a Person object by birth year.
+	@classmethod
+	def fromBirthYear(cls, name, year):
+		return cls(name, date.today().year - year)
+
+	# a static method to check if a Person is adult or not.
+	@staticmethod
+	def isAdult(age):
+		return age > 18
+
+
+person1 = Person('mayank', 21)
+person2 = Person.fromBirthYear('mayank', 1996)
+
+print(person1.age)
+print(person2.age)
+
+# print the result
+print(Person.isAdult(22))
+
+
+
+
+
+
+
+
+
+
+
 
 
 
