@@ -1,0 +1,255 @@
+Update Queries
+___________________________________________________________
+$set
+1. updateOne - one record at a time
+db.employees.updateOne({empId:1},{$set:{salary:42000}})
+
+2.updateMany - multiple records at a time
+
+db.employees.updateMany({department:"ETA"},{$set:{salary:45000}})
+
+3. update - by default , is like updateOne and if you give {multi:true} it acts like updateMany. Not recommended.
+
+db.employees.update({department:"ETA"},{$set:{salary:40000}})
+
+db.employees.update({department:"ETA"},{$set:{salary:46000}},{multi:true})
+
+--Increase the salary of emp by 2000
+
+db.employees.updateMany({department:"ETA"},{$inc:{salary:2000}})
+
+--Decrease the salary of emp by 2000
+
+db.employees.updateMany({department:"ETA"},{$inc:{salary:-2000}})
+
+--Increase the salary by 10 percent
+
+db.employees.updateMany({department:"ETA"},{$mul:{salary :1.1}})
+
+--Each emp must have a salary of 30000 or  more  
+$max
+db.employees.updateMany({},{$max:{salary:30000}})
+
+
+--Each emp must have a salary of 50000 or  less  
+$min
+db.employees.updateMany({},{$min:{salary:50000}})
+
+--Remove dept and machineId for empId 1
+$unset
+db.employees.updateOne({empId:1},{$unset:{department:"",machineId:""}})
+
+--Update salary to 40000 for all emp of dept A
+db.employees.updateMany({department:"A"},{$set:{salary:40000}})
+
+upsert - If record is there - update , if record is not there - insert
+db.employees.updateMany({department:"A"},{$set:{salary:40000}},{upsert:true})
+
+Array - Update Operators
+
+$push -- Add a new value to an existing array
+
+db.employees.updateOne({empId:14},{$push:{experience:{role:"Senior Systems Engineer",
+roleExperience:0.1}}})
+
+--Again add same value , duplicate created
+db.employees.updateOne({empId:14},{$push:{experience:{role:"Senior Systems Engineer",
+roleExperience:0.1}}})
+
+
+$addToSet - To avoid duplicates
+db.employees.updateOne({empId:14},{$addToSet:{experience:{role:"Senior Systems Engineer",
+roleExperience:0.1}}})
+
+--Update 2 values at a time , sub array gets created which we dont want
+db.employees.updateOne({empId:14},{$push:{experience:[{role:"Technology Analyst",
+roleExperience:1.2},{role:"Technology Lead",
+roleExperience:1.0}]}})
+
+So you use $each
+
+db.employees.updateOne({empId:14},{$push:{experience:{$each:[{role:"Technology Analyst",
+roleExperience:1.2},{role:"Technology Lead",
+roleExperience:1.0}]}}})
+
+
+--Add at specified position
+db.employees.updateOne({empId:14},{$push:{experience:{$each:[{role:"Systems Engineer Trainee",roleExperience:1.2}],$position:0}}})
+
+Update only role experience --- $
+db.employees.updateOne({$and:[{empId:1},{"experience.role":"Systems Engineer"}]},
+{$set:{"experience.$.roleExperience":2.0}})
+
+
+$pop - Remove first or last ele from the array
+-1 : First ele
+1 : Last ele
+
+db.employees.updateOne({empId:1},{$pop:{experience: -1}})
+
+db.employees.updateOne({empId:1},{$pop:{experience: 1}})
+
+$pull
+Remove ele from array
+
+db.employees.updateOne({empId:14},{$pull:{experience:{role:"Systems Engineer Trainee",roleExperience:1.2}}})
+
+
+$pullAll - Remove multiple ele from array
+db.employees.updateOne({empId:14},{$pullAll:{experience:[{role:"Systems Engineer",roleExperience:0.5},{role:"Senior Systems Engineer",roleExperience:0.1}]}})
+
+
+Delete Commands
+__________________________________________________________
+
+1.deleteOne
+db.employees.deleteOne({empId:6})
+2.deleteMany
+db.employees.deleteMany({department:"ETA"})
+3.remove -- By default it is like deleteMany and with {justOne:true} it acts like deleteOne
+db.employees.remove({department:"DX"},{justOne:true})
+
+________________________________________________________________
+
+Aggregation Queries
+____________________________________
+
+Aggregation Pipeline -- The output of 1 stage is input to the next stage
+
+Ex :
+Infosys FP - freshers
+$match 65% 
+$group
+65-79 - Above abg
+80-92 - High Performers
+>92 - Top performers
+
+$sort - the result
+$limit - top 3 performers
+
+_______________________________________________________
+
+countDocuments
+
+db.employees.countDocuments({})
+
+db.employees.countDocuments({department:"ETA"})
+
+db.employees.countDocuments({},{skip:1,limit:2})
+skip - ignore the num of records specified
+limit - max of number provided records are retrieved
+
+db.employees.countDocuments({},{skip:13,limit:2})
+
+--distinct
+db.employees.distinct("department")
+db.employees.distinct("experience.role")
+____________________________________________
+
+$match/$project and find are almost the same
+The diff is in match output goes to next stage
+--Fetch all emp who belong to any department
+db.employees.aggregate([{$match:{department:{$exists:true}}}])
+
+db.employees.find({department:{$exists:true})
+
+
+db.employees.find({department:{$exists:true},{empName:1,department:1,_id:0})
+
+db.employees.aggregate([{$match:{department:{$exists:true}}},
+{$project:{empName:1,department:1,_id:0}}])
+
+
+$group like group by clause
+
+db.employees.aggregate([{$match:{department:{$exists:true}}},
+{$project:{empName:1,department:1,_id:0}},{$group:{_id:"$department"}}])
+
+db.employees.aggregate([{$group:{_id:"$experience.role"}}])
+
+Multiple fields
+db.employees.aggregate([{$group:{_id:{department:"$department",salary:"$salary"}}}])
+
+
+$count
+___________________________________________________
+db.employees.aggregate([{$count:"noofEmployees"}])
+
+db.employees.aggregate([{$group:{_id:"$department"}},{$count:"noofDepts"}])
+
+$sort 
+1 - asc order
+-1 - desc order
+db.employees.aggregate([{$project:{empName:1,salary:1,_id:0}},{$sort:{salary:-1}}])
+
+
+Top 3
+db.employees.aggregate([{$project:{empName:1,salary:1,_id:0}},{$sort:{salary:-1}},{$limit:3}])
+
+
+Store in a table - $out
+db.employees.aggregate([{$project:{empName:1,salary:1,_id:0}},{$sort:{salary:-1}},{$limit:3},{$out:"Top3Emp"}])
+
+Only the 3rd highest paid emp
+db.employees.aggregate([{$project:{empName:1,salary:1,_id:0}},{$sort:{salary:-1}},{$limit:3},{$skip:2}])
+
+$unwind
+___________________________________________
+
+db.employees.aggregate([{$unwind:"$experience"}])
+
+$sum , $avg
+
+_____________________________________
+
+$group
+
+db.employees.aggregate([{$group:{_id:"$department","noofEmp":{$sum:1},
+"avgSal":{$avg:"$salary"}}}])
+
+$min , $max
+________________________________________
+
+db.employees.aggregate([{$group:{_id:"$department","minSal":{$min:"$salary"},"maxSal":{$max:"$salary"}}}])
+
+$concat
+___________________________________________
+
+Divya - ETA
+Divya  ETA
+Divya , ETA
+
+db.employees.aggregate([{$project:
+{empData:{$concat:["$empName","-","$department"]},_id:0}}])
+
+
+db.employees.aggregate([{$project:
+{empData:{$concat:[{$ifNull:["$empName","NA"]},"-",{$ifNull:["$department","NA"]}]},_id:0}}])
+
+
+Date Operators
+____________________________________________________
+
+$year 
+$month
+
+db.employees.aggregate([{$project:{birthYear:{$year:"$dateOfBirth"},
+birthMonth:{$month:"$dateOfBirth"},_id:0}}])
+
+$dateToString
+format - 
+%Y-%m-%d
+%m-%d
+%H - Hours
+%M - Minutes
+%S - seconds
+%L - millisec
+
+
+db.employees.aggregate([{$project:{birthDate:{$dateToString:{date:"$dateOfBirth",format:"%Y-%m-%d"}}}}])
+
+
+Indexing
+______________________________________________________
+
+

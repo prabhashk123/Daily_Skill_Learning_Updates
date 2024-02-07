@@ -1,0 +1,2550 @@
+DBMS Part-1:
+https://lex.infosysapps.com/en/app/toc/lex_auth_01275806667282022456/overview
+DBMS Part-2:
+https://lex.infosysapps.com/en/app/toc/lex_auth_0127673005629194241/overview
+Database Programming in MySQL:
+https://lex.infosysapps.com/en/app/toc/lex_15525478598515726000/overview 
+Data:
+a fact which could be represented inform of text,numbers,values,images,audio/video 
+Database:
+Collection of related data that represents real world entities 
+Information:
+Processed / Meaningful data that you require
+DBMS:
+System that manages the database 
+Types of database systems:
+1.Hierachial
+2.Network
+3.Relational 
+4.NoSQL 
+----------------------------------------------------------------
+Advantages of MySQL:
+1.Popular open source platform 
+2.corss platform -linux,mac,windows
+3.fast,reliable and easy to use 
+4.Most popular app-facebook,twitter,wikipedia,youtube 
+
+SQL Basics:
+1.DDL-Data Definition Language -used to specify the structure/schema
+create,alter,drop,truncate
+2.DML-Data Manipulation Language - manipulating the data
+insert,update,delete 
+3.DCL-Data Control Language -providing/removing privileges
+grant,revoke 
+4.TCL-Transaction Control Language - specifu commands for successful/failed transactions
+commit,rollback 
+---------------------------------------------------------------------------------------
+cd\,cd xampp,cd mysql,cd bin
+Create Command:
+without xampp server start mysql --console
+Database:
+xampp 
+mysql -u root
+Syntax:
+create database database_name;
+create database june_batch;
+select database:
+use database_name;
+View database:
+select database();
+Drop database:
+drop database database_name;
+drop database june_batch;
+
+MariaDB [(none)]> create database june_batch;
+Query OK, 1 row affected (0.018 sec)
+
+MariaDB [(none)]> use june_batch;
+Database changed
+MariaDB [june_batch]> select database();
++------------+
+| database() |
++------------+
+| june_batch |
++------------+
+1 row in set (0.003 sec)
+----------------------------------------------------------
+Creating the table:
+create table table_name 
+(column definition)
+#column_name datatype constraints
+[table options]
+[partition options];
+User Table:
+Userid
+Username 
+
+Datatypes:
+int
+char(n)
+varchar(n)-strings 
+float,decimal,BLOB(Binary data),Timestamp(date and time)
+date,enum(conditions),text 
+
+MariaDB [june_batch]> create table User
+    -> (id int,name varchar(30));
+Query OK, 0 rows affected (0.051 sec)
+
+MariaDB [june_batch]> desc User;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | YES  |     | NULL    |       |
+| name  | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.053 sec)
+
+Table Options:
+Engine:
+1.myisam-no transaction support
+Auotmatically saved and cannot roll it back
+2.innodb-transaction support 
+initially set autocommit=0 and you can roll it back
+Create table User
+(id int,
+name varchar(30))
+ENGINE=Myisam;
+
+Create table User1
+(id int,
+name varchar(30))
+ENGINE=Innodb;
+
+MariaDB [june_batch]> Create table User
+    -> (id int,
+    -> name varchar(30))
+    -> ENGINE=Myisam;
+Query OK, 0 rows affected (0.045 sec)
+
+MariaDB [june_batch]> desc User;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | YES  |     | NULL    |       |
+| name  | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.047 sec)
+
+MariaDB [june_batch]> insert into User values(101,"Dhana");
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [june_batch]> select * from User;
++------+-------+
+| id   | name  |
++------+-------+
+|  101 | Dhana |
++------+-------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> rollback;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [june_batch]> select * from User;
++------+-------+
+| id   | name  |
++------+-------+
+|  101 | Dhana |
++------+-------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> set autocommit=0;
+Query OK, 0 rows affected (0.002 sec)
+
+MariaDB [june_batch]> Create table User1
+    -> (id int,
+    -> name varchar(30))
+    -> ENGINE=Innodb;
+Query OK, 0 rows affected (0.058 sec)
+
+MariaDB [june_batch]> insert into User1 values(101,"Dhana");
+Query OK, 1 row affected (0.043 sec)
+
+MariaDB [june_batch]> select * from User1;
++------+-------+
+| id   | name  |
++------+-------+
+|  101 | Dhana |
++------+-------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> rollback;
+Query OK, 0 rows affected (0.002 sec)
+
+MariaDB [june_batch]> select * from User1;
+Empty set (0.001 sec)
+---------------------------------------------------------------------
+2.AutoIncrement:
+To automatically generate interger values for primary key field when record is inserted 
+applied only on primary key field and only on int datatype
+
+create table Student
+(id int primary key auto_increment,
+name varchar(20))
+auto_increment=1000;
+
+MariaDB [june_batch]> create table Student
+    -> (id int primary key auto_increment,
+    -> name varchar(20))
+    -> auto_increment=1000;
+Query OK, 0 rows affected (0.059 sec)
+
+MariaDB [june_batch]> insert into Student (name) values ("Sara");
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [june_batch]> select * from Student;
++------+------+
+| id   | name |
++------+------+
+| 1000 | Sara |
++------+------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> insert into Student (name) values ("Akash"),("Deepak");
+Query OK, 2 rows affected (0.002 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [june_batch]> select * from Student;
++------+--------+
+| id   | name   |
++------+--------+
+| 1000 | Sara   |
+| 1001 | Akash  |
+| 1002 | Deepak |
++------+--------+
+3 rows in set (0.000 sec) 
+--------------------------------------------------------------
+Partition:
+Data is distrubuted into different parts based on logic and only particular partition will be searched for.
+Types:
+1.Range 
+2.List 
+3.Hash 
+4.Key 
+
+Range:
+Create table User
+(id int primary key,
+name varchar(20))
+partition by range(id)
+(partition p0 values less than (10), 
+partition p1 values less than (20));
+MariaDB [june_batch]> Create table User
+    -> (id int primary key,
+    -> name varchar(20))
+    -> partition by range(id)
+    -> (partition p0 values less than (10),
+    -> partition p1 values less than (20));
+Query OK, 0 rows affected (0.070 sec)
+
+MariaDB [june_batch]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| demo               |
+| export             |
+| feb_batch          |
+| information_schema |
+| june_batch         |
+| mysql              |
+| newbatch           |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+10 rows in set (0.045 sec)
+
+MariaDB [june_batch]> insert into User values (1,"Dhana"),(10,"Sara");
+Query OK, 2 rows affected (0.049 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [june_batch]> select * from User;
++----+-------+
+| id | name  |
++----+-------+
+|  1 | Dhana |
+| 10 | Sara  |
++----+-------+
+2 rows in set (0.003 sec)
+
+MariaDB [june_batch]> select * from User partition(p0);
++----+-------+
+| id | name  |
++----+-------+
+|  1 | Dhana |
++----+-------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> select * from User partition(p1);
++----+------+
+| id | name |
++----+------+
+| 10 | Sara |
++----+------+
+1 row in set (0.001 sec)
+
+Adv: Easy to retrieve the data 
+Disadv: you have to know the upper limit in pre hand 
+values apart from partition could not be inserted 
+
+List:
+Create table User5
+(id int primary key,
+name varchar(20))
+partition by list(id)
+(partition p0 values in (1,2,3,4,7,8,9,10), 
+partition p1 values in (12,24,45,14,22));
+
+MariaDB [june_batch]> Create table User5
+    -> (id int primary key,
+    -> name varchar(20))
+    -> partition by list(id)
+    -> (partition p0 values in (1,2,3,4,7,8,9,10),
+    -> partition p1 values in (12,24,45,14,22));
+Query OK, 0 rows affected (0.075 sec)
+
+MariaDB [june_batch]> insert into User5 values (3,"abi");
+Query OK, 1 row affected (0.052 sec)
+
+MariaDB [june_batch]> insert into User5 values (23,"abilash");
+ERROR 1526 (HY000): Table has no partition for value 23
+
+Hash:
+Create table User6
+(id int primary key,
+name varchar(20))
+partition by hash(id)
+partitions 3;
+Adv: Partitioning is done MySQL
+Disadv: You dont know under what partition what values are present 
+
+MariaDB [june_batch]> Create table User6
+    -> (id int primary key,
+    -> name varchar(20))
+    -> partition by hash(id)
+    -> partitions 3;
+Query OK, 0 rows affected (0.047 sec)
+
+MariaDB [june_batch]> insert into User6 values (1,"a"),(10,"b"),(39,"c");
+Query OK, 3 rows affected (0.037 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [june_batch]> select * from User6;
++----+------+
+| id | name |
++----+------+
+| 39 | c    |
+|  1 | a    |
+| 10 | b    |
++----+------+
+3 rows in set (0.001 sec)
+
+MariaDB [june_batch]> select * from User6 partition(p0);
++----+------+
+| id | name |
++----+------+
+| 39 | c    |
++----+------+
+1 row in set (0.002 sec)
+
+MariaDB [june_batch]> select * from User6 partition(p1);
++----+------+
+| id | name |
++----+------+
+|  1 | a    |
+| 10 | b    |
++----+------+
+2 rows in set (0.001 sec) 
+
+Key:
+Create table User7
+(id int primary key,
+name varchar(20))
+partition by key()
+partitions 3;
+-------------------------------------------------------------------
+Constraints:
+Restrict certain values from entering into the table 
+1.primary key - unique + not null 
+2.unique - allows unique value + null 
+3. foreign key - referal integrity for another column from different table 
+4. check - checks for the data before entering 
+5. not null - doesn't allow null values +duplicate values 
+6. enum - allows only mentioned values 
+
+Voterlist 
+id primary key 
+phone unique 
+name not null 
+gender enum ('M','F','O')
+age   check age > 18 
+
+create table Voterlist 
+(id int primary key,
+phone int unique,
+name varchar(20) not null,
+gender enum('M','F','O'),
+age int check (age>18));
+
+MariaDB [june_batch]> create table Voterlist
+    -> (id int primary key,
+    -> phone int unique,
+    -> name varchar(20) not null,
+    -> gender enum('M','F','O'),
+    -> age int check (age>18));
+Query OK, 0 rows affected (0.055 sec)
+
+MariaDB [june_batch]>
+MariaDB [june_batch]> insert into Voterlist values (1,878787,"Dhana",'F',24);
+Query OK, 1 row affected (0.047 sec)
+
+MariaDB [june_batch]> select * from Voterlist;
++----+--------+-------+--------+------+
+| id | phone  | name  | gender | age  |
++----+--------+-------+--------+------+
+|  1 | 878787 | Dhana | F      |   24 |
++----+--------+-------+--------+------+
+1 row in set (0.002 sec)
+
+MariaDB [june_batch]> insert into Voterlist values (1,989898,"DL",'F',24);
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+MariaDB [june_batch]> insert into Voterlist values (2,878787,"DL",'F',24);
+ERROR 1062 (23000): Duplicate entry '878787' for key 'phone'
+MariaDB [june_batch]> insert into Voterlist values (2,989898,NULL,'F',24);
+ERROR 1048 (23000): Column 'name' cannot be null
+MariaDB [june_batch]> insert into Voterlist values (2,989898,"",'F',24);
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [june_batch]> select * from Voterlist;
++----+--------+-------+--------+------+
+| id | phone  | name  | gender | age  |
++----+--------+-------+--------+------+
+|  1 | 878787 | Dhana | F      |   24 |
+|  2 | 989898 |       | F      |   24 |
++----+--------+-------+--------+------+
+2 rows in set (0.000 sec)
+
+MariaDB [june_batch]> insert into Voterlist values (3,878788,"Sara",'G',24);
+Query OK, 1 row affected, 1 warning (0.000 sec)
+
+MariaDB [june_batch]> select * from Voterlist;
++----+--------+-------+--------+------+
+| id | phone  | name  | gender | age  |
++----+--------+-------+--------+------+
+|  1 | 878787 | Dhana | F      |   24 |
+|  2 | 989898 |       | F      |   24 |
+|  3 | 878788 | Sara  |        |   24 |
++----+--------+-------+--------+------+
+3 rows in set (0.000 sec)
+
+MariaDB [june_batch]> insert into Voterlist values (4,678788,"Sarita",'G',16);
+ERROR 4025 (23000): CONSTRAINT `voterlist.age` failed for `june_batch`.`voterlist`
+
+Foreign Key:
+this could be applied only at table level and referring column in another table should be the primary key in referring table 
+Create table aadhar
+(aid int primary key,
+name varchar(20) not null,
+city varchar(20) not null);
+
+create table voter 
+(vid int primary key,
+aid int,
+age int check (age>18),
+foreign key (aid) references aadhar(aid));
+MariaDB [june_batch]> Create table aadhar
+    -> (aid int primary key,
+    -> name varchar(20) not null,
+    -> city varchar(20) not null);
+Query OK, 0 rows affected (0.056 sec)
+
+MariaDB [june_batch]> insert into aadhar values (101,"Akash","KA"),(105,"Anitha","KA");
+Query OK, 2 rows affected (0.044 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [june_batch]> select * from aadhar;
++-----+--------+------+
+| aid | name   | city |
++-----+--------+------+
+| 101 | Akash  | KA   |
+| 105 | Anitha | KA   |
++-----+--------+------+
+2 rows in set (0.002 sec)
+
+MariaDB [june_batch]> create table voter
+    -> (vid int primary key,
+    -> aid int,
+    -> age it check (age>18),
+    -> foreign key (aid) references aadhar(aid));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'check (age>18),
+foreign key (aid) references aadhar(aid))' at line 4
+MariaDB [june_batch]> create table voter
+    -> (vid int primary key,
+    -> aid int,
+    -> age int check (age>18),
+    -> foreign key (aid) references aadhar(aid));
+Query OK, 0 rows affected (0.066 sec)
+
+MariaDB [june_batch]>
+MariaDB [june_batch]> insert into voter values (1,101,19);
+Query OK, 1 row affected (0.043 sec)
+
+MariaDB [june_batch]> select * from voter;
++-----+------+------+
+| vid | aid  | age  |
++-----+------+------+
+|   1 |  101 |   19 |
++-----+------+------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> insert into voter values (1,106,19);
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+MariaDB [june_batch]> insert into voter values (2,106,19);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`june_batch`.`voter`, CONSTRAINT `voter_ibfk_1` FOREIGN KEY (`aid`) REFERENCES `aadhar` (`aid`))
+MariaDB [june_batch]> insert into voter values (2,105,19);
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [june_batch]> select * from voter;
++-----+------+------+
+| vid | aid  | age  |
++-----+------+------+
+|   1 |  101 |   19 |
+|   2 |  105 |   19 |
++-----+------+------+
+2 rows in set (0.000 sec) 
+------------------------------------------------------------------------
+Nextday
+DBMS Part-1:
+https://lex.infosysapps.com/en/app/toc/lex_auth_01275806667282022456/overview
+DBMS Part-2:
+https://lex.infosysapps.com/en/app/toc/lex_auth_0127673005629194241/overview
+Database Programming in MySQL:
+https://lex.infosysapps.com/en/app/toc/lex_15525478598515726000/overview 
+Alter:
+1.Rename a table 
+alter table table_name RENAME new_table_name;
+2.Rename a column:
+alter table table_name CHANGE old_col_name new_col_name col_definition;
+3.To modify datatype/size:
+alter table table_name MODIFY col_name datatype;
+4.Add a column:
+alter table table_name ADD col_name col_definition;
+5.Drop a column:
+alter table table_name drop col_name;
+6.add constraint:
+alter table table_name add constraint constraint_name constraint_type (column);
+7.drop constraint:
+alter table table_name drop constraint constraint_name;
+8.add foreign key:
+alter table child_table add foreign key (child-col) references parent_table_name(parent_col);
+aadhar-parent table ,primary key-aid
+voter - child table ,foreig key - aid
+alter table voter add foreign key (aid) references aadhar(aid);
+MariaDB [june_batch]> show tables;
++----------------------+
+| Tables_in_june_batch |
++----------------------+
+| aadhar               |
+| student              |
+| user                 |
+| user1                |
+| user5                |
+| user6                |
+| voter                |
+| voterlist            |
++----------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [june_batch]> alter table voterlist rename voter_details;
+Query OK, 0 rows affected (0.022 sec)
+
+MariaDB [june_batch]> show tables;
++----------------------+
+| Tables_in_june_batch |
++----------------------+
+| aadhar               |
+| student              |
+| user                 |
+| user1                |
+| user5                |
+| user6                |
+| voter                |
+| voter_details        |
++----------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [june_batch]> select * from student;
++------+--------+
+| id   | name   |
++------+--------+
+| 1000 | Sara   |
+| 1001 | Akash  |
+| 1002 | Deepak |
++------+--------+
+3 rows in set (0.015 sec)
+
+MariaDB [june_batch]> alter table student CHANGE id s_id int(10);
+Query OK, 0 rows affected (0.022 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [june_batch]> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| s_id  | int(10)     | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.016 sec)
+
+MariaDB [june_batch]> alter table student modify s_id varchar(10);
+Query OK, 3 rows affected (0.034 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [june_batch]> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| s_id  | varchar(10) | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.021 sec)
+
+MariaDB [june_batch]> alter table student add phone int(10);
+Query OK, 0 rows affected (0.017 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [june_batch]> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| s_id  | varchar(10) | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| phone | int(10)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.017 sec)
+
+MariaDB [june_batch]> alter table student add phone1 int(10) first;
+Query OK, 0 rows affected (0.020 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [june_batch]> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| phone1 | int(10)     | YES  |     | NULL    |       |
+| s_id   | varchar(10) | NO   | PRI | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| phone  | int(10)     | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.016 sec)
+
+MariaDB [june_batch]> alter table student add phone1 int(10) after phone;
+ERROR 1060 (42S21): Duplicate column name 'phone1'
+MariaDB [june_batch]> alter table student add phone2 int(10) after phone;
+Query OK, 0 rows affected (0.020 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [june_batch]> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| phone1 | int(10)     | YES  |     | NULL    |       |
+| s_id   | varchar(10) | NO   | PRI | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| phone  | int(10)     | YES  |     | NULL    |       |
+| phone2 | int(10)     | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.006 sec)
+
+MariaDB [june_batch]> alter table student drop phone1;
+Query OK, 0 rows affected (0.008 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [june_batch]> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| s_id   | varchar(10) | NO   | PRI | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| phone  | int(10)     | YES  |     | NULL    |       |
+| phone2 | int(10)     | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.015 sec)
+
+MariaDB [june_batch]> alter table student add constraint ukey unique(phone);
+Query OK, 0 rows affected (0.012 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [june_batch]> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| s_id   | varchar(10) | NO   | PRI | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| phone  | int(10)     | YES  | UNI | NULL    |       |
+| phone2 | int(10)     | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.020 sec)
+
+MariaDB [june_batch]> alter table student drop constraint ukey;
+Query OK, 0 rows affected (0.021 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [june_batch]> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| s_id   | varchar(10) | NO   | PRI | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| phone  | int(10)     | YES  |     | NULL    |       |
+| phone2 | int(10)     | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.007 sec)
+-----------------------------------------------------------------------------------
+Drop:
+To drop the entire table
+drop table [if exists] table_name;
+Truncate:
+To delete all records from the table
+truncate table table_name;
+auto_increment=0
+MariaDB [june_batch]> create table Student
+    -> (id int primary key auto_increment,
+    -> name varchar(20))
+    -> auto_increment=1000;
+Query OK, 0 rows affected (0.028 sec)
+
+MariaDB [june_batch]> truncate table Student;
+Query OK, 0 rows affected (0.030 sec)
+
+MariaDB [june_batch]> insert into student (name) values ("DL");
+Query OK, 1 row affected (0.014 sec)
+
+MariaDB [june_batch]> select * from student;
++----+------+
+| id | name |
++----+------+
+|  1 | DL   |
++----+------+
+1 row in set (0.001 sec) 
+------------------------------------------------------------------------
+DML:
+insert,select,update,delete 
+write-insert,update,delete
+read-select 
+Insert:
+insert into table_name values (value1,value2,value3);
+insert into table_name (column1,column2) values (v1,v2);
+Null value 
+MariaDB [june_batch]> create table employee(empid int primary key,empname varchar(20),dept varchar(10));
+Query OK, 0 rows affected (0.010 sec)
+
+MariaDB [june_batch]> insert into employee values (1,"Dhana","ETA");
+Query OK, 1 row affected (0.018 sec)
+
+MariaDB [june_batch]> select * from employee;
++-------+---------+------+
+| empid | empname | dept |
++-------+---------+------+
+|     1 | Dhana   | ETA  |
++-------+---------+------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> insert into employee values ("a",20,"ETA");
+Query OK, 1 row affected, 1 warning (0.002 sec)
+
+MariaDB [june_batch]> select * from employee;
++-------+---------+------+
+| empid | empname | dept |
++-------+---------+------+
+|     0 | 20      | ETA  |
+|     1 | Dhana   | ETA  |
++-------+---------+------+
+2 rows in set (0.001 sec)
+
+MariaDB [june_batch]> insert into employee values (2,"Dhana");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [june_batch]> insert into employee (empid,empname) values (2,"DL");
+Query OK, 1 row affected (0.013 sec)
+
+MariaDB [june_batch]> select * from employee;
++-------+---------+------+
+| empid | empname | dept |
++-------+---------+------+
+|     0 | 20      | ETA  |
+|     1 | Dhana   | ETA  |
+|     2 | DL      | NULL |
++-------+---------+------+
+3 rows in set (0.001 sec)
+
+MariaDB [june_batch]> insert into employee (empid,dept) values (3,"IVS");
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [june_batch]> select * from employee;
++-------+---------+------+
+| empid | empname | dept |
++-------+---------+------+
+|     0 | 20      | ETA  |
+|     1 | Dhana   | ETA  |
+|     2 | DL      | NULL |
+|     3 | NULL    | IVS  |
++-------+---------+------+
+4 rows in set (0.001 sec)
+Insert via select statement:
+insert ino new_table (col_name)(select col_names from old table);
+MariaDB [june_batch]> select * from employee;
++-------+---------+------+
+| empid | empname | dept |
++-------+---------+------+
+|     0 | 20      | ETA  |
+|     1 | Dhana   | ETA  |
+|     2 | DL      | NULL |
+|     3 | NULL    | IVS  |
++-------+---------+------+
+4 rows in set (0.001 sec)
+
+MariaDB [june_batch]> select empid,empname from employee;
++-------+---------+
+| empid | empname |
++-------+---------+
+|     0 | 20      |
+|     1 | Dhana   |
+|     2 | DL      |
+|     3 | NULL    |
++-------+---------+
+4 rows in set (0.001 sec)
+
+MariaDB [june_batch]> create table Manager(mid int ,name varchar(20),dept varchar(20));
+Query OK, 0 rows affected (0.010 sec)
+
+MariaDB [june_batch]> insert into Manager (mid,name)(select empid,empname from employee);
+Query OK, 4 rows affected (0.004 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [june_batch]> select * from Manager;
++------+-------+------+
+| mid  | name  | dept |
++------+-------+------+
+|    0 | 20    | NULL |
+|    1 | Dhana | NULL |
+|    2 | DL    | NULL |
+|    3 | NULL  | NULL |
++------+-------+------+
+4 rows in set (0.001 sec)
+insert via set keyword:
+insert into table_name set col_name=value;
+MariaDB [june_batch]> insert into employee set empid=5,empname="rohit",dept="Apple";
+Query OK, 1 row affected (0.014 sec)
+
+MariaDB [june_batch]> select * from employee;
++-------+---------+-------+
+| empid | empname | dept  |
++-------+---------+-------+
+|     0 | 20      | ETA   |
+|     1 | Dhana   | ETA   |
+|     2 | DL      | NULL  |
+|     3 | NULL    | IVS   |
+|     5 | rohit   | Apple |
++-------+---------+-------+
+5 rows in set (0.001 sec) 
+
+Replace:
+if the value already exists it will update
+if does'nt exist it will insert 
+MariaDB [june_batch]> replace into employee set empid=6,empname="Tara",dept="Big data";
+Query OK, 1 row affected (0.014 sec)
+
+MariaDB [june_batch]> select * from employee;
++-------+---------+----------+
+| empid | empname | dept     |
++-------+---------+----------+
+|     0 | 20      | ETA      |
+|     1 | Dhana   | ETA      |
+|     2 | DL      | NULL     |
+|     3 | NULL    | IVS      |
+|     5 | rohit   | Apple    |
+|     6 | Tara    | Big data |
++-------+---------+----------+
+6 rows in set (0.001 sec)
+
+MariaDB [june_batch]> replace into employee set empid=6,empname="Meera",dept="Big data";
+Query OK, 2 rows affected (0.003 sec)
+
+MariaDB [june_batch]> select * from employee;
++-------+---------+----------+
+| empid | empname | dept     |
++-------+---------+----------+
+|     0 | 20      | ETA      |
+|     1 | Dhana   | ETA      |
+|     2 | DL      | NULL     |
+|     3 | NULL    | IVS      |
+|     5 | rohit   | Apple    |
+|     6 | Meera   | Big data |
++-------+---------+----------+
+6 rows in set (0.001 sec)
+----------------------------------------------------------------------------------
+delete :
+delete from table [where condition ] [ limit row_count ];
+delete from employee; // all recored will be deleted 
+delete from employee where id=1; // row pertaining to id 1 will be deleted 
+delete from employee limit 2; from the top 2 row will be deleted 
+MariaDB [june_batch]> select * from employee;
++-------+---------+----------+
+| empid | empname | dept     |
++-------+---------+----------+
+|     0 | 20      | ETA      |
+|     1 | Dhana   | ETA      |
+|     2 | DL      | NULL     |
+|     3 | NULL    | IVS      |
+|     5 | rohit   | Apple    |
+|     6 | Meera   | Big data |
++-------+---------+----------+
+6 rows in set (0.001 sec)
+
+MariaDB [june_batch]> delete from employee where empid=1;
+Query OK, 1 row affected (0.042 sec)
+
+MariaDB [june_batch]> select * from employee;
++-------+---------+----------+
+| empid | empname | dept     |
++-------+---------+----------+
+|     0 | 20      | ETA      |
+|     2 | DL      | NULL     |
+|     3 | NULL    | IVS      |
+|     5 | rohit   | Apple    |
+|     6 | Meera   | Big data |
++-------+---------+----------+
+5 rows in set (0.001 sec)
+
+MariaDB [june_batch]> delete from employee limit 2;
+Query OK, 2 rows affected (0.042 sec)
+
+MariaDB [june_batch]> select * from employee;
++-------+---------+----------+
+| empid | empname | dept     |
++-------+---------+----------+
+|     3 | NULL    | IVS      |
+|     5 | rohit   | Apple    |
+|     6 | Meera   | Big data |
++-------+---------+----------+
+3 rows in set (0.001 sec)
+------------------------------------------------------------------------------
+Update:
+to make changes in the existing data 
+update table_name set col_name=values/expressions [where condition] [limit row_count ];
+MariaDB [june_batch]> create table emp(id int,name varchar(20),salary int(10));
+Query OK, 0 rows affected (0.056 sec)
+
+MariaDB [june_batch]> insert into emp values (1,"Dhana",20000),(2,"swetha",30000),(3,"sankavi",40000);
+Query OK, 3 rows affected (0.045 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [june_batch]> select * from emp;
++------+---------+--------+
+| id   | name    | salary |
++------+---------+--------+
+|    1 | Dhana   |  20000 |
+|    2 | swetha  |  30000 |
+|    3 | sankavi |  40000 |
++------+---------+--------+
+3 rows in set (0.001 sec)
+
+MariaDB [june_batch]> update emp set salary=50000 where id=1;
+Query OK, 1 row affected (0.041 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [june_batch]> select * from emp;
++------+---------+--------+
+| id   | name    | salary |
++------+---------+--------+
+|    1 | Dhana   |  50000 |
+|    2 | swetha  |  30000 |
+|    3 | sankavi |  40000 |
++------+---------+--------+
+3 rows in set (0.001 sec)
+
+MariaDB [june_batch]> update emp set salary=salary+10000;
+Query OK, 3 rows affected (0.042 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+MariaDB [june_batch]> select * from emp;
++------+---------+--------+
+| id   | name    | salary |
++------+---------+--------+
+|    1 | Dhana   |  60000 |
+|    2 | swetha  |  40000 |
+|    3 | sankavi |  50000 |
++------+---------+--------+
+3 rows in set (0.001 sec) 
+-----------------------------------------------------------------
+Select:
+to read the data from a table
+fetch all records:
+select * from table_name;
+select all from table_name;
+select * from employee where empid=1;
+select empname from employee;
+MariaDB [june_batch]> select id,name from emp where id=3;
++------+---------+
+| id   | name    |
++------+---------+
+|    3 | sankavi |
++------+---------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> select id,name from emp;
++------+---------+
+| id   | name    |
++------+---------+
+|    1 | Dhana   |
+|    2 | swetha  |
+|    3 | sankavi |
++------+---------+
+3 rows in set (0.001 sec)
+
+MariaDB [june_batch]> create table demo (id int,name varchar(20));
+Query OK, 0 rows affected (0.057 sec)
+
+MariaDB [june_batch]> insert into demo values (1,"Dl"),(2,"Madhu");
+Query OK, 2 rows affected (0.005 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [june_batch]> select * from demo;
++------+-------+
+| id   | name  |
++------+-------+
+|    1 | Dl    |
+|    2 | Madhu |
++------+-------+
+2 rows in set (0.001 sec)
+
+MariaDB [june_batch]> insert into demo values (1,"Dl"),(2,"Madhu");
+Query OK, 2 rows affected (0.002 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [june_batch]> select * from demo;
++------+-------+
+| id   | name  |
++------+-------+
+|    1 | Dl    |
+|    2 | Madhu |
+|    1 | Dl    |
+|    2 | Madhu |
++------+-------+
+4 rows in set (0.001 sec)
+
+MariaDB [june_batch]> select distinct * from demo;
++------+-------+
+| id   | name  |
++------+-------+
+|    1 | Dl    |
+|    2 | Madhu |
++------+-------+
+2 rows in set (0.001 sec) 
+------------------------------------------------------------------------
+Compound Statements:
+1.Stored functions
+2.stored procedure
+3.triggers
+4.variables,programming constructs,cursors 
+Declarative Variables:
+function(){
+	String name="Dhana";
+	system.out.print.ln(name);
+}
+Functions returns a return values and could be executed multiple times 
+1.declare command -used to declare local variables and default value can also be given 
+declare variable_name datatype [ default default_value];
+2.set command -used to assign a value
+set variable_name = new value;
+Syntax:
+create function function_name(parameters datatype)
+returns returning_datatype
+begin
+declarative statemnts;
+executable statments; // DDL,DML,No TCL
+end
+select function_name(value1,value2);
+Req:Calculate the total price of the food item 
+total_price=?
+price,quantity 
+// $$
+delimiter //
+create function cal_bill(price float,quantity int)
+returns float
+begin
+	declare total_price float;
+	set total_price=price*quantity;
+	return total_price;
+end //
+delimiter ;
+
+select cal_bill(40,2);
+
+delimiter //
+create function cal_bill1()
+returns float
+begin
+	declare price float;
+	declare quantity int;
+	declare total_price float;
+	set price=60;
+	set quantity=3;
+	set total_price=price*quantity;
+	return total_price;
+end //
+delimiter ;
+
+select cal_bill1();
+
+
+delimiter //
+create function cal_bill3()
+returns float
+begin
+	declare p_price int;
+	declare p_quantity int;
+	declare total_price float;
+	select price into p_price from data;
+	select quantity into p_quantity from data;
+	set total_price=p_price*p_quantity;
+	return total_price;
+end //
+delimiter ;
+
+select cal_bill4();
+
+delimiter //
+create function cal_bill4(p_id int)
+returns float
+begin
+	declare p_price int;
+	declare p_quantity int;
+	declare total_price float;
+	select price into p_price from data where id=p_id;
+	select quantity into p_quantity from data where id=p_id;
+	set total_price=p_price*p_quantity;
+	return total_price;
+end //
+delimiter ;
+
+select cal_bill4(3);
+
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create function cal_bill(price float,quantity int)
+    -> returns float
+    -> begin
+    -> declare total_price float;
+    -> set total_price=price*quantity;
+    -> return total_price;
+    -> end //
+Query OK, 0 rows affected (0.003 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]> select cal_bill(40,2);
++----------------+
+| cal_bill(40,2) |
++----------------+
+|             80 |
++----------------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create function cal_bill1()
+    -> returns float
+    -> begin
+    -> declare price float;
+    -> declare quantity int;
+    -> declare total_price float;
+    -> set price=60;
+    -> set quantity=3;
+    -> set total_price=price*quantity;
+    -> return total_price;
+    -> end //
+Query OK, 0 rows affected (0.043 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]>
+MariaDB [june_batch]> select cal_bill1();
++-------------+
+| cal_bill1() |
++-------------+
+|         180 |
++-------------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> create table data(price int,quantity int);
+Query OK, 0 rows affected (0.059 sec)
+
+MariaDB [june_batch]> insert into data values (200,2);
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [june_batch]> select * from data;
++-------+----------+
+| price | quantity |
++-------+----------+
+|   200 |        2 |
++-------+----------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create function cal_bill3()
+    -> returns float
+    -> begin
+    -> declare p_price int;
+    -> declare p_quantity int;
+    -> declare total_price float;
+    -> select price into p_price from data;
+    -> select quantity into p_quantity from data;
+    -> set total_price=p_price*p_quantity;
+    -> return total_price;
+    -> end //
+Query OK, 0 rows affected (0.047 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]>
+MariaDB [june_batch]> select cal_bill3();
++-------------+
+| cal_bill3() |
++-------------+
+|         400 |
++-------------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> drop table data;
+Query OK, 0 rows affected (0.051 sec)
+
+MariaDB [june_batch]> create table data (id int primary key,price int,quantity int);
+Query OK, 0 rows affected (0.051 sec)
+
+MariaDB [june_batch]> insert into data values (1,200,4),(2,30,6),(3,50,2);
+Query OK, 3 rows affected (0.045 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [june_batch]> select * from data;
++----+-------+----------+
+| id | price | quantity |
++----+-------+----------+
+|  1 |   200 |        4 |
+|  2 |    30 |        6 |
+|  3 |    50 |        2 |
++----+-------+----------+
+3 rows in set (0.002 sec)
+
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create function cal_bill4(p_id int)
+    -> returns float
+    -> begin
+    -> declare p_price int;
+    -> declare p_quantity int;
+    -> declare total_price float;
+    -> select price into p_price from data where id=p_id;
+    -> select quantity into p_quantity from data where id=p_id;
+    -> set total_price=p_price*p_quantity;
+    -> return total_price;
+    -> end //
+Query OK, 0 rows affected (0.044 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]>
+MariaDB [june_batch]> select cal_bill4(3);
++--------------+
+| cal_bill4(3) |
++--------------+
+|          100 |
++--------------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> select cal_bill4(2);
++--------------+
+| cal_bill4(2) |
++--------------+
+|          180 |
++--------------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> select cal_bill4(1);
++--------------+
+| cal_bill4(1) |
++--------------+
+|          800 |
++--------------+
+1 row in set (0.001 sec)
+------------------------------------------------------------------
+//Nextday
+DBMS Part-1:
+https://lex.infosysapps.com/en/app/toc/lex_auth_01275806667282022456/overview
+DBMS Part-2:
+https://lex.infosysapps.com/en/app/toc/lex_auth_0127673005629194241/overview
+Database Programming in MySQL:
+https://lex.infosysapps.com/en/app/toc/lex_15525478598515726000/overview  
+Stored Procedure:
+return multiple values 
+allows DDL,DML and TCL 
+function(param1 datatype)
+select(10);
+Syntax:
+create procedure procedure_name(parameters with modes ) //header
+begin 
+statments //body
+end
+
+Call procedure:
+call procedure_name(values);
+
+Drop procedure:
+drop procedure procedure_name;
+header:
+procedure name 
+parameters with datatype and mode
+datatpe-any valid datatypes that we have in MySQL 
+mode 
+3 kinds pf mode
+1.IN-used to give input to the procedure
+2.OUT-used to get output from the procedure
+2.INOUT-used to take input and give output 
+Req:Apply disocunt of 50% on items greater than 1000 or apply discount of 20% 
+input=price,quantity
+output=total_price,discount_price
+total_price=price*quantity
+if total_price>1000
+discount_price=total_price-(total_price*(50/100));
+
+delimiter //
+create procedure bill(IN price int,IN quantity int,OUT total_price int,OUT discount_price float)
+begin 
+	set total_price=price*quantity;
+	if total_price >1000 then 
+		set discount_price=total_price-(total_price*(50/100));
+	else
+		set discount_price=total_price-(total_price*(20/100));
+	end if;
+end; //
+delimiter ;
+
+MariaDB [(none)]> use june_batch;
+Database changed
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create procedure bill(IN price int,IN quantity int,OUT total_price int,OUT discount_price float)
+    -> begin
+    -> set total_price=price*quantity;
+    -> if total_price >1000 then
+    -> set discount_price=total_price-(total_price*(50/100));
+    -> else
+    -> set discount_price=total_price-(total_price*(20/100));
+    -> end if;
+    -> end; //
+Query OK, 0 rows affected (0.004 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]> call bill(40,2,@a,@b);
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [june_batch]> select @a,@b;
++------+------+
+| @a   | @b   |
++------+------+
+|   80 |   64 |
++------+------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> call bill(4000,2,@a,@b);
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [june_batch]> select @a,@b;
++------+------+
+| @a   | @b   |
++------+------+
+| 8000 | 4000 |
++------+------+
+1 row in set (0.001 sec)
+
+while(condition){
+//statements;
+}
+
+
+totatl_price=0;
+total_price=total_price+price*quantity;
+
+count=4
+1=4 false
+continue
+2=4 false
+continue
+
+loops:
+loop end loop
+label_name:loop
+statements
+if condition 
+	leave label_name;
+end if;
+
+while 
+repeat 
+
+delimiter //
+create procedure new_bill(OUT total_price int)
+begin
+	declare count_items int;
+	declare p_price int;
+	declare p_qty int;
+	declare p_id int default 1;
+	set total_price=0;
+	select count(id) into count_items from products;
+	L1:LOOP
+	select price,quantity into p_price,p_qty from products where id=p_id;
+	set total_price=total_price+(p_price*p_qty);
+	if p_id=count_items then 
+		leave L1;
+	else
+		set p_id=p_id+1;
+		iterate L1;
+	end if;
+	end LOOP;
+end; //
+delimiter ;
+
+Logic:
+count=4
+iteration 1:
+p_id=1
+100,2
+total_price=0+(100*2)=200
+if 1=4 false
+p_id=2
+Iteration 2:
+200,1
+totatl_price=200+(200*1)=400
+if 2=4 false 
+p_id=3
+Iteration 3:
+300,1
+total_price=400+(300*1)=700
+if 3=4 false
+p_id=4 
+Iteration 4:
+400,1
+total_price=700+(400*1)=1100
+if 4=4 true
+comes out of the loop
+	
+delimiter //
+create function new_bill1()
+returns int
+begin
+	declare count_items int;
+	declare p_price int;
+	declare p_qty int;
+	declare p_id int default 1;
+	declare total_price int;
+	set total_price=0;
+	select count(id) into count_items from products;
+	L1:LOOP
+	select price,quantity into p_price,p_qty from products where id=p_id;
+	set total_price=total_price+(p_price*p_qty);
+	if p_id=count_items then 
+		leave L1;
+	else
+		set p_id=p_id+1;
+		iterate L1;
+	end if;
+	end LOOP;
+	return total_price;
+end //
+delimiter ;	
+
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create procedure new_bill(OUT total_price int)
+    -> begin
+    -> declare count_items int;
+    -> declare p_price int;
+    -> declare p_qty int;
+    -> declare p_id int default 1;
+    -> set total_price=0;
+    -> select count(id) into count_items from products;
+    -> L1:LOOP
+    -> select price,quantity into p_price,p_qty from products where id=p_id;
+    -> set total_price=total_price+(p_price*p_qty);
+    -> if p_id=count_items then
+    -> leave L1;
+    -> else
+    -> set p_id=p_id+1;
+    -> iterate L1;
+    -> end if;
+    -> end LOOP;
+    -> end; //
+Query OK, 0 rows affected (0.016 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]> call new_bill(@);
+Query OK, 5 rows affected (0.001 sec)
+
+MariaDB [june_batch]> select @;
++------+
+| @    |
++------+
+| 1100 |
++------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create function new_bill1()
+    -> returns int
+    -> begin
+    -> declare count_items int;
+    -> declare p_price int;
+    -> declare p_qty int;
+    -> declare p_id int default 1;
+    -> declare total_price int;
+    -> set total_price=0;
+    -> select count(id) into count_items from products;
+    -> L1:LOOP
+    -> select price,quantity into p_price,p_qty from products where id=p_id;
+    -> set total_price=total_price+(p_price*p_qty);
+    -> if p_id=count_items then
+    -> leave L1;
+    -> else
+    -> set p_id=p_id+1;
+    -> iterate L1;
+    -> end if;
+    -> end LOOP;
+    -> end //
+ERROR 1320 (42000): No RETURN found in FUNCTION june_batch.new_bill1
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]> drop function new_bill1;
+ERROR 1305 (42000): FUNCTION june_batch.new_bill1 does not exist
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create function new_bill1()
+    -> returns int
+    -> begin
+    -> declare count_items int;
+    -> declare p_price int;
+    -> declare p_qty int;
+    -> declare p_id int default 1;
+    -> declare total_price int;
+    -> set total_price=0;
+    -> select count(id) into count_items from products;
+    -> L1:LOOP
+    -> select price,quantity into p_price,p_qty from products where id=p_id;
+    -> set total_price=total_price+(p_price*p_qty);
+    -> if p_id=count_items then
+    -> leave L1;
+    -> else
+    -> set p_id=p_id+1;
+    -> iterate L1;
+    -> end if;
+    -> end LOOP;
+    -> return total_price;
+    -> end //
+Query OK, 0 rows affected (0.003 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]> select new_bill1();
++-------------+
+| new_bill1() |
++-------------+
+|        1100 |
++-------------+
+1 row in set (0.001 sec)
+
+
+delimiter //
+create procedure new_bill2(OUT total_price int)
+begin
+	declare count_items int;
+	declare p_price int;
+	declare p_qty int;
+	declare p_id int default 1;
+	set total_price=0;
+	select count(id) into count_items from products;
+	L1:LOOP
+	select price,quantity into p_price,p_qty from products where id=p_id;
+	set total_price=total_price+(p_price*p_qty);
+	if p_id=count_items then 
+		leave L1;
+	else
+		set p_id=p_id+1;
+		iterate L1;
+	end if;
+	end LOOP;
+	insert into total values(total_price);
+end; //
+delimiter ;
+
+MariaDB [june_batch]> create table total (total_price int);
+Query OK, 0 rows affected (0.023 sec)
+
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create procedure new_bill2(OUT total_price int)
+    -> begin
+    -> declare count_items int;
+    -> declare p_price int;
+    -> declare p_qty int;
+    -> declare p_id int default 1;
+    -> set total_price=0;
+    -> select count(id) into count_items from products;
+    -> L1:LOOP
+    -> select price,quantity into p_price,p_qty from products where id=p_id;
+    -> set total_price=total_price+(p_price*p_qty);
+    -> if p_id=count_items then
+    -> leave L1;
+    -> else
+    -> set p_id=p_id+1;
+    -> iterate L1;
+    -> end if;
+    -> end LOOP;
+    -> insert into total values(total_price);
+    -> end; //
+Query OK, 0 rows affected (0.011 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]> call new_bill2(@a);
+Query OK, 6 rows affected (0.016 sec)
+
+MariaDB [june_batch]> select @a;
++------+
+| @a   |
++------+
+| 1100 |
++------+
+1 row in set (0.000 sec)
+
+MariaDB [june_batch]> select * from total;
++-------------+
+| total_price |
++-------------+
+|        1100 |
++-------------+
+1 row in set (0.000 sec)
+
+MariaDB [june_batch]> truncate table product;
+ERROR 1146 (42S02): Table 'june_batch.product' doesn't exist
+MariaDB [june_batch]> truncate table products;
+Query OK, 0 rows affected (0.022 sec)
+
+MariaDB [june_batch]> select * from products;
+Empty set (0.001 sec)
+
+MariaDB [june_batch]> insert into products values (1,500,1);
+Query OK, 1 row affected (0.013 sec)
+
+MariaDB [june_batch]> call new_bill2(@a);
+Query OK, 3 rows affected (0.014 sec)
+
+MariaDB [june_batch]> select * from total;
++-------------+
+| total_price |
++-------------+
+|        1100 |
+|         500 |
++-------------+
+2 rows in set (0.001 sec)
+-----------------------------------------------------------------------------
+Programming Constructs:
+Conditional Statements
+if else 
+if else if
+case
+Iterative Statements
+loop 
+while repeat 
+
+if else:
+if expression then 
+	statements 
+else if expression then 
+	statements 
+else 
+	statments 
+end if;
+
+delimiter //
+create procedure Customer(in credit int,out level varchar(20))
+begin 
+	if credit>50000 then 
+		set level='platinum';
+	elseif credit>30000 then
+		set level='gold';
+	else
+		set level='silver';
+	end if;
+end; //
+delimiter ;
+
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create procedure Customer(in credit int,out level varchar(20))
+    -> begin
+    -> if credit>50000 then
+    -> set level='platinum';
+    -> elseif credit>30000 then
+    -> set level='gold';
+    -> else
+    -> set level='silver';
+    -> end if;
+    -> end; //
+Query OK, 0 rows affected (0.019 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]> call Customer(40000,@out);
+Query OK, 0 rows affected (0.002 sec)
+
+MariaDB [june_batch]> select @out;
++------+
+| @out |
++------+
+| gold |
++------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> call Customer(70000,@out);
+Query OK, 0 rows affected (0.002 sec)
+
+MariaDB [june_batch]> select @out;
++----------+
+| @out     |
++----------+
+| platinum |
++----------+
+1 row in set (0.001 sec)
+
+Case:
+case
+when search_condtion then statements
+when search_condtion then statements
+[when search_condtion then statements]
+end case;
+
+delimiter //
+create function grade(marks int)
+returns varchar(10)
+begin 
+	declare result varchar(10);
+	case 
+	when marks>=90 then 
+		set result='A grade';
+	when marks between 71 and 89 then
+		set result='B grade';
+	when marks between 51 and 70 then
+		set result='C grade';
+	else 
+		set result='D grade';
+	end case;
+	return result;
+end //
+delimiter ;
+
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create function grade(marks int)
+    -> returns varchar(10)
+    -> begin
+    -> declare result varchar(10);
+    -> case
+    -> when marks>=90 then
+    -> set result='A grade';
+    -> when marks between 71 and 89 then
+    -> set result='B grade';
+    -> when marks between 51 and 70 then
+    -> set result='C grade';
+    -> else
+    -> set result='D grade';
+    -> end case;
+    -> return result;
+    -> end //
+Query OK, 0 rows affected (0.018 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]> select grade(99);
++-----------+
+| grade(99) |
++-----------+
+| A grade   |
++-----------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> select grade(70);
++-----------+
+| grade(70) |
++-----------+
+| C grade   |
++-----------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> select grade(43);
++-----------+
+| grade(43) |
++-----------+
+| D grade   |
++-----------+
+1 row in set (0.000 sec)
+
+loops:
+while
+label_name:while condition do
+statments
+end while label_name
+
+num=5
+sum=0
+sum=sum+i;
+i++
+1+2+3+4+5
+ 
+delimiter //
+create procedure sum_of_num(in num int)
+begin 
+	declare sum_num int default 0;
+	declare i int default 1;
+	L1:while i<=num do
+		set sum_num=sum_num+i;
+		set i=i+1;
+	end while L1;
+	select sum_num as result;
+end; //
+delimiter ;
+
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create procedure sum_of_num(in num int)
+    -> begin
+    -> declare sum_num int default 0;
+    -> declare i int default 1;
+    -> L1:while i<=num do
+    -> set sum_num=sum_num+i;
+    -> set i=i+1;
+    -> end while L1;
+    -> select sum_num as result;
+    -> end; //
+Query OK, 0 rows affected (0.007 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]> call sum_of_num(5);
++--------+
+| result |
++--------+
+|     15 |
++--------+
+1 row in set (0.001 sec)
+
+Query OK, 0 rows affected (0.003 sec)
+
+loop end loop:
+label_name:loop
+statements
+if condition then
+	leave label_name 
+else
+	iterate label_name;
+end if;
+Display the number from 1 to 5 
+1 2 3 4 5 
+
+delimiter //
+create procedure addition()
+begin 
+	declare num int default 0;
+	L1:loop
+	set num=num+1;
+	select num;
+	if num=5 then 
+		leave L1;
+	end if;
+	end loop L1;
+end; //
+delimiter ;
+
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create procedure addition()
+    -> begin
+    -> declare num int default 0;
+    -> L1:loop
+    -> set num=num+1;
+    -> select num;
+    -> if num=5 then
+    -> leave L1;
+    -> end if;
+    -> end loop L1;
+    -> end; //
+Query OK, 0 rows affected (0.018 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]> call addition();
++------+
+| num  |
++------+
+|    1 |
++------+
+1 row in set (0.001 sec)
+
++------+
+| num  |
++------+
+|    2 |
++------+
+1 row in set (0.012 sec)
+
++------+
+| num  |
++------+
+|    3 |
++------+
+1 row in set (0.016 sec)
+
++------+
+| num  |
++------+
+|    4 |
++------+
+1 row in set (0.020 sec)
+
++------+
+| num  |
++------+
+|    5 |
++------+
+1 row in set (0.037 sec)
+
+Query OK, 0 rows affected (0.041 sec)
+repeat:
+exit chcking loop - condition will be checked only at the exit
+false - execute 
+true - terminate 
+mutiplication of a number
+1*num
+2*num
+3*num
+
+delimiter //
+create procedure multiply(in num int)
+begin 
+	declare i int default 1;
+	declare res int;
+	L1:repeat
+	set res=i*num;
+	select res;
+	set i=i+1;
+	until i>10
+	end repeat L1;
+end; //
+delimiter ;
+
+Logic:
+num=4
+i=1
+iteration 1:
+res=1*4=4
+i=2
+2>10 false
+iteration 2:
+i=2
+res=2*4=8
+i=3
+3>10 false
+10>10 true 
+
+MariaDB [june_batch]> create procedure multiply(in num int)
+    -> begin
+    -> declare i int default 1;
+    -> declare res int;
+    -> L1:repeat
+    -> set res=i*num;
+    -> select res;
+    -> set i=i+1;
+    -> until i>=10
+    -> end repeat L1;
+    -> end; //
+Query OK, 0 rows affected (0.015 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]> call multiply(4);
++------+
+| res  |
++------+
+|    4 |
++------+
+1 row in set (0.002 sec)
+
++------+
+| res  |
++------+
+|    8 |
++------+
+1 row in set (0.013 sec)
+
++------+
+| res  |
++------+
+|   12 |
++------+
+1 row in set (0.019 sec)
+
++------+
+| res  |
++------+
+|   16 |
++------+
+1 row in set (0.034 sec)
+
++------+
+| res  |
++------+
+|   20 |
++------+
+1 row in set (0.049 sec)
+
++------+
+| res  |
++------+
+|   24 |
++------+
+1 row in set (0.066 sec)
+
++------+
+| res  |
++------+
+|   28 |
++------+
+1 row in set (0.072 sec)
+
++------+
+| res  |
++------+
+|   32 |
++------+
+1 row in set (0.075 sec)
+
++------+
+| res  |
++------+
+|   36 |
++------+
+1 row in set (0.078 sec)
+
+Query OK, 0 rows affected (0.095 sec)
+------------------------------------------------------------------------------
+Triggers:
+any changes done in 1 table will be reflected in another table 
+Availability
+train_id avail_seats
+101			100 
+Booking 
+Booking_id train_id no_of_seats
+1			101			5
+fetch - 95
+2			101			10
+fetch - 85 
+syntax:
+create trigger trigger_name 
+trigger_time trigger_event on table_name
+for each row
+begin 
+body 
+end 
+
+trigger_time - before /after
+trigger_event - insert/update/delete 
+
+delimiter //
+create trigger update_seats
+after insert on booking
+for each row
+begin 
+update avail set avail_seats=avail_seats-NEW.no_of_seats where tid=NEW.tid;
+end; //
+delimiter ;
+
+new/old - keywords used to access the values thats been affected by trigger 
+MariaDB [june_batch]> create table avail(tid int,avail_seats int);
+Query OK, 0 rows affected (0.033 sec)
+
+MariaDB [june_batch]> create table booking(bid int,tid int,no_of_seats);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1
+MariaDB [june_batch]> create table booking(bid int,tid int,no_of_seats int);
+Query OK, 0 rows affected (0.023 sec)
+
+MariaDB [june_batch]> insert into avail values(101,100);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [june_batch]> select * from avail;
++------+-------------+
+| tid  | avail_seats |
++------+-------------+
+|  101 |         100 |
++------+-------------+
+1 row in set (0.002 sec)
+
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create trigger update_seats
+    -> after insert on booking
+    -> for each row
+    -> begin
+    -> update avail set avail_seats=avail_seats-NEW.no_of_seats where tid=NEW.tid;
+    -> end; //
+Query OK, 0 rows affected (0.028 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]> insert into booking values (1,101,5);
+Query OK, 1 row affected (0.005 sec)
+
+MariaDB [june_batch]> select * from avail;
++------+-------------+
+| tid  | avail_seats |
++------+-------------+
+|  101 |          95 |
++------+-------------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> select * from booking;
++------+------+-------------+
+| bid  | tid  | no_of_seats |
++------+------+-------------+
+|    1 |  101 |           5 |
++------+------+-------------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> insert into booking values (2,101,15);
+Query OK, 1 row affected (0.005 sec)
+
+MariaDB [june_batch]> select * from booking;
++------+------+-------------+
+| bid  | tid  | no_of_seats |
++------+------+-------------+
+|    1 |  101 |           5 |
+|    2 |  101 |          15 |
++------+------+-------------+
+2 rows in set (0.000 sec)
+
+MariaDB [june_batch]> select * from avail;
++------+-------------+
+| tid  | avail_seats |
++------+-------------+
+|  101 |          80 |
++------+-------------+
+1 row in set (0.000 sec)
+------------------------------------------------------------------
+//Nextday
+DBMS Part-1:
+https://lex.infosysapps.com/en/app/toc/lex_auth_01275806667282022456/overview
+DBMS Part-2:
+https://lex.infosysapps.com/en/app/toc/lex_auth_0127673005629194241/overview
+Database Programming in MySQL:
+https://lex.infosysapps.com/en/app/toc/lex_15525478598515726000/overview 
+Cerification Link:
+MySQL
+https://lex.infosysapps.com/en/app/toc/lex_auth_01297894724183654424399/overview
+PLSQL:
+https://lex.infosysapps.com/en/app/toc/lex_auth_013281970954706944466/overview
+-----------------------------------------------------------------------------------
+Triggers:
+any changes done in 1 table will be reflected in another table 
+Availability
+train_id avail_seats
+101			100 
+Booking 
+Booking_id train_id no_of_seats
+1			101			5
+fetch - 95
+2			101			10
+fetch - 85 
+syntax:
+create trigger trigger_name 
+trigger_time trigger_event on table_name
+for each row
+begin 
+body 
+end 
+
+trigger_time - before /after
+trigger_event - insert/update/delete 
+
+delimiter //
+create trigger update_seats
+after insert on booking
+for each row
+begin 
+update avail set avail_seats=avail_seats-NEW.no_of_seats where tid=NEW.tid;
+end; //
+delimiter ;
+
+new/old - keywords used to access the values thats been affected by trigger 
+MariaDB [june_batch]> create table avail(tid int,avail_seats int);
+Query OK, 0 rows affected (0.033 sec)
+
+MariaDB [june_batch]> create table booking(bid int,tid int,no_of_seats);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1
+MariaDB [june_batch]> create table booking(bid int,tid int,no_of_seats int);
+Query OK, 0 rows affected (0.023 sec)
+
+MariaDB [june_batch]> insert into avail values(101,100);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [june_batch]> select * from avail;
++------+-------------+
+| tid  | avail_seats |
++------+-------------+
+|  101 |         100 |
++------+-------------+
+1 row in set (0.002 sec)
+
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create trigger update_seats
+    -> after insert on booking
+    -> for each row
+    -> begin
+    -> update avail set avail_seats=avail_seats-NEW.no_of_seats where tid=NEW.tid;
+    -> end; //
+Query OK, 0 rows affected (0.028 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]> insert into booking values (1,101,5);
+Query OK, 1 row affected (0.005 sec)
+
+MariaDB [june_batch]> select * from avail;
++------+-------------+
+| tid  | avail_seats |
++------+-------------+
+|  101 |          95 |
++------+-------------+
+1 row in set (0.001 sec)
+
+MariaDB [june_batch]> select * from booking;
++------+------+-------------+
+| bid  | tid  | no_of_seats |
++------+------+-------------+
+|    1 |  101 |           5 |
++------+------+-------------+
+1 row in set (0.001 sec)
+
+
+Cursors:
+Iterate the result set of a query
+Step1:declare cursor - buffer memory will be created with select statement
+2.open cursor - select statement will be loded in the buffer memory and ready for manipultion 
+3.fetch cursor - data will be fetched from the buffer for manipulation 
+4.close cursor - deallocate the buffer memmory 
+Req:To the dept OS,if salary is > 20000,increment by 10% otherwise by 5%
+Syntax:
+declare cursor_name CURSOR for select statement 
+open cursor_name 
+fetch cursor_name values
+statments
+close cursor_name 
+
+
+delimiter //
+create procedure update_sal()
+begin
+	declare counter int;
+	declare i int default 1;
+	declare id_c int;
+	declare sal_c float;
+	declare c1 cursor for select id,sal from emp_c where dept='OS';
+	select count(id) into counter from emp_c where dept='OS';
+	open c1;
+		L1:LOOP
+			fetch c1 into id_c,sal_c;
+			if sal_c > 20000 then 
+				set sal_c=sal_c+(sal_c*(10/100));
+				update emp_c set sal=sal_c where id=id_c;
+			else
+				set sal_c=sal_c+(sal_c*(5/100));
+				update emp_c set sal=sal_c where id=id_c;
+			end if;
+			if i=counter then
+				leave L1;
+			end if;
+				set i=i+1;
+		end LOOP;
+	close c1;
+select "Salary is updated" as result;
+end; //
+delimiter ;
+
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create procedure update_sal()
+    -> begin
+    -> declare counter int;
+    -> declare i int default 1;
+    -> declare id_c int;
+    -> declare sal_c float;
+    -> declare c1 cursor for select id,sal from emp_c where dept='OS';
+    -> select count(id) into counter from emp_c where dept='OS';
+    -> open c1;
+    -> L1:LOOP
+    -> fetch c1 into id_c,sal_c;
+    -> if sal_c > 20000 then
+    -> set sal_c=sal_c+(sal_c*(10/100));
+    -> update emp_c set sal=sal_c where id=id_c;
+    -> else
+    -> set sal_c=sal_c+(sal_c*(5/100));
+    -> update emp_c set sal=sal_c where id=id_c;
+    -> end if;
+    -> if i=counter then
+    -> leave L1;
+    -> end if;
+    -> set i=i+1;
+    -> end LOOP;
+    -> close c1;
+    -> select "Salary is updated" as result;
+    -> end; //
+Query OK, 0 rows affected (0.007 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]> select * from emp_c;
++----+-------+------+
+| id | sal   | dept |
++----+-------+------+
+|  1 | 36300 | OS   |
+|  2 | 30000 | HRD  |
+|  3 | 40000 | IVS  |
+|  4 | 15678 | OS   |
++----+-------+------+
+4 rows in set (0.001 sec)
+
+MariaDB [june_batch]> call update_sal;
++-------------------+
+| result            |
++-------------------+
+| Salary is updated |
++-------------------+
+1 row in set (0.018 sec)
+
+Query OK, 3 rows affected (0.030 sec)
+
+MariaDB [june_batch]> select * from emp_c;
++----+---------+------+
+| id | sal     | dept |
++----+---------+------+
+|  1 |   39930 | OS   |
+|  2 |   30000 | HRD  |
+|  3 |   40000 | IVS  |
+|  4 | 16461.9 | OS   |
++----+---------+------+
+4 rows in set (0.001 sec)
+
+delimiter //
+create procedure update_sal1(p_dept varchar(20))
+begin
+	declare counter int;
+	declare i int default 1;
+	declare id_c int;
+	declare sal_c float;
+	declare c1 cursor for select id,sal from emp_c where dept=p_dept;
+	select count(id) into counter from emp_c where dept=p_dept;
+	open c1;
+		L1:LOOP
+			fetch c1 into id_c,sal_c;
+			if sal_c > 20000 then 
+				set sal_c=sal_c+(sal_c*(10/100));
+				update emp_c set sal=sal_c where id=id_c;
+			else
+				set sal_c=sal_c+(sal_c*(5/100));
+				update emp_c set sal=sal_c where id=id_c;
+			end if;
+			if i=counter then
+				leave L1;
+			end if;
+				set i=i+1;
+		end LOOP;
+	close c1;
+select "Salary is updated" as result;
+end; //
+delimiter ;
+
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create procedure update_sal1(p_dept varchar(20))
+    -> begin
+    -> declare counter int;
+    -> declare i int default 1;
+    -> declare id_c int;
+    -> declare sal_c float;
+    -> declare c1 cursor for select id,sal from emp_c where dept=p_dept;
+    -> select count(id) into counter from emp_c where dept=p_dept;
+    -> open c1;
+    -> L1:LOOP
+    -> fetch c1 into id_c,sal_c;
+    -> if sal_c > 20000 then
+    -> set sal_c=sal_c+(sal_c*(10/100));
+    -> update emp_c set sal=sal_c where id=id_c;
+    -> else
+    -> set sal_c=sal_c+(sal_c*(5/100));
+    -> update emp_c set sal=sal_c where id=id_c;
+    -> end if;
+    -> if i=counter then
+    -> leave L1;
+    -> end if;
+    -> set i=i+1;
+    -> end LOOP;
+    -> close c1;
+    -> select "Salary is updated" as result;
+    -> end; //
+Query OK, 0 rows affected (0.017 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]> call update_sal1;
+ERROR 1318 (42000): Incorrect number of arguments for PROCEDURE june_batch.update_sal1; expected 1, got 0
+MariaDB [june_batch]> call update_sal1('HRD');
++-------------------+
+| result            |
++-------------------+
+| Salary is updated |
++-------------------+
+1 row in set (0.003 sec)
+
+Query OK, 2 rows affected (0.023 sec)
+
+MariaDB [june_batch]> select * from emp;
++------+---------+--------+
+| id   | name    | salary |
++------+---------+--------+
+|    1 | Dhana   |  60000 |
+|    2 | swetha  |  40000 |
+|    3 | sankavi |  50000 |
++------+---------+--------+
+3 rows in set (0.001 sec)
+
+MariaDB [june_batch]> select * from emp_c;
++----+---------+------+
+| id | sal     | dept |
++----+---------+------+
+|  1 |   39930 | OS   |
+|  2 |   33000 | HRD  |
+|  3 |   40000 | IVS  |
+|  4 | 16461.9 | OS   |
++----+---------+------+
+4 rows in set (0.001 sec)
+
+MariaDB [june_batch]> call update_sal1('Apple');
+ERROR 1329 (02000): No data - zero rows fetched, selected, or processed
+------------------------------------------------------------------------------
+Exception Handling:
+To handle runtime errors occuring from stored procedure/functions
+syntax:
+declare {continue | exit} handler for exception 
+begin 
+statements
+end 
+
+NOT FOUND 
+SQL WARNING
+SQL EXCEPTION
+
+continue - error is handled ans still continues with the code flow
+exit - error is handled ans exits the flow 
+
+delimiter //
+create procedure update_sal3(p_dept varchar(20))
+begin
+	declare counter int;
+	declare i int default 1;
+	declare id_c int;
+	declare sal_c float;
+	declare flag int default 0;
+	declare c1 cursor for select id,sal from emp_c where dept=p_dept;
+	declare exit handler for not found
+	begin 
+		set flag=1;
+		select "No match found" as result;
+	end;
+	select count(id) into counter from emp_c where dept=p_dept;
+	open c1;
+		L1:LOOP
+			fetch c1 into id_c,sal_c;
+			if sal_c > 20000 then 
+				set sal_c=sal_c+(sal_c*(10/100));
+				update emp_c set sal=sal_c where id=id_c;
+			else
+				set sal_c=sal_c+(sal_c*(5/100));
+				update emp_c set sal=sal_c where id=id_c;
+			end if;
+			if i=counter then
+				leave L1;
+			end if;
+				set i=i+1;
+		end LOOP;
+	close c1;
+select "Salary is updated" as result;
+end; //
+MariaDB [june_batch]> delimiter //
+MariaDB [june_batch]> create procedure update_sal3(p_dept varchar(20))
+    -> begin
+    -> declare counter int;
+    -> declare i int default 1;
+    -> declare id_c int;
+    -> declare sal_c float;
+    -> declare flag int default 0;
+    -> declare c1 cursor for select id,sal from emp_c where dept=p_dept;
+    -> declare exit handler for not found
+    -> begin
+    -> set flag=1;
+    -> select "No match found" as result;
+    -> end;
+    -> select count(id) into counter from emp_c where dept=p_dept;
+    -> open c1;
+    -> L1:LOOP
+    -> fetch c1 into id_c,sal_c;
+    -> if sal_c > 20000 then
+    -> set sal_c=sal_c+(sal_c*(10/100));
+    -> update emp_c set sal=sal_c where id=id_c;
+    -> else
+    -> set sal_c=sal_c+(sal_c*(5/100));
+    -> update emp_c set sal=sal_c where id=id_c;
+    -> end if;
+    -> if i=counter then
+    -> leave L1;
+    -> end if;
+    -> set i=i+1;
+    -> end LOOP;
+    -> close c1;
+    -> select "Salary is updated" as result;
+    -> end; //
+Query OK, 0 rows affected (0.020 sec)
+
+MariaDB [june_batch]> delimiter ;
+MariaDB [june_batch]> call update_sal3("Apple");
++----------------+
+| result         |
++----------------+
+| No match found |
++----------------+
+1 row in set (0.003 sec)
+
+Query OK, 1 row affected (0.015 sec)
+delimiter ;
+---------------------------------------------------------------------------
+DCL:
+Grant And Revoke:
+Syntax:
+grant all on table_name to user_name;
+grant select,insert,references on table_name to user_name;
+Revoke all on table_name from user_name;
+revoke select,insert,references on table_name from user_name;
+-------------------------------------------------------------------------
+Perform Backup:
+mysqldump user_credentials --database database_name > filename.sql 
+mysqldump -u er111111 -p --database june_batch > backup.sql 
+source backup.sql
+
+mysqldump user_credentials --tables table_name > filename.sql 
+mysqldump -u er111111 -p --tables student > backup_table.sql
+source backup_table.sql
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
