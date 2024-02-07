@@ -1,0 +1,7 @@
+# step1 create serializers.py by ModelSerializer class
+from rest_framework import serializers
+from .models import Destination
+class DestinationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Destination
+        fields = '__all__'
