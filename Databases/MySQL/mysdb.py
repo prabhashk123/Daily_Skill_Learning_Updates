@@ -11,7 +11,6 @@
 # con.commit()
 # con.close()
 
-
 """SELECT operation"""
 # import mysql.connector
 # con=mysql.connector.connect(host="localhost",user="root",password='',database="Lexdb")
