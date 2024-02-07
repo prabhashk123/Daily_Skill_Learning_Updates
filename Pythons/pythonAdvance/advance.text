@@ -1,0 +1,229 @@
+Agenda-
+-------------
+Need Of OOPs
+Class
+Object
+Abstraction 
+Encapsulation
+Aggregation and association
+
+class-
+------------------
+->it's a blueprint/skeleton of an object
+
+class :
+attribute->variable
+behaviour->method()
+Class is a description of attributes and behavior that objects of that classification should possess.
+Common attributes are created using a special method called __init__
+Attributes are created using the syntax, reference_variable.attribute_name = value
+Behavior is created by defining a function inside the class having a special parameter called self.
+
+class Pizza:
+    toppings
+	sauce
+	bread
+	
+	prepare()
+
+
+example->PIZZA
+----------------------
+toppings="Cheese","Sweetcorn"
+sauce="Schezwan","tomato"
+bread="brown bread"
+
+prepare()
+
+
+
+object
+---------------------
+->it's an instance of a class
+
+syntax-
+----------
+obj_name=class_name()
+
+
+
+Attributes
+---------------
+->it's a variable
+->it can be created inside a class or outside a class
+outside-
+-------------
+ obj_name.attribute=value
+ 
+->it can be accessed outside the class 
+
+Method
+------------
+syntax:
+   def method_name(self):
+       pass
+	   
+	  
+
+calling a method:
+------------------------
+obj.method_name()	
+OR
+class_name.method_name(obj)  
+
+
+ex-
+------
+p2=Product("Vivo",2000)
+
+p2.purchase()
+OR
+Product.purchase(p2)
+
+----------------------------------------
+
+ex
+---------
+class Product:
+    def __init__(self,brand,price):
+        self.brand=brand
+        self.price=price
+
+    def purchase(self):
+        print("purchasing:",self.brand)
+    pass
+
+p1=Product("OPPO",22000)
+p1.brand="Apple"
+p1.camera="16MP"
+p1.camer="12MP"
+print(p1.brand,p1.camera)
+p1.purchase()
+p2=Product()
+p2.brand="Vivo"
+p2.price=2200
+print(p2.brand,p2.price)
+p2.purchase()
+-----------------------------------------------
+
+
+constructor()->
+---------------------
+-it is a special method
+-used for initilization of attributes
+
+syntax->
+-------------
+def __init__(self):
+   pass
+   
+   
+ex-
+------
+class Product:
+    def __init__(self,brand,price):
+        self.brand=brand
+        self.price=price
+
+    def purchase(self):
+        print("purchasing:",self.brand)
+    pass
+
+p1=Product("OPPO",22000)
+p1.purchase()
+p2=Product("Vivo",2000)
+p2.purchase()
+--------------------------------------------------------
+
+
+DESTRUCTOR-->
+-------------------------------------------------------------------------
+->Destructor is a special method which will be invoked automatically when the object gets removed from the memory.
+ex-->class Product:
+    def __init__(self,price,brand):
+        self.price=price
+        self.brand=brand
+    def __del__(self):
+        print('Deleting the object')
+p1=Product(10000,'Apple')
+p2=Product(7000,'Samsung')
+del p1
+Output-->Deleting the object|In the above output, deleting the object is displayed twice. The first one, when object p1 is explicitly  	                             	   Deleting the object|deleted using del keyword.The second one, when the object p2 is deallocated from the memory implicitly.
+---------------------------------------------------------------------------
+
+self
+-------------   
+->it is used to store the reference of current object
+->it is first attribute of any method defined in a class
+
+
+ABSTRACTION
+-----------------------
+->hiding unnecessary data
+->showing only the relevant data to a user
+
+
+
+ENCAPSULATION
+-------------------
+->restricting the accesss
+->keeping things private
+->binding data and method as one
+
+->we can make our attributes private to  restrict the access of others
+
+syntax-
+------------
+__var=var
+
+->to make any attribute private we have to add '__' in front of it
+ex- self.__wallet=wallet
+->it won't be accessible directly outside the class
+
+
+->to access the private variables outside the class we have getter and setter methods
+->setter method will set the value of private variable
+->getter method will return the value of private variable
+
+
+
+example
+------------
+class Customer:
+    def __init__(self,cust_id,name,wallet):
+        self.cust_id=cust_id
+        self.name=name
+        self.__wallet=wallet
+    def data(self):
+        print(self.__wallet)
+    def set_wallet(self,wallet):
+        self.__wallet=wallet
+    def get_wallet(self): 
+        return self.__wallet
+
+#outsider
+c1=Customer(22,"john",2000)
+c1.data()
+print("Wallet:",c1.get_wallet())
+----------------------------------------------------------------
+
+NOTE->u can access private variable using 
+  # obj.className__privateVar
+ 
+ex
+----
+print("Wallet:",c1._Customer__wallet) 
+-------------------------------------------------------------------------- 
+
+#Function->                                                    #Method->
+->It is a block of code with a name                            ->Is a part of an object and represents the behaviour of the object
+->It can be invoked using the name of the				   ->Can be invoked only on an object,using dot operator Without and object 
+` function and parameters.						     we can't invoked a method
+->ex-len([1,2,3])								   ->ex-[1,2,3].reverse()
+->parameter are optional in a Function.				   ->A method must have at least one parameter:self.
+
+----------------------------------------------------------------------------
+
+
+
+
