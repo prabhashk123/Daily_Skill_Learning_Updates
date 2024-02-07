@@ -1,0 +1,25 @@
+{
+  "bookings": [
+    {
+      "bouquetName": "RoselineRed",
+      "bookedOn": "2018-02-10",
+      "emailId": "rajeh@infy.com",
+      "flowerCount": 4,
+      "id": 1001
+    },
+    {
+      "bouquetName": "TerifficTulip",
+      "bookedOn": "2022-10-03",
+      "emailId": "deblina@gmail.com",
+      "flowerCount": "34",
+      "id": 1004
+    },
+    {
+      "bouquetName": "ChineseChandelier",
+      "bookedOn": "2022-10-05",
+      "emailId": "hanu@gmail.com",
+      "flowerCount": "44",
+      "id": 1005
+    }
+  ]
+}
