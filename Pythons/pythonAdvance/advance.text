@@ -775,6 +775,859 @@ print(person2.age)
 # print the result
 print(Person.isAdult(22))
 
+-------------------------------------------------------------------
+nextday
+Agenda3-
+-----------------
+Need Of database
+Mysql connection
+NoSQL 
+MongoDB connection
+
+
+Need Of database-
+------------------------
+->To store data
+->process data
+
+
+MYSQL
+-------------------
+->install mysql.connector
+#pip install mysql.connector
+
+
+Steps:-
+---------------
+->import mysql.connector
+->create connection object
+->create cursor
+->execute query
+->close cursor
+->commit changes
+->close the connection
+
+
+
+
+
+INSERT
+------------------
+import mysql.connector
+
+con=mysql.connector.connect(host="localhost", user="root", passwd="", database="april_python")
+cur=con.cursor()
+cur.execute("Insert into Computer Values(2,'HP','Vosto','2001')")
+cur.close()
+con.commit()
+con.close()
+
+---------------------------------------------------------------------------------------
+
+SELECT
+--------------
+
+import mysql.connector
+con=mysql.connector.connect(host="localhost", user="root", passwd="", database="april_python")
+cur=con.cursor()
+cur.execute("SELECT * FROM Computer")
+
+for r in cur:
+    print(r)
+
+# for r in cur:
+#     print(r[1],r[3])
+
+# for c1,c2,c3,c4 in cur:
+#     print(c2,c4)
+
+# print(cur.rowcount)
+cur.close()
+con.commit()
+con.close()
+
+----------------------------------------------------------------
+
+->methods to fetch some no. of rows
+-fetchone()  ->to fetch one row 
+-fetchmany(n)  ->to fetch n numbers of rows #if u r not passing any value it will read one row
+-fetchall()  ->to get all the rows in output
+
+
+--
+
+import mysql.connector
+con=mysql.connector.connect(host="localhost", user="root", passwd="", database="april_python")
+cur=con.cursor()
+cur.execute("SELECT * FROM Computer where year='2001'")
+
+# print(cur.fetchone())
+# print(cur.fetchmany())
+print(cur.fetchall())
+
+# print(cur.rowcount)
+# cur.close()
+# con.commit()
+# con.close()
+#
+-----------------------------------------------------------------------------------------------------------
+
+
+DELETE
+-----------------
+
+
+import mysql.connector
+con=mysql.connector.connect(host="localhost", user="root", passwd="", database="april_python")
+cur=con.cursor()
+cur.execute("DELETE FROM Computer where year='2000'")
+
+print(cur.rowcount)
+cur.close()
+con.commit()
+con.close()
+
+---------------------------------------------------------------------------------------------
+
+UPDATE
+--------------
+import mysql.connector
+con=mysql.connector.connect(host="localhost", user="root", passwd="", database="april_python")
+cur=con.cursor()
+
+cur.execute("Update Computer set name='INTEL' where C_ID=7")
+
+print(cur.rowcount)
+cur.close()
+con.commit()
+con.close()
+
+
+
+
+
+VARIABLE BINDING:
+-----------------------
+->instead of hardcoding the values we will pass the variable
+->variable value will be used in a query
+
+->u can pass single variable
+
+ex->
+cur=con.cursor()
+p=input("id to be deleted")
+cur.execute("DELETE FROM Computer where C_ID="+p)
+
+
+->u can pass list of variables
+ex1->
+------
+p=input("id to be deleted")
+cur.execute("DELETE FROM Computer where C_ID=%s",[p])
+
+ex2->
+-----------
+id=input("Enter ID")
+name=input("Enter Name")
+brand=input("Enter brand")
+year=input("Enter year")
+cur.execute("Insert into Computer(C_ID,NAME,BRAND,YEAR) values (%s,%s,%s,%s)",[id,name,brand,year])
+
+
+
+->u can pass dictionary
+ex1-
+---------
+id=input("id to be deleted")
+cur.execute("DELETE FROM Computer where C_ID=%(id)s",{'id':'C_ID'})
+
+ex2-
+--------
+c_id=input("Enter ID")
+name=input("Enter Name")
+brand=input("Enter brand")
+year=input("Enter year")
+cur.execute("Insert into Computer(C_ID,NAME,BRAND,YEAR) values (%(c_id)s,%(name)s,%(brand)s,%(year)s)",{'c_id':c_id,'name':name,'brand':brand,'year':year})
+
+
+
+MYSQL Exceptions-
+---------------------
+import mysql.connector
+
+try:
+    con=mysql.connector.connect(host="localhost", user="root", passwd="", database="april_python")
+
+    cur=con.cursor()
+   
+    cur.execute("Update Computer set name='INTEL' where C_ID=7")
+    print(cur.rowcount)
+    cur.close()
+    con.commit()
+    con.close()
+
+
+except mysql.connector.errors.ProgrammingError as e:
+    print("programming error",str(e))
+
+except mysql.connector.errors.OperationalError as e:
+    print("Operational error",str(e))
+
+except Exception as e:
+    print(str(e))
+
+-------------------------------------------------------------------------------------------------------
+
+
+
+
+
+Special Methods
+----------------------
+__str__->
+
+class Product:
+    def __init__(self,brand,price):
+        self.brand=brand
+        self.price=price
+
+    def __str__(self):
+
+        return self.brand+" "+str(self.price)
+
+
+p1=Product("Vivo",2222)
+p2=Product("Oppo",3333)
+
+print(p1)
+
+-------------------------------------
+
+__add__
+
+class Product:
+    def __init__(self,brand,price):
+        self.brand=brand
+        self.price=price
+
+    def __str__(self):
+        return self.brand+" "+str(self.price)
+    def __add__(self, other):
+        return self.brand+other.brand
+
+
+p1=Product("Vivo",2222)
+p2=Product("Oppo",3333)
+
+print(p1+p2)           #+ ->add()
+
+-----------------------------------------------------
+
+ClassMethod
+------------
+->it is used to change the class level variable value
+->it will be called using class name   #className.methodName
+->1 mandatory default argument is their "cls"
+   
+
+class Product:
+    discount=10
+    def __init__(self,price):
+        self.price=price
+
+    def cost(self):
+        total=self.price-self.price*Product.discount/100
+        print(total)
+
+    @classmethod
+    def enable_dis(cls):
+        cls.discount=50
+
+    @classmethod
+    def disable_dis(cls):
+        cls.discount=0
+
+
+p1=Product(333)
+p1.cost()
+Product.enable_dis()
+p1.cost()
+-----------------------------------------------------------------------------------------
+
+
+
+ITERATION
+---------------------------
+LIST
+-------------
+l1=[22,33,66,77]
+
+# for i in l1:              #traversal without index
+#     print(i)
+
+
+for i in range(len(l1)):            #traversal using index
+    print(l1[i])
+	
+	
+STRING
+--------------
+l1="HELLO WORLD"
+
+for i in l1:              #traversal without index
+    print(i)
+
+#
+# for i in range(len(l1)):            #traversal using index
+#     print(l1[i])
+	
+-----------------------------------------------------------------------------------
+nextday
+
+Agenda
+---------------------------------
+NoSQL
+MongoDB
+Web programming
+
+
+
+NoSQL
+--------------
+->No Only SQL
+->Unstructured or semi-structured
+->No predefined schema
+->Every row can have different no. of cols
+
+
+
+MongoDB
+-------------------
+->Document-oriented database
+->table will be called as collection
+->row will be called  document
+->Here data will be passed in JSON format i.e key-value pair
+
+
+
+Connection of MongoDB and Python
+-----------------------------------
+->install pymongo
+
+->import pymongo
+->connect with host
+->connect to db
+->use collection
+
+
+import p
+
+commands
+---------------
+show dbs ->to see all the databases
+
+use db_name->to use any db
+
+show collections->to see all the collections/table in your current db
+
+Insert
+-------------
+Python          Mongo
+-----------------------------
+insert
+insert_one      #insertOne
+insert_many     #insertMany
+db.student.insert({name:"Shrey",age:23})
+
+
+
+insert_one
+--------------
+from pymongo import MongoClient          
+
+conn=MongoClient('mongodb://localhost:27017/')
+
+db=conn['Apr']
+coll=db['Employee']
+coll.insert_one({"name":"John","age":"45"})
+
+
+
+insert_many
+------------------
+from pymongo import MongoClient
+
+conn=MongoClient('mongodb://localhost:27017/')           #connecting to a host
+
+db=conn['Apr']                                           #connecting to db
+coll=db['Employee']                                      #connecting to a collection
+var=coll.insert_many([{"name":"Sam","age":"45","dept":"Production"},{"name":"Roy","city":"Mysore","dept":"ETA"}])
+
+print(var.inserted_ids)          #to get the inserted ids
+
+
+
+Select/Find
+--------------
+db.student.find();             #select * from student
+
+->find
+->find_one
+
+
+find_one
+-------------
+from pymongo import MongoClient
+conn=MongoClient('mongodb://localhost:27017/')           #connecting to a host
+db=conn['Apr']                                           #connecting to db
+coll=db['Employee']                                      #connecting to a collection
+var=coll.find_one()
+print(var)
+
+
+find
+-------------
+from pymongo import MongoClient
+conn=MongoClient('mongodb://localhost:27017/')           #connecting to a host
+db=conn['Apr']                                           #connecting to db
+coll=db['Employee']                                      #connecting to a collection
+var=coll.find()
+
+for row in var:
+    print(row)
+
+
+ex2
+-----
+from pymongo import MongoClient
+conn=MongoClient('mongodb://localhost:27017/')           #connecting to a host
+db=conn['Apr']                                           #connecting to db
+coll=db['Employee']                                      #connecting to a collection
+var=coll.find({'dept':'ETA'},{'name':1,'_id':0})
+
+for row in var:
+    print(row)
+
+-------------------------------------------------------------------------------------
+
+DELETE
+------------
+delete_one
+delete_many
+
+
+delete_one
+--------------
+from pymongo import MongoClient
+conn=MongoClient('mongodb://localhost:27017/')           #connecting to a host
+db=conn['Apr']                                           #connecting to db
+coll=db['Employee']                                      #connecting to a collection
+var=coll.delete_one({'dept':'ETA'})
+
+
+
+
+
+delete_many
+-----------------
+from pymongo import MongoClient
+conn=MongoClient('mongodb://localhost:27017/')           #connecting to a host
+db=conn['Apr']                                           #connecting to db
+coll=db['Employee']                                      #connecting to a collection
+var=coll.delete_many({'dept':'Production'})
+
+
+
+
+
+UPDATE
+---------------------
+update_one
+update_many
+
+
+update_one
+------------
+coll.update_one({'age':'45'},{'$set':{'city':'Chennai'}})
+
+update_many
+------------------
+from pymongo import MongoClient
+conn=MongoClient('mongodb://localhost:27017/')           #connecting to a host
+db=conn['Apr']                                           #connecting to db
+coll=db['Employee']                                      #connecting to a collection
+coll.update_many({'age':'45'},{'$set':{'city':'Chennai'}})
+
+#var=coll.update_one({'age':'45'},{'$set':{'city':'Chennai'}})
+-----------------------------------------------------------------------------------------------
+
+
+WEB PROGRAMMING
+---------------------
+
+Client/server architecture is a computing model in which the server hosts, delivers, and manages most of the resources 
+and services to be consumed by the client. 
+This type of architecture has one or more client computers connected to a central server over a network or internet connection. 
+Any web application designed will have a three tier/layered architecture. 
+
+
+
+ARCHITECTURE
+-------------
+3-TIER  ARCHITECTURE
+
+
+1-PRESENTATION LAYER->This is handling the UI part of an application
+
+2-APPLICATION LAYER->Here we r handling all the business logic and processing of data
+
+3-PERSISTANCE LAYER->It handles database and is responsible to manage and store data
+
+
+
+
+
+CGI- Common Gateway Interface
+-------------------------------------
+CGI is a specification for transferring information between a World Wide Web server and a CGI program. 
+A CGI program is any program designed to accept and return data that conforms to the CGI specification.
+
+
+
+->here we'll be using inbuilt server 
+
+Step 1->Start a server
+
+python -m http.server --cgi 8080
+
+
+Step 2->create cgi-bin folder
+
+Step 3->create your file in cgi-bin folder
+
+
+ex-
+---------
+
+
+#!C:\Program Files\Python310\python.exe              #where script is getting executed
+import cgi
+print('content-type:text/html\n')                     #mime type i.e what type of content u r passing
+
+print('''
+<html>
+<head></head>
+<body>
+<h1>Welcome</h1>
+<body>
+</html>
+''')
+
+----------------------
+
+enable error 
+-------------
+
+#!C:\Program Files\Python310\python.exe              #where script is getting executed
+import cgi
+import cgitb
+cgitb.enable()                                       #to trace the errors
+print('content-type:text/html\n')
+x=10/0
+print('''
+<html>
+<head></head>
+<body>
+<h1>Welcome</h1>
+<h2>Heyyyyyy</h2>
+<body>
+</html>
+''')
+
+
+----------------------------
+Hide error
+---------------
+
+cgitb.enable(display=0,logdir='/temp')
+
+
+
+ex
+----
+#!C:\Python34\python.exe
+import cgi, cgitb
+cgitb.enable(display = 0, logdir = '/temp')
+print('Content-type:text/html \n')
+print('''
+	<html>
+		<head>
+			<title> My First CGI Script </title>
+		</head>
+		<body>
+			<h1> Login Form </h1>
+			<form method="POST" action="">
+				Username : <input type="text" name="username" placeholder="Enter Username" required /> <br />
+				Password : <input type="password" name="password" placeholder="Enter Password" required /> <br />
+				<input type="submit" name="submit" value ="Login" />
+			</form>
+		</body>
+	</html>
+''')
+form = cgi.FieldStorage()
+if form:
+    if('username' in form.keys() and 'password' in form.keys()):
+        if(form['username'].value == 'admin'):
+            if(form['password'].value == 'admin@123'):
+                print('Login Successful !!! <br /> You will be redirected to homepage in 3 seconds ...')
+                print('<meta http-equiv=refresh content="3;url=p1.py" />')
+            else:
+                print('Incorrect Password')
+        else:
+            print('Invalid Username')
+
+-------------------------------------------------------------------------------------------------------------
+nextday
+Agenda
+----------------
+Working with excel
+working with csv
+
+
+
+Excel
+---------------
+(Step1)pip install openpyxl
+
+-import openpyxl
+-load_workbook to connect with workbook
+-sheetnames will return the worksheets present in our current workbook
+-cell fun is used to connect to a cell
+-to find maximun no of row we have max_row fun
+-for maximum col we max_col function
+
+
+Ex
+-------
+
+import openpyxl as xl
+
+wb=xl.load_workbook(r'Office1.xlsx')
+print("Sheetnames:",wb.sheetnames)    #to get the name of all worksheets
+ws=wb['Emp']
+print(type(ws))
+cell1=ws.cell(2,2)
+print(cell1.value)
+c2=ws['A2']
+print(c2.value)
+
+
+ex2-to read row and col data
+-------------------------------
+import openpyxl as xl
+wb=xl.load_workbook(r'Office1.xlsx')
+ws=wb['Emp']
+print("maximum row:",ws.max_row)
+print("maximum column:",ws.max_column)
+
+row=ws[2]
+
+for r in row:
+    print(r.value)
+
+col=ws['B']
+for col in col:
+    print(col.value)
+
+
+Slicing
+---------------
+import openpyxl as xl
+wb=xl.load_workbook(r'Office1.xlsx')
+ws=wb['Emp']
+
+row=ws['A1':'B4']
+for col in row:
+    for cell in col:
+        print(cell.value)
+
+
+
+
+Append->to add data
+------------------------
+->append() - is used to add data
+
+
+import openpyxl as xl
+wb=xl.load_workbook(r'Office1.xlsx')
+ws=wb['Sheet']
+ws.append(['Id',"Name"])
+ws.append([5,'ROHAN'])
+ws.append([6,"Pragya"])
+wb.save(r'Off.xlsx')
+
+
+-------------------------------
+
+Delete->to delete data
+---------------------------
+->delete_rows(row_num , no of rows to be deleted)
+->dealete_cols(col_num ,no of cols to be deleted)
+
+import openpyxl as xl
+wb=xl.load_workbook(r'Off.xlsx')
+ws=wb['Sheet']
+# ws.delete_rows(2,2)
+ws.delete_cols(2)
+wb.save(r'Off.xlsx')
+
+------------------------------------
+
+Insert Row /Column
+------------------------
+->insert_rows()->to insert row
+->insert_cols()->to insert col
+import openpyxl as xl
+wb=xl.load_workbook(r'Office1.xlsx')
+ws=wb['Emp']
+# ws.insert_rows(2,2)
+ws.insert_cols(1,4)
+wb.save(r'Office1.xlsx')
+
+
+
+
+Create Workbook, Worksheet and remove worksheet
+---------------------------------------------------
+import openpyxl as xl
+
+wb=xl.Workbook()          #create workbook
+wb.create_sheet(title="d1",index=0)  #worksheet creation
+print(wb.sheetnames)
+wb.remove(wb['Sheet'])               #remove worksheet
+
+print(wb.sheetnames)
+wb.save(r'Employeex.xlsx') 
+
+
+
+---------------------------------------------------------------------
+
+CSV->Comma Seperated Value
+----------------------------
+->import csv 
+->open(file_path,mode)
+
+->mode can be:
+ r:read
+ w:write(truncate the previous data)
+ a:append(retain the previous data)
+ 
+Reader Option
+---------------
+reader()->to read the data
+DictReader()->to read the data in dictionary format
+
+
+reader()-
+--------------
+import csv
+
+with open(r'data.csv','r') as csvfile:
+    content=csv.reader(csvfile)
+    print(type(content))
+    for c in content:
+        print(c)
+
+DictReader()-
+------------------
+import csv
+
+with open(r'data.csv','r') as csvfile:
+    content=csv.DictReader(csvfile)
+    print(type(content))
+    for c in content:
+        print(c)
+
+
+Writer Option
+---------------------
+writer()
+DictWriter()
+ 
+ 
+
+writer()-
+--------------
+import csv
+
+with open(r'data1.csv','a') as csvfile:
+    content=csv.writer(csvfile)
+
+    content.writerow(['Shrey','22'])
+    content.writerow(['Shreya','222'])
+
+
+DictWriter-
+--------------
+import csv
+
+with open(r'data1.csv','w') as csvfile:
+    fields=['name','age','city']
+
+    content=csv.DictWriter(csvfile,fields)
+    content.writeheader()
+
+    content.writerow({'name':'Shrey','age':'22','city':'Prayag'})
+    content.writerow({'name':'Shreya','age':'22','city':'LKO'})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
