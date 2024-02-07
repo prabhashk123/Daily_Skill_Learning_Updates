@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}CodeingWorld{% endblock %}
+{% block body %}
+<br>
+<form action="{% url 'addcourse' %}" method="post" class="bg-dark mx-5"style="width:40%;color:white;">
+    {% csrf_token %}
+    <div class="form-group mx-5"  style="width:30%">
+      <label for="formGroupExampleInput">Add your courses</label>
+      <input type="text" name="coursename" class="form-control" id="formGroupExampleInput" placeholder="coursename">
+    </div>
+    <div class="form-group mx-5" style="width:30%">
+      <label for="formGroupExampleInput2">Add durations</label>
+      <input type="text" name='durationmonth' class="form-control" id="formGroupExampleInput2" placeholder="durationmonth">
+    </div><br>
+    <button type="submit" class="btn btn-primary my-2 mx-5">Submit</button>
+  </form><br>
+  <h3 class="form-group mx-5"  style="color:blue">Course Details:-</h3>
+  <table class="table table-bordered table-dark mx-5" style="width:40%">
+      <tr>
+        <th>coursename</th>
+        <th>durationmonth</th>
+        <th>action</th>
+    </tr>
+    <tr>
+        <td>Python</td>
+        <td>6</td>
+        <th><button type="submit" class="btn btn-primary">Remove</button></th>
+      </tr>
+{% if request.session %}
+    {% for key,value in request.session.items %}
+      <tr>
+        <td>{{key}}</td>
+        <td>{{value}}</td>
+        <th><button type="submit" class="btn btn-primary">Remove</button></th>
+      </tr>
+ 
+{% endfor %}
+{% endif %}
+</table>
+{% endblock %}

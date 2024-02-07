@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All student fatch for loop</title>
+</head>
+<body>
+    <table>
+        <tr><th>Sn No</th><th>Id</th><th>Name</th><th>User_Id</th><th>Mobileno</th></tr>
+        {% for stu in allstu %}
+        {% if forloop.first or forloop.last  %}
+            <tr style="background-color:red"><td>{{forloop.counter0}}</td><td>{{stu.id}}</td><td>{{stu.name}}</td><td>{{stu.user_id}}</td><td>{{stu.mobileno}}</td></tr>
+        {% comment %} {% elif forloop.last %} 
+            <tr style="background-color:yellow"><td>{{forloop.counter0}}</td><td>{{stu.id}}</td><td>{{stu.name}}</td><td>{{stu.user_id}}</td><td>{{stu.mobileno}}</td></tr>    {% endcomment %}
+        {% else %}
+            <tr><td>{{forloop.counter0}}</td><td>{{stu.id}}</td><td>{{stu.name}}</td><td>{{stu.user_id}}</td><td>{{stu.mobileno}}</td></tr>
+        {% endif %}
+
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}CodeingWorld{% endblock %}
+{% block body %}
+<br>
+    <!-- about us -->
+    <h1 class="d-flex justify-content-center">ABOUT US</h1>
+    <div class="container d-flex justify-content-center">
+        <div class="col-md-6 w-75 ">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-success">Web developer</strong>
+                    <h3 class="mb-0">Prabhash kumar</h3>
+                    <div class="mb-1 text-warning">OWNER</div>
+                    <p class="mb-auto">I'm an Electronics & communication Engineer having CGPA of 7.01 who founds her
+                        true passion in web development. I was curious about how this web development works and I have
+                        knowledge of PYTHON ,HTML5, CSS and JAVASCRIPT. Almost immediately, I know this is what I wanted
+                        to do in life! I love to make Websites Design and Website Development. And I love how there's
+                        always more to learn.
+                        I am seeking employment with a company where I can grow professionally and personally.
+                    </p>
+                    <div class="mb-1 text-warning">Goals</div>
+                    <p class="mb-auto">My short term goal is to get in repuated like this field company
+                        and My long term goal is to become more responser knowledgeble person.
+
+                    </p>
+                    <div class="mb-1 text-warning">Our vision</div>
+                    <p class="mb-auto"> To create, share, and apply knowledge in Computer Science,
+                        including in interdisciplinary areas that extend the scope of Computer Science
+                        and benefit humanity; to educate students to be successful, ethical, and effective
+                        problem-solvers and life-long learners who will contribute positively to the
+                        economic well-being of our region and nation and who are prepared to tackle
+                        complex 21st Century challenges facing the world.</p>
+
+                    <a href="https://www.linkedin.com/in/prabhash-kumar-89a4a9170/" class="text-decoration-none"
+                        target="_blank">read mores</a>
+                </div>
+                {% load static %}
+                <div class="col-auto d-none d-lg-block">
+                    <img src="{% static 'imgages/owner.png.jpg' %}" class="bd-placeholder-img" width="200" height="250" alt="owner">
+                    <!-- after image then name-->
+                    <div data-v-5ed4af32="" class="row mt-4">
+                        <div data-v-5ed4af32="" class="col-md-2"></div>
+                        <div data-v-5ed4af32="" class="col-md-10">
+                            <p data-v-5ed4af32="" class="mb-0">
+                                <strong data-v-5ed4af32="">Prabhash kumar</strong>
+                            </p>
+
+                            <p data-v-5ed4af32="" class="mb-0 mx-3">
+                                <strong data-v-5ed4af32="">Ece.Engineer</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- for gmail -->
+                    <div data-v-5ed4af32="" class="row mt-2">
+                        <div data-v-5ed4af32="" class="col-md-1">
+                            <i data-v-5ed4af32="" aria-hidden="true" class="fa fa-envelope mt-1"></i>
+                        </div>
+                        <div data-v-5ed4af32="" class="col-md-10 "><small data-v-5ed4af32="">
+                                <a data-v-5ed4af32="" href="https://mail.google.com/mail/u/1/?ogbl#"
+                                    class="text-decoration-none"
+                                    target="_blank">sunriseprabhash.bh@gmail.com</a></small></div>
+                    </div>
+                    <!-- for phone -->
+                    <div data-v-5ed4af32="" class="row mt-1">
+                        <div data-v-5ed4af32="" class="col-md-2">
+                            <i data-v-5ed4af32="" aria-hidden="true" class="fa fa-phone mt-1"></i>
+                        </div>
+                        <div data-v-5ed4af32="" class="col-md-10">
+                            <small data-v-5ed4af32="">
+                                <a data-v-5ed4af32="" href="tel:+91-95705-88189" class="text-decoration-none"
+                                    target="_blank">+91-95705-88189</a>
+                            </small>
+                        </div>
+                    </div>
+                    <!-- end -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

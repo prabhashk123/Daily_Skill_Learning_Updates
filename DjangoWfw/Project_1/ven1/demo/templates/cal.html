@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}CodeingWorld{% endblock %}
+{% block body %}
+<br><br>
+<h2 style="margin-left:6%; background-color: black;color: white; width: 26%;">This is our calculator</h2>
+<form action="" method="GET">
+    <div style="background-color: darkblue;color: white; width: 26%;margin-left:6%">
+        <table>
+            <tr>
+                <td>No1:=</td><td><input type="text" name="no1" id="no1" value='{{no1}}' placeholder="Enter the value of No1"></td>
+            </tr>
+            <tr>
+                <td>No2:=</td><td><input type="text" name="no2" id="no2" value='{{no2}}' placeholder="Enter the value of No2"></td>
+            </tr>
+            <tr>
+                <td>Result:=</td><td><input type="text" name="res" id="res" value={{res}}></td>
+            </tr>
+            <tr>
+                <td></td><td><input style="color:White;background-color:red; margin-top:5px;border:3px solid red" type="submit" name="sum" value="sum">
+               </td>
+            <tr>
+               <td></td><td><input style="color:White;background-color:red; margin-top:5px;border:3px solid red" type="submit" name="sub" value="subtract">
+               </td>
+            </tr>
+            </tr>
+        </table>
+    </div>
+</form>
+{% endblock %}

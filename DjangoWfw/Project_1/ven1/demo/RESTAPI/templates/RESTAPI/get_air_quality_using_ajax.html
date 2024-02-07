@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api consuming in ajax,javascripts</title>
+    <script>
+        function getAirQuality(){
+            lat=document.getElementById('id_textlat').value
+            lon=document.getElementById('id_textlong').value
+            hour=document.getElementById('id_texthour').value
+            // onclick('ok')
+            url = "https://air-quality.p.rapidapi.com/forecast/airquality"
+            var xhttp=new XMLHttpRequest();
+            params="lat?"+lat.toString()+'&lon'+lon.toString()+"&hour"+hour.toString()
+            url=url+params
+            // alert(url)
+            xhttp.open('get',url,true)
+            xhttp.setRequestHeader("X-RapidAPI-Key","d476fe8a30msh5f4ac71f8ab9e20p136d04jsnd518c42968ed")
+            xhttp.setRequestHeader("X-RapidAPI-Host","air-quality.p.rapidapi.com")
+            xhttp.onreadystatechange=function(){
+                if(this.readyState==4 && this.status==200)
+                {
+                    document.getElementById('msg').innerText=this.responseText;
+
+                }
+            };
+            xhttp.send()
+        }
+// call ajax se
+function saveCustomer(){
+            url = "http://127.0.0.1:8000/restapi/savecusbyrestapi"
+            var xhttp=new XMLHttpRequest();
+            xhttp.open('post',url,true)
+            xhttp.setRequestHeader('Content-type','application/json');
+            // data is json
+            data='{"id": 3,"name": "Prabhash Kumar","age": 20,"address": "vill rupoli","phone": "09570588189"}'
+            xhttp.onreadystatechange=function(){
+                if(this.readyState==4 && this.status==200)
+                {
+                    document.getElementById('msg').innerText=this.responseText;
+
+                }
+            };
+            xhttp.send(data)
+        }
+    </script>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            <tr><th>Latitude</th><th>Longitude</th><th>Hour</th></tr>
+            <tr><td><input type="text" name="textlat" id="id_textlat" value="35.779"><td><input type="text" name="textlong" id="id_textlong" value="-78.638"><td><input type="text" name="id_texthour" id="id_texthour" value="72"></td></tr>
+            <!-- <tr><td colspan="3"><input type="button" onclick="getAirQuality()" value="Get Data"></td></tr> -->
+            <tr><td colspan="3"><input type="button" onclick="saveCustomer()" value="Get Data"></td></tr>
+        </table>
+        <h2 id='msg'></h2>
+    </form>  
+</body>
+</html>

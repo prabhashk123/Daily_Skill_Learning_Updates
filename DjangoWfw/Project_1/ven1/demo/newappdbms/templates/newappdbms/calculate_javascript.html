@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function sum(){
+            // alert='ok'
+            n1=document.getElementById('no1')
+            n2=document.getElementById('no2')
+            res=document.getElementById('result')
+            res.value=Number(n1.value)+Number(n2.value)
+            mydiv=document.getElementById('mydiv')
+            alert(mydiv.innerText)
+            btn=document.getElementById('btn1')
+            alert(btn.style.backgroundColor)
+        }
+        // this used ke bad here any var use
+        function changecolor(btn){
+            btn.style.backgroundColor='blue'
+        }
+        function changecolors(btn){
+            btn.style.backgroundColor='red'
+        }
+    </script>
+</head>
+<body>
+    <div id='mydiv'>This is my div</div>
+    <table>
+        <tr><td>no1</td><td><input type="text" name="no1" id="no1"></td></tr>
+        <tr><td>no2</td><td><input type="text" name="no2" id="no2"></td></tr>
+        <tr><td>result</td><td><input type="text" name="result" id="result"></td></tr>
+        <!-- function call as event in js for buttons  -->
+        <tr><td><td><input type="button" value="sum" id="btn1" onmouseover="changecolors(btn)" onmousedown="changecolor(this)" onclick="sum()"></td></td></tr>
+    </table>
+    
+</body>
+</html>

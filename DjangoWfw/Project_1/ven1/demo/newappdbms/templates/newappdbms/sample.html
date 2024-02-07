@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelforms</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <!-- herse s and c is studentform type data this is the key of dictonary this is django object into html-->
+        <!-- .as_p form api means func call .as_table .as_ul -->
+         <!-- for error -->
+         <h1> {{s.errors}} </h1>
+        <table>
+            <!-- rendering all fields in one row in html from modelform -->
+            {{s}} 
+            <tr><td><td><input type="submit" value="Add student"></td></td></tr>
+        </table>
+        <br><br><br>
+        <!-- using loop for field print -->
+        <!-- <table>
+            {% for f in s %}
+            <tr><th>{{f.label_tag}}</th><td>{{f}}</td></tr>
+            {% endfor %}
+        </table><br><br> -->
+        <!-- using withot loop one field  -->
+        <!-- <table>
+            <tr><th>{{s.mobileno.label_tag}}</th><td>{{s.mobileno}}</td></tr>
+        </table> -->
+        <!-- <table>
+        {{s.as_table}} 
+    </table> -->
+    <!-- <table>
+        {{c.as_table}}
+    </table> -->
+       
+    </form>
+    
+</body>
+</html>

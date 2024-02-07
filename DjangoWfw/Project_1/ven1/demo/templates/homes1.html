@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% block title %}CodeingWorld{% endblock %}
+{% block body %}
+
+
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+            {% load static %}
+            <div class="carousel-item active">
+                <img src="{% static 'imgages/img1.jpg' %}" style="height: 710px;" class="d-block w-100" alt="Welcome to e-Codeing">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Welcome to e-codeing</h5>
+                    <p>This is the best plaeform for make future in codeing</p>
+                    <button class="btn btn-primary">JOIN</button>
+                    <button class="btn btn-danger">Programming</button>
+                    <button class="btn btn-warning">Read mores</button>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'imgages/img2.jpg.jpg' %}" style="height: 710px;" class="d-block w-100" alt="">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>You learn best plateform</h5>
+                    <p>Are you learn best codeing plateform so lets enjoy this code</p>
+                    <button class="btn btn-primary">JOIN</button>
+                    <button class="btn btn-danger">Programming</button>
+                    <button class="btn btn-warning">Read moers</button>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="{% static 'imgages/img3.png' %}" style="height:710px;" class="d-block w-100" alt="">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Interoduce latest programming language Python</h5>
+                    <p>This Programming is latest but learn a perfect programming for begineers</p>
+                    <button class="btn btn-primary">JOIN</button>
+                    <button class="btn btn-danger">Programming</button>
+                    <button class="btn btn-warning">Read mores</button>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="{% static 'imgages/img4.jpg' %}" style="height: 710px;filter:invert();" class="d-block w-100" alt="">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Due to Covid-19 all course are free</h5>
+                    <p>All are join immediately e-codeing plateform because
+                        you give all course are free due to covid-19</p>
+                    <button class="btn btn-primary">JOIN</button>
+                    <button class="btn btn-danger">Programming</button>
+                    <button class="btn btn-warning">Read mores</button>
+                </div>
+            </div>
+        </div>
+        <!-- button of slide img -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- After image -->
+    <div class="container my-2">
+        <div class="row mb-2">
+            <div class="col-md-6">
+                <div
+                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-success">Codeing here</strong>
+                        <h3 class="mb-0">Learn how to code</h3>
+                        <div class="mb-1 text-muted">Apr 23</div>
+                        <p class="card-text mb-auto">Step 1: Work Out Why You Want To Learn How
+                            To Code.
+                            Step 2: Choose The Right Languages.
+                            Step 3: Download A Code Editor.
+                        </p>
+                        <a href="#" class="stretched-link">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img src="{% static 'imgages/card1.png.jpg' %}" class="bd-placeholder-img" width="200" height="250" alt="">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div
+                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-success">Web Design</strong>
+                        <h3 class="mb-0">Bootstrap using</h3>
+                        <div class="mb-1 text-muted">Nov 23</div>
+                        <p class="mb-auto">Get started with Bootstrap, the world’s most popular framework for
+                            building
+                            responsive, mobile-first sites, with js Delivr and a template starter</p>
+                        <a href="https://getbootstrap.com/" target="_blank" class="stretched-link">Continue
+                            reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img src="{% static 'imgages/card2.png.jpg' %}" class="bd-placeholder-img" width="200" height="250" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- end -->
+    <!-- Project link here -->
+    <div class="container">
+        <h1 class="d-flex justify-content-center " style="border:solid 5px blue;background-color: gray;">Our Project
+            Works</h1>
+        <h4>Project-Link here:-</h4>
+        <li><a href="https://drive.google.com/drive/folders/1o8hSh7SHaVv_b0zKg_z0_NFOEODxgjL7?usp=sharing "
+                target="_blank">
+                <button class="btn btn-danger">Click Here</button>
+            </a></li>
+        <!-- START THE FEATURETTES -->
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Python Project.</h2>
+                <h5 class="text-primary">What is Python?</h5>
+                <p class="lead">
+                    Python is a popular programming language. It was created by Guido van Rossum, and released in 1991.
+                    It is used for:
+                    web development (server-side),
+                    software development,
+                    mathematics,
+                    system scripting.
+                <h5 class="text-primary">What can Python d0?</h5>
+                Python can be used on a server to create web applications.
+                Python can be used alongside software to create workflows.
+                Python can connect to database systems. It can also read and modify files.
+                Python can be used to handle big data and perform complex mathematics.
+                Python can be used for rapid prototyping, or for production-ready software development.
+                <h5 class="text-success">Project list</h5>
+                <h6>*Project-1=>Game based on snake-waterfall</h6>
+                <h6>*Project-2=>Game based guesses number.</h6>
+                <h6>*Project-3=>Library Management System.</h6>
+                <h6>*Project-4=>Customer Management System.</h6>
+                <h6> *Project-5=>Calculator based.</h6>
+                </p>
+            </div>
+            <div class="col-md-5">
+                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+                    height="500" src="{% static 'imgages/python.png.jpg' %}" alt="Python">
+            </div>
+        </div>
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading">Html and Css based Project.
+                </h2>
+                <p class="lead">
+                <h5 class="text-primary">HTML Introduction?</h5>
+                HTML is the standard markup language for creating Web pages.
+                <h5 class="text-primary">What is HTML?</h5>
+                HTML stands for Hyper Text Markup Language
+                HTML is the standard markup language for creating Web pages
+                HTML describes the structure of a Web page
+                HTML consists of a series of elements
+                HTML elements tell the browser how to display the content
+                HTML elements label pieces of content such as "this is a heading", "this is a paragraph", "this is a
+                link", etc.
+                <h5 class="text-primary"> CSS Introduction?</h5>
+                CSS is the language we use to style a Web page.
+                <h5 class="text-primary">What is CSS?</h5>
+                CSS stands for Cascading Style Sheets
+                CSS describes how HTML elements are to be displayed on screen, paper, or in other media
+                CSS saves a lot of work. It can control the layout of multiple web pages all at once
+                External stylesheets are stored in CSS files.
+                <h5 class="text-success">Project list</h5>
+                <h6>*Project-1=>learning project</h6>
+                <h6>*Project-2=>MyOnlneFoodStore.</h6>
+                </p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+                    height="500" src="{% static 'imgages/p-1.png' %}" alt="Python">
+            </div>
+        </div>
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Responsive Project on Web development.</h2>
+                <p class="lead">
+                <h5 class="text-primary">JAVASCRIPT?</h5>
+                JavaScript Can Change HTML Content
+                One of many JavaScript HTML methods is getElementById().
+                The example below "finds" an HTML element (with id="demo"), and changes the element content
+                (innerHTML) to "Hello JavaScript":
+                JavaScript Can Change HTML Attribute Values
+                In this example JavaScript changes the value of the src (source) attribute of an
+                <h5 class="text-primary">Did You Know?</h5>
+                JavaScript and Java are completely different languages, both in concept and design.
+                JavaScript was invented by Brendan Eich in 1995, and became an ECMA standard in 1997.
+                ECMA-262 is the official name of the standard. ECMAScript is the official name of the language.
+                <h5 class="text-success">Project list</h5>
+                <h6>*Project-1=>OWEN Technology</h6>
+                <h6>*Project-2=>e-codeing online plateform</h6>
+                </p>
+            </div>
+            <div class="col-md-5">
+                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+                    height="500" src="{% static 'imgages/js.png' %}" alt="Python">
+            </div>
+        </div>
+        <hr class="featurette-divider">
+    </div>
+    </div>
+    <!-- /END THE FEATURETTES -->
+    <!-- Footer -->
+    <!-- vide here -->
+    <div class="d-flex mb-2 justify-content-center align-items-center">
+        <iframe width="670" height="362" src="https://www.youtube.com/embed/Z7V6KgojpkI" title="YouTube video player"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write;
+     encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <!-- Video end -->
+{% endblock %}
+

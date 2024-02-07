@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cus Form</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>name</td><td><input type="text" name="name" id="name"></td>
+            </tr>
+            <tr>
+                <td>age</td><td><input type="text" name="age" id="age"></td>
+            </tr>
+            <tr>
+                <td>address</td><td><textarea name="address" id="address" cols="30" rows="10"></textarea></td></td>
+            </tr>
+            <tr>
+                <td>phone</td><td><input type="text" name="phone" id="phone"></td>
+            </tr>
+            <tr>
+                <td></td><td><input type="submit" value="Add Customer"></td>
+            </tr>
+        </table>
+        <table>
+            <tr><th>Id</th><th>name</th><th>address</th><th>phone</th></tr>
+        {% for e in allcus  %}
+        <tr><td>{{e.id}}</td><td>{{e.name}}</td><td>{{e.address}}</td><td>{{e.phone}}</td></tr>
+        {% endfor %}
+    </table>
+    </form>
+    
+</body>
+</html>

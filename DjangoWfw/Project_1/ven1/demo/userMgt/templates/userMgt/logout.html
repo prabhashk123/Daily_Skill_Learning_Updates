@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout Page</title>
+</head>
+<body>
+    <h1>Welcome to Logout Page</h1>
+    <table>
+        <tr><td>User Name</td><td>{{request.user}}</td></tr>
+        {% comment %} url home means name se path liya hu url.py se {% endcomment %}
+        <tr><td>Home Page</td><td><a href="{% url 'home' %}">Home</a></td></tr>
+        <tr><td>Login Page</td><td><a href="{% url 'login' %}">Login</a></td></tr>
+        <tr><td>Logout Page</td><td><a href="{% url 'logout' %}">Logout</a></td></tr>
+        <tr><td>Signup Page</td><td><a href="{% url 'signup' %}">Signup</a></td></tr>
+        <tr><td>Secure1 Page1</td><td><a href="{% url 'secure1' %}">Secure1</a></td></tr>
+        <tr><td>Secure2 Page2</td><td><a href="{% url 'secure2' %}">Secure2</a></td></tr>
+        <tr><td>Unsecure1 Page1</td><td><a href="{% url 'unsecure1' %}">Unsecure1</a></td></tr>
+        <tr><td>Unsecure2 Page2</td><td><a href="{% url 'unsecure2' %}">Unsecure2</a></td></tr>
+    </table>
+    
+</body>
+</html>

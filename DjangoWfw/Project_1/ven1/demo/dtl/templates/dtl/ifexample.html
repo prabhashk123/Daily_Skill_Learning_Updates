@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% comment %} custome filter step3 {% endcomment %}
+{% load myfilters %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% comment %} step4 custome filter call{% endcomment %}
+    {{'HELLO'|EvenUpper}}
+    <br>
+    {% comment %} value replace with filter {% endcomment %}
+    {{"Prabhash kumar bhagat"|spacefilter:'**'}}
+    <br>
+
+{% comment %} off error samjne me use {% endcomment %}
+    {% autoescape off %}
+     My var value:{{var}}
+    {% endautoescape %}
+    <br>
+    {% comment %} also filters are tags  ex all stmt are small  {% endcomment %}
+    {% filter force_escape|lower %}
+     WELCOME TO PYTHON
+    {% endfilter %}
+    <br>
+    {% filter lower %}
+     WELCOME TO PYTHON
+    {% endfilter %}
+    <br>
+
+    {% for e in list1 %}
+    {{e|add:'_'}} {{e|length}} {{e|lower}} {{e|capfirst}}
+    <br>
+    
+    {% endfor %}
+
+    <!-- make for var using with -->
+    {% with data='13245786' %}
+    <table>
+    {% for x in data %}
+    {% if x|divisibleby:2 %}
+    <tr style="background-color: red;"><td>{{x}}</td></tr>
+    {% else %}
+    <tr style="background-color:yellow;"><td>{{x}}</td></tr>
+    {% endif %}
+    {% endfor %}
+    </table>
+    {% endwith %}
+</body>
+</html>

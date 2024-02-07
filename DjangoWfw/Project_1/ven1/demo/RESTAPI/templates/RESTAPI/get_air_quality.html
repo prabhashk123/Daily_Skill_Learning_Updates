@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api consuming means </title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            <tr><th>Latitude</th><th>Longitude</th><th>Hour</th></tr>
+            <tr><td><input type="text" name="textlat" id="id_textlat" value="35.779"><td><input type="text" name="textlong" id="id_textlong" value="-78.638"><td><input type="text" name="id_texthour" id="id_texthour" value="72"></td></tr>
+            <tr><td colspan="3"><input type="submit" value="Get Data"></td></tr>
+        </table>
+        <h2>{{data}}</h2>
+    </form>
+
+    
+</body>
+</html>
