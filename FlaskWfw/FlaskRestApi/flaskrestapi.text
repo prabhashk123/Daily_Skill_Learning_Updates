@@ -6,3 +6,8 @@ step-4 write main.py if __name__=="__main__":
 step-5 direct run by runner symoble if run terminal than cmd apply "python main.py"
 step-6 after cmd than Running on http://127.0.0.1:5000
 step-7 search "flask jsinify"
+
+//now project chaboat
+s-1 crate reqirement.txt in backend for all dependecies
+s-2 creat app.py/main.py for flask server file
+s-3 inside react install npm i socket.io socket.io-client
