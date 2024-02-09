@@ -1,0 +1,8 @@
+step-1 Crate main.py file in FlaskRestApi folder
+step-2 pip install flask
+step-3 quick start syntax see on search 'flask minimal app' then copy and past it main.py
+step-4 write main.py if __name__=="__main__":
+                        app.run(debug=True)
+step-5 direct run by runner symoble if run terminal than cmd apply "python main.py"
+step-6 after cmd than Running on http://127.0.0.1:5000
+step-7 search "flask jsinify"
