@@ -26,7 +26,7 @@ Q-Threding limitaions of python and multi-process archticture.
    - Ideal for CPU-bound tasks that can benefit from parallel execution¹²³.
      In summary, if you're dealing with CPU-bound computations, **multiprocessing** is your go-to choice. 
      For I/O-bound tasks, **multithreading** might be more suitable. Keep in mind the trade-offs and 
-     choose the approach that aligns with your specific use case! 🐍🚀
+     choose the approach that aligns with your specific use case!
    -for example download 10 files at one times not different time wait for others.
     (2)The concurrent.futures module provides a high-level interface for asynchronously executing callables.
        The asynchronous execution can be performed with threads, using ThreadPoolExecutor, or 

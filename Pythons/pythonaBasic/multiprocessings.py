@@ -33,7 +33,7 @@ if __name__ == '__main__':
     #     pros.append(p)
     # for p in pros:
     #     p.join()
-# for module con
+# for module con use for multiple then map data
     with concurrent.futures.ProcessPoolExecutor() as executor:
         l1=[url for i in range(60)]
         l2=[i for i in range(60)]
