@@ -14,7 +14,7 @@ import requests
 def downloadFile(url,name):
     print(f"Start downloading{name}")
     response=requests.get(url)
-    open(f"files/file{name}.jpg","wb").write(response.content)
+    open(f"files//file{name}.jpg","wb").write(response.content)
     print(f"finished downloading{name}")
 if __name__ == '__main__':
     url="https://picsum.photos/200"
