@@ -4,4 +4,34 @@ Software Foundation. It was designed with an emphasis on code readability, and
 its syntax allows programmers to express their concepts in fewer lines of code.
 
 (a)There are two major Python versions: Python 2 and Python 3.
-(b)
+
+Q-Threding limitaions of python and multi-process archticture.
+    Certainly! Let's delve into the differences between **multithreading** and **multiprocessing** in Python:
+
+1. **Multithreading**:
+   - Threads run within the same memory space as the parent process.
+   - Lightweight and have lower overhead compared to processes.
+   - Easier to share objects between threads since they share the same memory.
+   - However, Python's **Global Interpreter Lock (GIL)**
+     prevents threads from running simultaneously, limiting true parallelism.
+   - In summary, multithreading is suitable for I/O-bound tasks where waiting for
+     external resources (like file I/O or network requests) dominates the execution time²³.
+
+2. **Multiprocessing**:
+   - Processes have separate memory spaces, which makes them more isolated.
+   - Takes advantage of multiple CPUs and cores, achieving true parallelism.
+   - Bypasses the GIL limitations for CPython, allowing CPU-bound tasks to run concurrently.
+   - Requires inter-process communication (IPC) for sharing data between processes
+    (more overhead compared to threads).
+   - Ideal for CPU-bound tasks that can benefit from parallel execution¹²³.
+     In summary, if you're dealing with CPU-bound computations, **multiprocessing** is your go-to choice. 
+     For I/O-bound tasks, **multithreading** might be more suitable. Keep in mind the trade-offs and 
+     choose the approach that aligns with your specific use case! 🐍🚀
+   -for example download 10 files at one times not different time wait for others.
+    (2)The concurrent.futures module provides a high-level interface for asynchronously executing callables.
+       The asynchronous execution can be performed with threads, using ThreadPoolExecutor, or 
+       separate processes, using ProcessPoolExecutor. Both implement the same interface,
+       which is defined by the abstract Executor class.
+
+
+
