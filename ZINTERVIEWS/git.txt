@@ -1,0 +1,39 @@
+#source control/versition control in git.
+Ans->versition control is the process of tracking and managing of software ya website code.
+it is a software tool which are tracking the code of source code changeg.
+=>versition control is a type of database that has all the versition of source code. nazar rakhta hai.
+=>it is used to fixed old change restore if developer has mistake.
+Q>git
+Git is a distributed version control system that tracks changes in any set of computer files, 
+usually used for coordinating work among programmers who are collaboratively developing source
+code during… .
+=>Distributed Version Control Systems (DVCS): (e.g., Git) Store a complete copy of the codebase
+on each user's machine. This allows offline work and more complex branching strategies.
+
+=>Centralized Version Control Systems (CVCS): (e.g., SVN) Use a central server to store all
+versions of the code. Users interact with the server to make changes and access history.
+
+=>Git is a powerful tool that can be used for a variety of tasks, including tracking changes 
+to source code, managing multiple branches of code, collaborating with other developers, 
+creating and maintaining releases, and deploying code to production. Git is a complex tool,
+but it is well worth learning if you are serious about software development.
+=>Git and Github difference.
+Ans=>Git is a version control system that allows developers to track changes in their code.
+GitHub is a web-based hosting service for git repositories. In simple terms, you can use git 
+without Github, but you cannot use GitHub without Git.
+------------------------------------------------------
+
+Q-Familiarity with various testing tools.
+Ans->Types of Testing Tools:
+1.Automation tools: These automate repetitive tasks like regression testing, saving time and
+effort. Examples include Selenium, Cypress, Appium, Katalon Studio, SoapUI, etc.
+2.Performance testing tools: These measure an application's performance under load,
+identifying bottlenecks. Examples include Apache JMeter, LoadRunner, K6, etc.
+3.Security testing tools: These identify vulnerabilities in applications and systems. Examples
+include Burp Suite, Nessus, Acunetix, etc.
+4.API testing tools: These test APIs for functionality, performance, and security. Examples 
+include Postman, SoapUI, RestAssured, etc.
+5.Mobile testing tools: These test mobile applications on various devices and platforms. 
+Examples include Appium, Espresso, XCTest, etc.
+
+

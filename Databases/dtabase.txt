@@ -1,0 +1,20 @@
+Q->Able to create database schemas that represent and support business processes 
+Ans->
+ Specific Business Process: What is the specific business process you want
+ to represent with a database schema? Understanding the details of the 
+ process, its steps, decision points, and involved parties will be crucial 
+ for designing an effective schema.
+
+Schema Type: Which type of schema are you considering? Different types 
+like star schema, snowflake schema, or relational schema might be more 
+suitable depending on your needs. I can explain the pros and cons of each 
+and help you choose the best fit.
+
+Data Requirements: What data needs to be captured and stored for the 
+process? Identifying the relevant data elements and their relationships
+will form the foundation of the schema.
+
+Desired Outcomes: What do you hope to achieve with this database schema?
+Do you want to analyze process performance, track progress, or automate 
+certain tasks? Knowing your goals will help determine the specific data
+ points and structures needed.
