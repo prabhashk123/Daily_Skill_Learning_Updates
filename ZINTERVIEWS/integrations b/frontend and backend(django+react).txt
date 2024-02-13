@@ -149,7 +149,7 @@ Q able to integrate multiple data sources and database into one system
     Open-source: Apache Spark, Talend Open Studio
     Commercial: Informatica PowerCenter, IBM Cloud Pak for Data, Microsoft Azure Data Factory
 
- #select usin api integartion method.
+ #select using api integartion method.
     Types of API integrations:
     REST APIs: Popular choice for web-based data exchange, using standard HTTP methods like GET and POST.
     SOAP APIs: Older protocol, more complex but offers wider feature set for specific needs.
