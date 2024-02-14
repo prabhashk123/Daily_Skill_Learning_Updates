@@ -2528,6 +2528,17 @@ mysqldump user_credentials --tables table_name > filename.sql
 mysqldump -u er111111 -p --tables student > backup_table.sql
 source backup_table.sql
 
+Q.find 3rd highest salary..
+m1-select EmpId from Emplyee where salary in(select distinct salary from Employee 
+order by salary DESC limit 2,1);
+
+m2-SELECT EmpId
+    -> FROM (
+    ->   SELECT EmpId, Salary, DENSE_RANK() OVER (ORDER BY Salary DESC) AS Rank
+    ->   FROM Employee
+    -> ) AS RankedEmployees
+    -> WHERE Rank = 3;
+
 
 
 
