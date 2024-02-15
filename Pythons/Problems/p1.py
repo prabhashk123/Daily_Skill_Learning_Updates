@@ -138,20 +138,20 @@
 # print("Reversed list:", l1)
 
 """Reverse slice"""
-def reverse_list(lst):
-    """
-    Reverses a list without using built-in functions.
-    Args:
-        lst (list): The input list to be reversed.
-    Returns:
-        list: The reversed list.
-    """
-    reversed_lst = lst[::-1]
-    return reversed_lst
-# Example usage:
-original_list = [1, 2, 3, 4]
-reversed_result = reverse_list(original_list)
-print("Reversed list:", reversed_result)  # Output: [4, 3, 2, 1]
+# def reverse_list(lst):
+#     """
+#     Reverses a list without using built-in functions.
+#     Args:
+#         lst (list): The input list to be reversed.
+#     Returns:
+#         list: The reversed list.
+#     """
+#     reversed_lst = lst[::-1]
+#     return reversed_lst
+# # Example usage:
+# original_list = [1, 2, 3, 4]
+# reversed_result = reverse_list(original_list)
+# print("Reversed list:", reversed_result)  # Output: [4, 3, 2, 1]
 
 
 
