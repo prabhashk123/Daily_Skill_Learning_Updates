@@ -15,3 +15,58 @@ Run.
 
 https://dev.azure.com/bp-digital/DST-RP_Convenience/_git/bp-single-tablet-UK?path=/template.yaml
 feature/hotfix_28thNov2022 - Branch
+---------------------------------------------------
+
+I'd be glad to explain how Docker, Jenkins, and CI/CD pipelines work together for streamlined software development:
+
+Docker:
+
+What it is: An open-source containerization platform that packages applications with their dependencies into self-contained, portable units called containers.
+Benefits:
+Isolation: Containers run independently, preventing conflicts between applications.
+Portability: Containers run consistently across different environments (OS, hardware).
+Efficiency: Containers share the host system's kernel, reducing resource overhead.
+Reproducibility: Consistent development, testing, and deployment environments.
+Key concepts:
+Images: Encapsulate application code, dependencies, and configuration.
+Containers: Running instances of images, isolated but sharing resources.
+Dockerfile: A text file with instructions for building images.
+Docker Hub: Public repository for sharing Docker images.
+Jenkins:
+
+What it is: An open-source automation server for building, testing, and deploying applications.
+Benefits:
+Continuous integration: Automate code integration, testing, and feedback loops.
+Continuous delivery/deployment (CI/CD): Streamline the software delivery process.
+Flexibility: Supports various languages, tools, and platforms.
+Community: Large user base and extensive plugin ecosystem.
+Key concepts:
+Jobs: Automated workflows defined in XML or Scripted Pipeline.
+Pipelines: Sequences of jobs that represent development stages (build, test, deploy).
+Plugins: Extend Jenkins functionality for specific tasks (Docker, Git, testing frameworks).
+----------------------------------------
+CI/CD Pipelines:
+
+What they are: Automated workflows that continuously integrate, test, and deploy code changes.
+Benefits:
+Faster releases: Deliver updates more frequently and reliably.
+Improved quality: Catch and fix bugs earlier in the development process.
+Reduced risk: Reduce manual errors and ensure consistency.
+Stages:
+Source code management: Fetch code changes from version control systems (Git, SVN).
+Build: Build and package the application using tools like Docker.
+Test: Run automated tests to ensure functionality and quality.
+Deploy: Deploy the application to various environments (development, staging, production).
+Integration with Docker and Jenkins:
+Docker provides containerized environments for building, testing, and deploying.
+Jenkins orchestrates the CI/CD pipeline, triggering jobs based on events (code changes, test results).
+Dockerfile defines the container image, and Jenkins uses Docker plugins to interact with it.
+Example pipeline:
+Code pushed to Git triggers a Jenkins job.
+The job pulls code, builds a Docker image, and runs tests within a container.
+Upon successful build and testing, the image is deployed to production.
+Additional Considerations:
+
+Security: Implement security measures throughout the pipeline for code signing, authentication, and authorization.
+Monitoring: Monitor pipeline performance, infrastructure health, and application metrics.
+Scaling: Use tools like Kubernetes for managing and scaling containerized applications.

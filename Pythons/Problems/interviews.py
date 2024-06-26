@@ -230,14 +230,42 @@ Int python no specifice increment('++') and decrement('--') operators like in
 some others in python programming use '+=' and '-=' operatoror for incrementing and decrementing
 in python icrement and decrement operator are assignment operator.
 """
-# Increment example
-x=5
-x +=1 # equvalent to x=x+1
-print("After Increment x= ",x)
-# Decrement example
-x=5
-x -=1 # equvalent to x=x-1
-print("After Decrement x= ",x)
+# # Increment example
+# x=5
+# x +=1 # equvalent to x=x+1
+# print("After Increment x= ",x)
+# # Decrement example
+# x=5
+# x -=1 # equvalent to x=x-1
+# print("After Decrement x= ",x)
+
+"""Accolite interview"""
+# make class for statice method and class method
+# make one decorator
+# make lambda function
+# input :[29,02,2024] convert
+# output: 29-02-2024
+"""Here's how to convert the input list [29, 02, 2024] to the
+ formatted string "29-02-2024" in Python:"""
+# from datetime import date
+# Create a date object from the list
+# date_obj = date(2024, 2, 29)
+# # Format the date as desired
+# formatted_date = date_obj.strftime("%d-%m-%Y")
+# print(formatted_date)
+
+""""""
+# arr=[1,2,3,4,5]
+# sum=0
+# for i in arr:
+#     sum=sum+i
+# print(sum)
+arr=[1,2,3,4]
+result=[sum(arr[i:i+3]) for i in range(len(arr)-2)]
+print(result)
+
+
+
 
 
 

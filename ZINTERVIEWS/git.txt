@@ -36,4 +36,62 @@ include Postman, SoapUI, RestAssured, etc.
 5.Mobile testing tools: These test mobile applications on various devices and platforms. 
 Examples include Appium, Espresso, XCTest, etc.
 
+----------------------------------------------------
+git cmd->
+init=it is used to inatily when project is started
+pull=it is used to when come any project reporistry to my localhost for run 
+checkout=it is used to make other braanch apart from master branches.
+push karne se pahle
+git add.=all change reflect
+git add=only specific change reflect
+git commit -m "message"
+git status
+git checkout
+
+-------------------------------------------------------
+Agile Methodology: A Step-by-Step Guide
+Agile methodologies are iterative and adaptive approaches to project management, emphasizing collaboration, flexibility, and continuous improvement. While specific frameworks vary, here's a general step-by-step outline:
+
+1. Envision & Planning:
+
+Define Project Vision: Clearly articulate the project's overall goal and value proposition.
+Identify Stakeholders: Determine all individuals or groups impacted by the project.
+Build a Team: Assemble a cross-functional team with diverse skills and perspectives.
+Create a Product Backlog: Prioritize a list of user stories or features representing the desired product outcome.
+Estimate Effort & Time: Estimate the time and resources needed for each backlog item.
+2. Iteration Cycles:
+
+Start with a Sprint: Define a short, time-boxed period (usually 1-4 weeks) for focused work.
+Select Sprint Backlog: Choose high-priority items from the Product Backlog that fit within the sprint timeframe.
+Daily Standup Meetings: Brief daily meetings (15 minutes) for team members to share progress and identify roadblocks.
+Develop, Test, Review & Iterate:
+Team works on assigned tasks within the sprint.
+Continuous integration and testing ensure quality and early feedback.
+Daily standups allow for adjustments and course corrections.
+Sprint Review: Showcase the sprint's completed work and gather feedback from stakeholders.
+Sprint Retrospective: Analyze the sprint's successes and challenges to improve future iterations.
+3. Continuous Delivery:
+
+Regularly Deliver Value: Aim for frequent, working deliverables after each sprint.
+Automate Tasks: Use tools and automation to streamline build, testing, and deployment processes.
+Monitor Progress & Adapt: Continuously monitor progress, gather feedback, and adjust plans as needed.
+4. Key Agile Principles:
+
+Individuals and interactions over processes and tools
+Working software over comprehensive documentation
+Customer collaboration over contract negotiation
+Responding to change over following a plan
+Remember: Agile is not a rigid formula, but rather a set of principles and practices that can be adapted to your specific needs and project context. By embracing collaboration, flexibility, and continuous improvement, you can unlock the benefits of Agile methodologies and deliver value faster and more effectively.
+
+Additional Tips:
+
+Start small and scale up as you gain experience.
+Use visual tools like Kanban boards to track progress.
+Foster a culture of open communication and transparency.
+Celebrate successes and learn from failures.
+I hope this provides a helpful overview of Agile methodologies!
+-------------------------------
+
+
+
 

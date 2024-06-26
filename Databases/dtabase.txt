@@ -18,3 +18,12 @@ Desired Outcomes: What do you hope to achieve with this database schema?
 Do you want to analyze process performance, track progress, or automate 
 certain tasks? Knowing your goals will help determine the specific data
  points and structures needed.
+
+ -----------------------------------------
+ Dtabase connection in python:-
+ For oracle-datbase-driver=Mysql Connector/Python
+ For simple mysql=PyMySQL
+ For used high db ORM (Mysql)=SQLAlchemy
+ For used high db ORM (PostGersql)=Psycopg2
+ Which type of libray postgersql database in python/python adpter=psycopg2
+ (cycopg2 module is used postger sqldatabase) use connect() this function.

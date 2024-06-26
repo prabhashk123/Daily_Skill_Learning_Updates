@@ -1,3 +1,6 @@
+(a)install django: pip install django
+(b)check django versition: python -m django --version
+(c)cmd to check all version of module : pip freeze
 (1)Installed venv-python -m venv <name>
 (2)Activate venv-.\<venname\Scripts\activate or ./<env_name>/Scripts/activate
 (3)Change directory-cd ven
