@@ -260,11 +260,51 @@ in python icrement and decrement operator are assignment operator.
 # for i in arr:
 #     sum=sum+i
 # print(sum)
-arr=[1,2,3,4]
-result=[sum(arr[i:i+3]) for i in range(len(arr)-2)]
-print(result)
+# arr=[1,2,3,4]
+# result=[sum(arr[i:i+3]) for i in range(len(arr)-2)]
+# print(result)
 
+"""How to remove duplicates from list using stream in python
+Ways to Remove duplicates from the list:
+Below are the methods that we will cover in this article:
 
+Using set() method
+Using list comprehension 
+Using list comprehension with enumerate() 
+Using collections.OrderedDict.fromkeys()
+Using in, not in operators
+Using list comprehension and Array.index() method
+Using Counter() method
+Using Numpy unique method
+Using a Pandas DataFrame
+"""
+lst=[2,3,4,5,6,4,4,3,2,8,9]
+# #using sets
+# print(set(lst))
+# # Using for loop
+# res=[]
+# for i in lst:
+#     if i not in res:
+#         res.append(i)
+# print(res)
+# # Using list comprehension
+# new_lst=[]
+# [new_lst.append(i) for i in lst if i not in new_lst]
+# print(new_lst)
+"""Using dict"""
+# We get ValueError when we try to convert a simple list into a dictionary
+#print(dict(lst)) #gaet value error
+# # S1-Convert list into a list of tuples
+lst_of_tuple=list(map(lambda x:(x,None),lst))
+print(lst_of_tuple, end='\n\n')
+# # S2. Convert list of tuples into a dictionary
+dict_lst=dict(lst_of_tuple)
+print('The resulting dictionary from the list of tuples:')
+print(dict_lst, end='\n\n')
+# # S3. Get the unique keys from the dictionary and convert into a list
+new_lst=list(dict_lst.keys())
+print('The new list without duplicates:')
+print(new_lst, end='\n\n')
 
 
 
