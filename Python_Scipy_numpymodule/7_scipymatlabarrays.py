@@ -21,3 +21,4 @@ pbnew = io.loadmat('pb.mat', squeeze_me = True)
 print(pbnew['vec'])
 
 # This matfile open in terminal
+# error i-d o/p in 2-d so use o/p in 1-d use "squeeze_me = True" var par.
