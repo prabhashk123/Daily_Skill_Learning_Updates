@@ -306,6 +306,46 @@ new_lst=list(dict_lst.keys())
 print('The new list without duplicates:')
 print(new_lst, end='\n\n')
 
+## Find the sum of n-terms series: 
+#Q. 1 + ((1+3)/(1+2)) + ((1+3+5)/(1+2+3))....... n terms
+def sumofseries(n):
+    total_sum=0
+    for i in range(1, n+1):
+        if i==1 :
+            terms = 1
+        else:
+           terms= (2 * i)/(i+1)
+        print(terms)
+        total_sum +=terms
+        print(total_sum)
+    return total_sum
+s=sumofseries(5)
+print(s)
+
+## Create a dictonary:
+emp_no = [1,2,3]
+emp_name = ['Shreyas', 'Pratap', 'Prabhash' ]
+emp_dict = dict(zip(emp_no,emp_name))
+print(emp_dict) # o/p {1:'Shreyas', 2:'Pratap', 3:'Prabhash'}
+
+# Add employe no in emp_no list
+l2 = emp_no
+l2.append(4)
+print(emp_no)
+
+##QWe have a Pandas DataFrame with a 'date' column containing dates in the format 'YYYY-MM-DD'. The goal is to extract the month from these dates and create a new column named 'month'.
+import pandas as pd
+df = pd.DataFrame()
+df['date'] = ['2024-01-01', '2024-02-01', '2024-03-01']
+
+# Convert the 'date' column to datetime format (if not already)
+df['date'] = pd.to_datetime(df['date'])
+
+# Extract the month and create a new column 'month'
+df['month'] = df['date'].dt.month
+
+print(df)
+
 
 
 
