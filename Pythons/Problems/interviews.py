@@ -346,6 +346,88 @@ df['month'] = df['date'].dt.month
 
 print(df)
 
+# How to convert string cooma sepertated value in list 
+str1= "Prabhash kumar"
+print(type(str1.split(" ")))
+print(type(str1)) # o/p ['Prabhash', 'kumar']
+
+
+## You are given a string and your task is to swap cases. In other words, convert all lowercase letters to uppercase letters and vice versa.
+st=input("enter the string ")
+def swape_case(st):
+    result=str.swapcase(st)
+    return result
+# print(swape_case(st))
+
+## You are given a string. Split the string on a " " (space) delimiter and join using a - hyphen.
+line= input("Enter the line ")
+def split_and_join(line):
+    return line.replace(" ","-")
+# print(split_and_join(line))
+
+## Complete the 'print_full_name' function below.
+first=input("Enter the first name ")
+last=input("Enter the last name ")
+def fullname(first,last):
+    print(f"Hello {first} {last}! You just delved into python.")
+result=fullname(first,last)
+# print(result)
+
+## difference mutable and immutable in python
+# We have seen that lists are mutable (they can be changed), and tuples are immutable (they cannot be changed).
+# Ex-convert the string to a list and then change the value.
+string = "abracadabra"
+# print(list(string))
+# convert the list to string
+l=list(string)
+# 
+l[5]='k'
+strs="".join(l)
+print(strs)
+
+#2 Another approach is to slice the string and join it back.
+# Example
+string = string[:5] + "k" + string[6:]
+print (string) #abrackdabra
+
+def mutate_string(string, position, character):
+    # convert string to list
+    l=list(s)
+    # 5th position of list is replace by character k
+    l[5]="k"
+    # convert list to string
+    string= "".join(l)
+    return string
+# metod 2
+    s_new = string[:position] + character + string[(position + 1):]
+    return s_new
+
+if __name__ == '__main__':
+    s = input()
+    i, c = input().split()
+    s_new = mutate_string(s, int(i), c)
+    print(s_new)
+
+## count substring in string 
+def count_substring(string, sub_string):
+    count = 0
+    for i in range(len(string)):
+        if string[i:].startswith(sub_string):
+            count += 1
+    return count
+
+if __name__ == '__main__':
+    # strip remove the white space of string
+    string = input().strip()
+    sub_string = input().strip()
+    count = count_substring(string, sub_string)
+    print(count)
+
+
+
+
+
+
 
 
 
