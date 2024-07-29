@@ -399,8 +399,8 @@ def mutate_string(string, position, character):
     string= "".join(l)
     return string
 # metod 2
-    s_new = string[:position] + character + string[(position + 1):]
-    return s_new
+    # s_new = string[:position] + character + string[(position + 1):]
+    # return s_new
 
 if __name__ == '__main__':
     s = input()
