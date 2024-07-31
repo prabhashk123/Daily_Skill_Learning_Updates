@@ -71,3 +71,50 @@ SELECT FLOOR(AVG(POPULATION)) FROM CITY;
 SELECT SUM(POPULATION) FROM CITY WHERE COUNTRYCODE = 'JPN';
 -- Query the difference between the maximum and minimum populations in CITY.
 SELECT MAX(POPULATION) - MIN(POPULATION) FROM CITY;
+-- Samantha was tasked with calculating the average monthly salaries for all employees in the EMPLOYEES table, but did not realize her keyboard's 00 key was broken until after completing the calculation. She wants your help finding the difference between her miscalculation (using salaries with any zeroes removed), and the actual average salary.
+-- Write a query calculating the amount of error (i.e.: actual−miscalculated average monthly salaries), and round it up to the next integer.
+SELECT CEIL(AVG(SALARY)) - AVG(REPLACE(SALARY,'0','')) AS ERROR FROM EMPLOYEE;
+-- Notes:-where CEIL/ceiling difference between two salary round up using 'CEIL' function for final result.
+-- We define an employee's total earnings to be their monthly salary*months worked, and the maximum total earnings to be the maximum total earnings for any employee in the Employee table. Write a query to find the maximum total earnings for all employees as well as the total number of employees who have maximum total earnings. Then print these values as  space-separated integers.
+-- SELECT MAX(salary * months), COUNT(*)
+-- FROM Employee
+-- WHERE salary * months = (SELECT MAX(salary * months) FROM Employee);
+select months*salary, count(*) from employee group by months*salary order by months*salary desc limit 1;
+-- Query the following two values from the STATION table:
+-- The sum of all values in LAT_N rounded to a scale of  decimal places.
+-- The sum of all values in LONG_W rounded to a scale of  decimal places.
+SELECT ROUND(SUM(LAT_N), 2),ROUND(SUM(LONG_W), 2) FROM STATION;
+-- Query the sum of Northern Latitudes (LAT_N) from STATION having values greater than 38.7880  and less than 137.2345. Truncate your answer to  decimal places.
+SELECT ROUND(SUM(lAT_N), 4) FROM STATION WHERE LAT_N>38.7880 AND LAT_N < 137.2345;
+Query the greatest value of the Northern Latitudes (LAT_N) from STATION that is less than 137.2345 . Truncate your answer to 4 decimal places. 
+SELECT ROUND(MAX(LAT_N), 4) FROM STATION WHERE LAT_N < 137.2345;
+-- Query the Western Longitude (LONG_W) for the largest Northern Latitude (LAT_N) in STATION that is less than 137.2345. Round your answer to  4 decimal places.
+SELECT ROUND(LONG_W,4) FROM STATION WHERE LAT_N<137.2345 ORDER BY LAT_N DESC LIMIT 1;
+-- SELECT: This keyword specifies that we are retrieving data from the database.
+-- SELECT ROUND(LONG_W, 4)
+-- SELECT: This keyword specifies that we are retrieving data from the database.
+-- ROUND(LONG_W, 4): This function rounds the value in the LONG_W column to 4 decimal places.
+-- FROM STATION
+-- FROM: Indicates that we are selecting data from the STATION table.
+-- WHERE LAT_N < 137.2345
+-- WHERE: This clause filters the rows to include only those where the LAT_N value is less than 137.2345.
+-- ORDER BY LAT_N DESC
+-- ORDER BY: Sorts the result set based on a specific column.
+-- LAT_N: Specifies that the sorting will be done on the LAT_N column.
+-- DESC: Indicates descending order, meaning the highest LAT_N values will come first.
+-- LIMIT 1
+-- LIMIT: Restricts the number of rows returned.
+-- 1: Specifies that only one row should be returned.
+
+-- Query the smallest Northern Latitude (LAT_N) from STATION that is greater than 38.7780 . Round your answer to  decimal places.
+SELECT ROUND(MIN(LAT_N), 4) FROM STATION WHERE LAT_N>38.7780;
+-- Query the Western Longitude (LONG_W) for the smallest Northern Latitude (LAT_N) in STATION that is greater than 38.778038.7780. Round your answer to 4 decimal places.
+SELECT ROUND(LONG_W, 4) FROM STATION WHERE LAT_N>38.778038 ORDER BY LAT_N LIMIT 1;
+-- Consider p1(a,b)  and p2(c,d) to be two points on a 2D plane.
+-- a happens to equal the minimum value in Northern Latitude (LAT_N in STATION).
+-- b happens to equal the minimum value in Western Longitude (LONG_W in STATION).
+-- c happens to equal the maximum value in Northern Latitude (LAT_N in STATION).
+-- d happens to equal the maximum value in Western Longitude (LONG_W in STATION).
+-- Query the Manhattan Distance between points p1and p2 and round it to a cale of 4 decimal places.
+SELECT ROUND(ABS(MAX(LAT_N) - MIN(LAT_N)) + ABS(MAX(LONG_W) - MIN(LONG_W)), 2) AS distance
+FROM STATION;

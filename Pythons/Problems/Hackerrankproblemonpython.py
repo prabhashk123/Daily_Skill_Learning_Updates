@@ -347,8 +347,7 @@ Hence, the total happiness is . """
 # n and m are read from the first line.
 # The array of n integers is read from the second line.
 # The sets A and B of m integers are read from the third and fourth lines respectively.
-# Processing:
- 
+# Processing: 
 # Initialize happiness to 0.
 # For each integer in the array, check if it is in set A or set B and adjust the happiness accordingly.
 if __name__ == '__main__':
@@ -363,3 +362,77 @@ if __name__ == '__main__':
         elif i in B:
             happiness -= 1
     print(happiness)
+
+# If we want to add a single element to an existing set, we can use the .add() operation.
+# It adds the element to the set and returns 'None'.
+s = set('HackerRank')
+s.add('H')
+print(s)
+set(['a', 'c', 'e', 'H', 'k', 'n', 'r', 'R'])
+print(s).add('HackerRank')
+None
+print(s)
+set(['a', 'c', 'e', 'HackerRank', 'H', 'k', 'n', 'r', 'R'])
+
+"""Apply your knowledge of the .add() operation to help your friend Rupal.
+Rupal has a huge collection of country stamps. She decided to count the total number of 
+distinct N country stamps in her collection.
+She asked for your help. You pick the stamps one by one from a stack of  country stamps.
+Find the total number of distinct country stamps.
+Input Format
+The first line contains an integer N , the total number of country stamps.
+The next N  lines contains the name of the country where the stamp is from.
+"""
+# Soln=>Enter your code here. Read input from STDIN. Print output to STDOUT
+# Read input
+import sys
+input = sys.stdin.read
+data = input().splitlines()
+# Number of stamps
+N = int(data[0]) 
+# Set to store distinct country stamps
+country_stamps = set()
+# Iterate over the next N lines to collect country names
+for i in range(1, N + 1):
+    country_stamps.add(data[i])
+# Output the number of distinct country stamps
+print(len(country_stamps))
+
+"""
+.remove(x)
+This operation removes element  from the set.
+If element  does not exist, it raises a KeyError.
+The .remove(x) operation returns None."""
+# Example
+s = set([1, 2, 3, 4, 5, 6, 7, 8, 9])
+s.remove(5)
+print(s) # set([1, 2, 3, 4, 6, 7, 8, 9])
+s.remove(4)
+print(s) # set([1, 2, 3, 6, 7, 8, 9])
+s.remove(0)
+KeyError: 0
+
+"""
+.discard(x)
+This operation also removes element  from the set.
+If element  does not exist, it does not raise a KeyError.
+The .discard(x) operation returns None."""
+# Example
+s = set([1, 2, 3, 4, 5, 6, 7, 8, 9])
+s.discard(5)
+print(s) # set([1, 2, 3, 4, 6, 7, 8, 9])
+s.discard(4)
+print(s) # set([1, 2, 3, 6, 7, 8, 9])
+s.discard(0)
+print(s) # None #set([1, 2, 3, 6, 7, 8, 9])
+"""
+.pop()
+This operation removes and return an arbitrary element from the set.
+If there are no elements to remove, it raises a KeyError."""
+# Example
+s = set([1])
+print(s.pop()) #1
+print(s)
+set([])
+print(s.pop())
+# KeyError: pop from an empty set

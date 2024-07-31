@@ -423,6 +423,84 @@ if __name__ == '__main__':
     count = count_substring(string, sub_string)
     print(count)
 
+## Q writa program for check number is prime or not
+n=int(input("Enter the value of n = "))
+def checkprimeno(n):
+    if n==1:
+        print(f"prime no {n} is always 1")
+    elif n%2==0:
+        print(f"{n} is not a prime no")
+    else:
+        print(f"{n} is a prime no")
+checkprimeno(n)
+
+## Write return type function and Returning Different Types
+def add(x, y):
+  return x + y
+result = add(3, 4)
+print(result) # 7
+print(type(result))  # Output: <class 'int'>
+# A function can return different types based on conditions:
+def get_value(condition):
+  if condition:
+    return "True condition"
+  else:
+    return 42
+result = get_value(True)
+print(type(result))  # Output: <class 'str'>
+result = get_value(False)
+print(type(result))  # Output: <class 'int'>
+# Returning Multiple Values
+# You can return multiple values using tuples:
+def get_user_data():
+  name = "Alice"
+  age = 30
+  return name, age
+name, age = get_user_data()
+print(type(name)) # Output: <class 'str'>
+print(type(age))  # Output: <class 'int'>
+
+## Write simple post method in django
+# csrf_token
+from django.contrib.auth.models import User
+def registration(request):
+    name=request.POST.get("name")
+    email=request.POST.get("Email")
+    password=request.POST.get("password")
+    user=User.objects.create_user(name=name,email=email,password=password)
+    user.save()
+    print(user)
+
+## pandas
+"""Requirements
+1. Convert it to a pandas dataframe with column names as A, B and C
+2. Add a new column 'Remove' with default value as False
+3. Update the 'Remove' column to True for rows where B value is 2
+4. Filter the dataframe and keep the rows where the 'Remove' value is False
+5. Set a index on columns A and B"""
+import pandas as pd
+l1 = [[1, 2, 3], [2, 2, 4], [3, 4, 5], [4, 5, 6], [5, 2, 7]]
+
+# 1. Convert to pandas DataFrame with column names A, B, C
+df = pd.DataFrame(l1, columns=['A', 'B', 'C'])
+# 2. Add a new column 'Remove' with default value as False
+df['Remove'] = False
+# 3. Update the 'Remove' column to True for rows where B value is 2
+df.loc[df['B'] == 2, 'Remove'] = True
+# 4. Filter the dataframe and keep rows where 'Remove' value is False
+df = df[df['Remove'] == False]
+# 5. Set a multi-index on columns A and B
+df = df.set_index(['A', 'B'])
+print(df)
+# Add two list of data in data frame with columns and row is index.
+import pandas as pd
+d1 = [[1, 2, 3], [2, 2, 4], [3, 4, 5], [4, 5, 6], [5, 2, 7]]
+d2 = [[1, 6, 3], [2, 2, 4], [3, 4, 5], [4, 5, 6], [5, 2, 7]]
+df=pd.DataFrame([d1,d2],columns=['A','B','C','D','E'],index=['a','b'])
+print(df)
+
+
+         
 
 
 
