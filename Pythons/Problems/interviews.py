@@ -452,6 +452,9 @@ if is_prime(num):
     print(f"{num} is a prime number.")
 else:
     print(f"{num} is not a prime number. ")
+
+# Write a program to find outy the factorial of the number
+
     
 ## Write return type function and Returning Different Types
 def add(x, y):

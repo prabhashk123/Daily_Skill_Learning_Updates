@@ -92,6 +92,10 @@ Celebrate successes and learn from failures.
 I hope this provides a helpful overview of Agile methodologies!
 -------------------------------
 
+--------------------------------------set git confiog in vscode----------------
+git config --global user.email y*********@gmail.com
+git config --global user.name Y*********
+
 
 
 
