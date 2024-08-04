@@ -43,7 +43,7 @@ because 1^3+5^3+3^3 equal to 153.
 # num=int(input("Enter the number: "))
 # # initialize sum
 # sum=0
-# # find the sum of the cube of each digits
+# # find the sum of the cube of own(each) digits
 # temp=num
 # while temp>0:
 #     digit=temp%10 #Modulus assigns remainder from division
@@ -426,14 +426,33 @@ if __name__ == '__main__':
 ## Q writa program for check number is prime or not
 n=int(input("Enter the value of n = "))
 def checkprimeno(n):
-    if n==1:
-        print(f"prime no {n} is always 1")
+    if n<2:
+        print("Number less thane 2 is not a prime number ")
     elif n%2==0:
         print(f"{n} is not a prime no")
     else:
         print(f"{n} is a prime no")
 checkprimeno(n)
 
+# Method-2
+def is_prime(num):
+# cheack if the number is less thane 2
+    if num<2:
+        return False
+# check for factor from 2 to the square root of the number
+    for i in range(2, int(num**0.5+1)): 
+        if num % i==0:
+            return False
+# If no factor are found number is a prime number
+    return True
+# Input
+num = int(input('Enter a number: '))
+# Check if a number is a prime and print the result
+if is_prime(num):
+    print(f"{num} is a prime number.")
+else:
+    print(f"{num} is not a prime number. ")
+    
 ## Write return type function and Returning Different Types
 def add(x, y):
   return x + y
