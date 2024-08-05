@@ -468,6 +468,27 @@ def compute_factorial(num):
 # take input from the user
 compute_factorial(int(input("Enter a number")))
 
+## How to generate random number in python
+# generate random float number between 0 to 1 using random method
+import random 
+num = random.random()
+print(num)
+# give a random float number in specified range
+num = random.uniform(1, 100)
+print(num)
+# give a random integer number in specified range
+num = random.randint(1, 100)
+print(num)
+# random even Num/odd 2/3
+# give a random number in a range with increments steps
+num = random.randrange(0, 100, 2)
+print(num)
+# Random series
+# gives a series of a random number
+numlist = random.sample(range(0, 100), 3) # here 3 is ki total number of random number generate
+print(numlist)
+
+
     
 ## Write return type function and Returning Different Types
 def add(x, y):
@@ -475,6 +496,7 @@ def add(x, y):
 result = add(3, 4)
 print(result) # 7
 print(type(result))  # Output: <class 'int'>
+
 # A function can return different types based on conditions:
 def get_value(condition):
   if condition:
