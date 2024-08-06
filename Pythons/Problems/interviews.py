@@ -556,6 +556,60 @@ d2 = [[1, 6, 3], [2, 2, 4], [3, 4, 5], [4, 5, 6], [5, 2, 7]]
 df=pd.DataFrame([d1,d2],columns=['A','B','C','D','E'],index=['a','b'])
 print(df)
 
+"""Q.What is the difference between a module and a package?
+# Module
+A module in Python is simply a .py file containing Python code.
+This code can be imported and used in another Python script using the import statement.
+The syntax is import<module name>
+ 
+# Package:
+A package, on the other hand, is a collection of modules. It is a way of organizing related 
+Python modules into a directory.
+Essentially, it's a directory that contains multiple module files, along with a special file called
+_init__.py, which tells Python that the directory is a package. 
+"""
+
+"""What is the use of decorators in Python?
+Decorators:
+In Python, decorators are a special kind of function that add extra 
+functionality to another function.
+- They do this without changing the other function's code.
+
+That means They provide way to wrap another function which can add functionality before or after 
+the original function is called without permanently modifying it.
+# Example:-
+def my_decorator(func):
+def wrapper():                                                                    Output:
+print("Something is happening before the function is called.")          Something is happening before 
+func()                                                                      the function is called.                             func()                                                                            Hello!
+print("Something is happening after the function is called.")            Something is happening after                                                                       
+return wrapper                                                            the function is called.
+@my_decorator
+def say_hello():
+print("Hello!")
+say_hello()
+"""
+
+"""Q.What is exception handling and how it is done in Python?
+try: This keyword is used to specify a block of code that might raise an exception.
+except: This keyword is used to catch and handle the exception(s) that are
+encountered in the try block.
+finally: This keyword is used to specify a block of code that will be executed
+no matter if an exception is raised or not.
+raise: This keyword is used to manually raise an exception.
+
+try:
+# Try block
+    num = int(input("Enter a number: ")) # This line could raise a ValueError 
+    print(f"You entered: (num}")
+except ValueError:
+    # Except block 
+    print("That's not a valid number!")
+finally:
+    # Finally block
+    print("This gets executed no matter what")
+"""
+
 
          
 
