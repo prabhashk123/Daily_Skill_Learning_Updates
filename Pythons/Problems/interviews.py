@@ -569,7 +569,7 @@ Essentially, it's a directory that contains multiple module files, along with a 
 _init__.py, which tells Python that the directory is a package. 
 """
 
-"""What is the use of decorators in Python?
+"""Q.What is the use of decorators in Python?
 Decorators:
 In Python, decorators are a special kind of function that add extra 
 functionality to another function.
@@ -610,21 +610,201 @@ finally:
     print("This gets executed no matter what")
 """
 
+"""Q.What is inheritance in Python?
+Inheritance:
+In Python, inheritance is a way we can define a new class (child class) that 
+takes on attributes and methods from an existing class (parent class).
 
-         
+Q.What is the difference between single and multiple inheritance?
+Single Inheritance is when a class inherits from a single superclass. For example:
+class Parent:
+def speak(self):
+print("Parent speaking!")
+class Child(Parent):
+def talk(self):
+print("Child talking!")
+# Creating an object of Child
+child = Child()
+child.speak() #Output: Parent speaking!
+child.talk() # Output: Child talking!
+50:58/1:08:03 Inheritance in Python >
 
+Multiple inheritance is when a class can inherit from more than one superclass. For example:
+class Mother:
+def speak(self):
+print("Mother speaking!")
+class Father:
+def talk(self):
+print("Father talking!")
+class Child(Mother, Father):
+pass
+#Creating an object of Child
+child = Child()
+child.speak() # Output: Mother speaking!
+child.talk() # Output: Father talking!
+"""
 
+"""Q.Explain the difference between “is” and “==" in Python.
+"==" checks for value equality. It compares the values of the two objects and returns True if they are equal and False if they are not.
+For example:
+list1 = [1, 2, 3] 
+list2 = [1, 2, 3] 
+print(list1 == list2)
+Output: True
 
+But "is" checks for identity. It returns True if both variables point to the same object (not just
+equal values, but the exact same instance in memory), and False otherwise.
+For example: 
+list1 = [1, 2, 3] 
+list2 = list1 # list2 now references the same object as list1
+print(list1 is list2)
+Output: True
+"""
 
+"""Q What are Generators? Tell about their use in Python.
+Generator:
+    A generator in Python returns an iterator that produces sequences of values one at a time.
+    We use the yield keyword to produce values. YIELD Keyword to produce value.
+Usage:
+    Since the generator doesn't produce all the values at the same time, it saves memory if
+    we use the generator to process the sequence of values without the need to save the initial values.    
+def count_up_to(n):
+    num = 1 
+    while num <= n: 
+        yield num # This makes our function a generator 
+        num += 1
+# Using the generator 
+for number in count_up_to(10): 
+    print(number)
+"""
 
+"""Q. What is Shallow Copy and Deep Copy in Python?
+In Python, deep copy and shallow copy are methods used to copy objects.
+We use the = operator, It only creates a new variable that shares the reference of the original object.
+In order to create "real copies" or "clones" of these objects, we can use the copy module in Python.
+There are two types: Shallow copy and Deep copy.
 
+- Shallow copy: A shallow copy is a copy of an object that stores the reference of the original elements.
+- It makes copies of the nested objects' reference and doesn't create a copy of the nested objects. 
+So if we make any changes to the copy of the object, it will reflect in the original object.
+ 
+Deep copy: A deep copy is a process where we create a new object and add copy elements recursively. 
+The independent copy is created of the original object and its entire elements Changes made in one object do not affect the other.       
+"""
 
+"""Q. Explain the use of lambda expressions in Python. When is it useful?
+    The lambda is used to define a function without a name in Python.
+    - They are useful in situations where you need a small, temporary function that
+    you won't need to use elsewhere in your code.
+A regular function looks like       A lambda function look like: single expression one line function
+input:                              input:  
+def add(x,y):                       add2 = lambda x, y: x+y
+    return(x+y)                     print(add2(4,5))
+print(add(4,5))                     o/p = 9
+Output =                            any number of arguement map,filterf
+"""
 
+"""Q.What is the use of PASS keyword in Python?
+Pass: Pass is a null statement that basically does nothing.
+Usage: It is often used as a placeholder where a statement is required syntactically,
+but no action needs to be taken. 
+For example, if you want to define a function or a class but 
+haven't yet decided what it should do, you can use the pass as a placeholder. 
+def my_function():
+    pass #TODO: implement this function"""
 
+"""Q.Reverse of String"""
+str1 = "Analytics Vidhyas"
+# method 1 using string built in 
+print(str1[::-1])
+# Without built in function/method
+str2 = ""
+for i in str1: # i is each character of str1
+    str2 = i + str2
+    print("The origional string is: ", str1)
+    print("The reversed string is: ", str2)
 
+"""Sort a list in python by defgault ascending order from smallest to highest"""
+my_list = [3, 1, 2]
+# re arrange the list of item
+my_list.sort()
+print(my_list)
 
+"""Delete  file in python"""
+import os
+f = open("txt1.txt", "x")
+os.remove("txt1.txt")
 
+"""Delete element from a list"""
+# Method1
+list1 = [1,2,3,4]
+list1.remove(2)
+print(list1)
+# Method 2 base on index means here index 1 remove
+list1.pop(1)
+print(list1)
 
+# Delete an entire list
+list1 = [1,2,3,4]
+list1.clear() # its clear all the element in list []
+
+""" reverse an array"""
+# Method -1
+import numpy as np
+arr1 = np.array([1,2,3,4,])
+arr2 = np.flip(arr1)
+print(arr2)  #[4,3,2,1]
+# method 2 special slicing technique
+arr2 = arr1[::-1]
+print(arr2) # [4,3,2,1]
+
+"""Access, delete,update elements in Numpy Array"""
+arr1 = [1,2,3,4]
+# To access element
+print(arr1[0]) # 1
+# To delete elemen t
+x = np.delete(arr1, 0)
+print(x) # [2,3,4]
+# To update element
+arr1[1] = 100 
+print(arr1) # [1,100,3,4]
+
+"""Concatenaste two lists"""
+list1 = ['W', 'a', 'w', 'b']
+list2 = ['e', 're', 'riting', 'log']
+# Method  Using Zip() function pair element from two list tuple
+lst3 = [x + y for x, y in zip(list1, list2)]
+print(lst3)
+# o/p ['We', 'are', 'writing', 'blog']
+
+"""Square of list elements"""
+# M-1 using for loop and list comperhansion
+my_list=[1,2,3,4]
+# Square each element using a for loop and list comprehension iterate
+squared_list = [x * x for x in my_list]
+print("original lisdt:", my_list)
+print("Squared list:", squared_list)
+
+"""
+In Python, the map() function applies a given function to every item in an iterable
+(like a list, tuple, etc.) and returns a map object (an iterator) containing the results.
+Syntax:
+Python
+map(function, iterable)
+"""
+#M-2 using map() function 
+# Square each element using the map() func and a lambda expression
+squared_list_map = list(map(lambda x: x * x, my_list))
+# Convert to list for clarity
+print("Squared list using map():", squared_list_map)
+
+"""Different b/w split & join"""
+a = "This is a string"
+b = a.split(' ') # ' ' it is delemeter
+print(b) ['This', 'is', 'a', 'string']
+
+c = "-".join(b)
+print(c) # This-is-a-string
 
 
 

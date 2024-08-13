@@ -436,3 +436,242 @@ print(s)
 set([])
 print(s.pop())
 # KeyError: pop from an empty set
+"""
+Q.You have a non-empty set s , and you have to execute N  commands given in N lines.
+The commands will be pop, remove and discard.
+Input Format
+The first line contains integer n , the number of elements in the set .
+The second line contains n space separated elements of set . 
+All of the elements are non-negative integers, less than or equal to 9.
+The third line contains integer N, the number of commands.
+The next N  lines contains either pop, remove and/or discard commands 
+followed by their associated value.
+"""
+n = int(input())
+s = set(map(int, input().split()))
+c = int(input())
+for i in range(c):
+    d = list(input().split())
+    try:
+        if d[0] == 'pop':
+            s.pop()
+        elif d[0] == 'discard':
+            s.discard(int(d[1]))
+        else :
+            s.remove(int(d[1]))
+    except(KeyError):
+        pass  
+print(sum(s))
+
+"""
+.union()
+The .union() operator returns the union of a set and the set of elements in an iterable.
+Sometimes, the | operator is used in place of .union() operator, but it operates only on 
+the set of elements in set.
+Set is immutable to the .union() operation (or | operation).
+
+Task
+The students of District College have subscriptions to English and French newspapers. 
+Some students have subscribed only to English, some have subscribed to only French and 
+some have subscribed to both newspapers.You are given two sets of student roll numbers. 
+One set has subscribed to the English newspaper, and the other set is subscribed to the 
+French newspaper. The same student could be in both sets. Your task is to find the total 
+number of students who have subscribed to at least one newspaper.
+Input Format
+The first line contains an integer, , the number of students who have subscribed to the English newspaper.
+The second line contains  space separated roll numbers of those students.
+The third line contains , the number of students who have subscribed to the French newspaper.
+The fourth line contains  space separated roll numbers of those students.
+Constraints
+Output Format
+Output the total number of students who have at least one subscription.
+Sample Input
+9
+1 2 3 4 5 6 7 8 9
+9
+10 1 2 3 11 21 55 6 8
+Sample Output
+13
+Explanation:
+set(map(int, input().strip().split())):
+This reads the roll numbers as integers and stores them in a set, ensuring each roll number is unique.
+Union Operation:
+english_subscribers.union(french_subscribers) combines the two sets, giving us a set of all students who have subscribed to at least one newspaper.
+Print the Result:
+len(all_subscribers) gives the total count of unique students, which is then printed
+"""
+# Read input from stdin
+n = int(input().strip())  # Number of students who have subscribed to English newspaper
+english_subscribers = set(map(int, input().strip().split())) 
+b = int(input().strip())  # Number of students who have subscribed to French newspaper
+french_subscribers = set(map(int, input().strip().split()))
+# Calculate the union of both sets
+all_subscribers = english_subscribers.union(french_subscribers)
+# Output the number of students who have subscribed to at least one newspaper
+print(len(all_subscribers))
+"""
+Q. intersection()
+The .intersection() operator returns the intersection of a set and the set of elements in an iterable.
+Sometimes, the & operator is used in place of the .intersection() operator, but it only
+operates on the set of elements in set.
+The set is immutable to the .intersection() operation (or & operation).
+
+"""
+s = set("Hacker")
+print(s.intersection("Rank"))
+set(['a', 'k'])
+# Enter your code here. Read input from STDIN. Print output to STD
+# Read input from stdin
+n = int(input().strip())  # Number of students who have subscribed to English newspaper
+english_subscribers = set(map(int, input().strip().split())) 
+b = int(input().strip())  # Number of students who have subscribed to French newspaper
+french_subscribers = set(map(int, input().strip().split()))
+# Calculate the intersetion of both sets
+both_subscribers = english_subscribers.intersection(french_subscribers)
+# Output the number of students who have subscribed to both
+print(len(both_subscribers))
+
+"""Q.difference()
+The tool .difference() returns a set with all the elements from the set that are not in an iterable.
+Sometimes the - operator is used in place of the .difference() tool, but it only operates on the set of elements in set.
+Set is immutable to the .difference() operation (or the - operation).
+s = set("Hacker")
+print(s.difference("Rank"))
+set(['c', 'r', 'e', 'H'])
+"""
+# Read input from stdin
+n = int(input().strip())  # Number of students who have subscribed to English newspaper
+english_subscribers = set(map(int, input().strip().split())) 
+b = int(input().strip())  # Number of students who have subscribed to French newspaper
+french_subscribers = set(map(int, input().strip().split()))
+# Calculate the difference of both
+both_subscribers = english_subscribers.difference(french_subscribers)
+# Output the number of students who have subscribe only english subscriber
+# Output the total number of students who are subscribed to the English newspaper only.
+print(len(both_subscribers))
+
+"""Q. symmetric_difference()
+The .symmetric_difference() operator returns a set with all the elements that are in the set and
+the iterable but not both.Sometimes, a ^ operator is used in place of the .symmetric_difference() 
+tool, but it only operates on the set of elements in set.
+The set is immutable to the .symmetric_difference() operation (or ^ operation).
+s = set("Hacker")
+print(s.symmetric_difference("Rank"))
+# set(['c', 'e', 'H', 'n', 'R', 'r'])
+print(s ^ set("Rank"))
+# set(['c', 'e', 'H', 'n', 'R', 'r'])
+"""
+# Read input from stdin
+n = int(input().strip())  # Number of students who have subscribed to English newspaper
+english_subscribers = set(map(int, input().strip().split())) 
+b = int(input().strip())  # Number of students who have subscribed to French newspaper
+french_subscribers = set(map(int, input().strip().split()))
+# Calculate the difference of both
+both_subscribers = english_subscribers.symmetric_difference(french_subscribers)
+# Output total number of students who have subscriptions to the English or 
+# the French newspaper but not both.
+print(len(both_subscribers))
+
+"""
+TASK
+You are given a set A and N number of other sets. These N number of sets have to perform some
+specific mutation operations on set A .
+Your task is to execute those operations and print the sum of elements from set A .
+Input Format
+The first line contains the number of elements in set A.
+The second line contains the space separated list of elements in set A.
+The third line contains integer N, the number of other sets.
+The next 2*N lines are divided into N parts containing two lines each.
+The first line of each part contains the space separated entries of the operation name and the length of the other set.
+The second line of each part contains space separated list of elements in the other set.
+
+Output Format
+Output the sum of elements in set A.
+Sample Input
+ 16
+ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 24 52
+ 4
+ intersection_update 10
+ 2 3 5 6 8 9 1 4 7 11
+ update 2
+ 55 66
+ symmetric_difference_update 5
+ 22 7 35 62 58
+ difference_update 7
+ 11 22 35 55 58 62 66
+Sample Output
+38
+"""
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+# Read the number of elements in set A
+num_elements_A = int(input().strip())
+ 
+# Read the elements of set A
+A = set(map(int, input().strip().split()))
+ 
+# Read the number of other sets
+N = int(input().strip())
+ 
+# Perform the operations
+for _ in range(N):
+    # Read the operation and length of the other set (length is not needed)
+    operation, _ = input().strip().split()
+    # Read the elements of the other set
+    other_set = set(map(int, input().strip().split()))
+    # Perform the appropriate operation
+    if operation == 'update':
+        A.update(other_set)
+    elif operation == 'intersection_update':
+        A.intersection_update(other_set)
+    elif operation == 'difference_update':
+        A.difference_update(other_set)
+    elif operation == 'symmetric_difference_update':
+        A.symmetric_difference_update(other_set)
+ 
+# Output the sum of elements in set A
+print(sum(A))
+
+""" 
+You are given two sets, A and B.
+Your job is to find whether set A is a subset of set B.
+
+If set A is subset of set B, print True.
+If set A is not a subset of set B, print False.
+
+Input Format
+The first line will contain the number of test cases, T.
+The first line of each test case contains the number of elements in set A.
+The second line of each test case contains the space separated elements of set A.
+The third line of each test case contains the number of elements in set B.
+The fourth line of each test case contains the space separated elements of set B.
+"""
+#Q. Enter your code here. Read input from STDIN. Print output to ST
+T = int(input().strip())
+for _ in range(T):
+    # Read Set A
+    n = int(input().strip())
+    set_A = set(map(int, input().strip().split()))
+    # Read Set B
+    m = int(input().strip())
+    set_B = set(map(int, input().strip().split()))
+    # check if A is a subset of B and print the result
+    print(set_A.issubset(set_B))
+    
+#Q. Enter your code here. Read input from STDIN. Print output to S
+# Read the element of set A
+A = set(map(int, input().strip().split()))
+# Read the number of set
+n = int(input().strip())
+# Initialize a flag to True
+is_strict_subset = True
+# check for strict superset codition for each set 
+for _ in range(n):
+    other_set = set(map(int, input().strip().split()))
+    # check if A is a strict superset of this set
+    if not (A.issuperset(other_set) and A != other_set):
+        is_strict_subset = False
+        break
+# print the result
+print(is_strict_subset)
+
+# -------------------------------------------------------------Collections Basic Easy--------------------------------------
