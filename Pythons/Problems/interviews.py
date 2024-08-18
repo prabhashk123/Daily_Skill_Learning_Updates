@@ -806,6 +806,8 @@ print(b) ['This', 'is', 'a', 'string']
 c = "-".join(b)
 print(c) # This-is-a-string
 
+# print(*cartesian_product) # print each tuple in the cartesian product with tuples seperated by space
+
 
 
 
