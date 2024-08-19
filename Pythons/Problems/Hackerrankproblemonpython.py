@@ -1610,4 +1610,150 @@ is sorted, the combination tuples will be produced in sorted order.
 from itertools import combinations
 print list(combinations('12345',2))
 [('1', '2'), ('1', '3'), ('1', '4'), ('1', '5'), ('2', '3'), ('2', '4'), ('2', '5'), ('3', '4'), ('3', '5'), ('4', '5')]
+
+(Q)In this task, we would like for you to appreciate the usefulness of the groupby() function of itertools
+Task-A single line of input consisting of the string S.
 """
+# Compress by string
+from itertools import groupby
+ 
+def compress_string(s):
+    compressed = []
+    for key, group in groupby(s):
+        count = len(list(group))  # Count the length of the group
+        compressed.append(f"({count}, {key})")
+    return ' '.join(compressed)
+ 
+if __name__ == '__main__':
+    import sys
+    input = sys.stdin.read
+    s = input().strip()
+    print(compress_string(s))
+    
+# Q on decorator
+"""
+import re
+ 
+def wrapper(f):
+    def fun(numbers):
+        standardized_numbers = []
+        for number in numbers:
+            # Remove any prefix and ensure a 10-digit number
+            cleaned_number = re.sub(r'^\+91|^91|^0', '', number)
+            # Ensure the number is exactly 10 digits
+            if len(cleaned_number) == 10:
+                standardized_number = '+91 ' + cleaned_number[:5] + ' ' + cleaned_number[5:]
+                standardized_numbers.append(standardized_number)
+        return f(standardized_numbers)
+    return fun
+ 
+@wrapper
+def sort_phone(numbers):
+    # Sort numbers in ascending order
+    return sorted(numbers)
+ 
+if __name__ == '__main__':
+    import sys
+    input = sys.stdin.read
+    data = input().strip().splitlines()
+    
+    n = int(data[0])
+    phone_numbers = data[1:n+1]
+    
+    # Print sorted and standardized phone numbers
+    print(*sort_phone(phone_numbers), sep='\n')"""
+    
+# ---------------------------------------Reduce function-----------------------------------
+# Reduce function
+"""Concept
+The reduce() function applies a function of two arguments cumulatively on a list of objects in 
+succession from left to right to reduce it to one value. Say you have a list, say [1,2,3] and you 
+have to find its sum.
+reduce(lambda x, y : x + y,[1,2,3])
+
+You can also define an initial value. If it is specified, the function will assume initial 
+value as the value given, and then reduce. It is equivalent to adding the initial value at 
+the beginning of the list. For example:
+reduce(lambda x, y : x + y, [1,2,3], -3)
+3
+from fractions import gcd
+reduce(gcd, [2,4,8], 3)
+1
+6
+"""
+import re
+ 
+def is_valid_credit_card(number):
+    # Define the regex pattern for validation
+    pattern = re.compile(r'''
+        ^                   # Start of string
+        (?:4|5|6)           # Starts with 4, 5, or 6
+        (?:
+            (?:\d{4}-){3}   # Groups of 4 digits followed by a hyphen
+            \d{4}          # Last group of 4 digits
+        |                   # OR
+            \d{4}           # First group of 4 digits
+            (?:\d{4}-){2}   # Groups of 4 digits followed by a hyphen
+            \d{4}           # Last group of 4 digits
+        |                   # OR
+            \d{16}          # 16 digits without hyphens
+        )                   # End of non-capturing group
+        $                   # End of string
+    ''', re.VERBOSE)
+    
+    # Check if the number matches the pattern
+    if not pattern.match(number):
+        return "Invalid"
+    
+    # Remove hyphens to check for consecutive repeated digits
+    number = number.replace('-', '')
+    
+    # Check for 4 or more consecutive repeated digits
+    if re.search(r'(\d)\1{3,}', number):
+        return "Invalid"
+    
+    return "Valid"
+ 
+if __name__ == '__main__':
+    import sys
+    input = sys.stdin.read
+    data = input().strip().split('\n')
+    
+    N = int(data[0])
+    card_numbers = data[1:]
+    
+    for number in card_numbers:
+        print(is_valid_credit_card(number))
+        
+"""q"""
+import re
+ 
+def decode_matrix_script(n, m, matrix):
+    # Collect characters column-wise
+    columns = [''.join(matrix[i][j] for i in range(n)) for j in range(m)]
+    
+    # Join all columns into a single string
+    combined_string = ''.join(columns)
+    
+    # Replace non-alphanumeric characters between words with a single space
+    decoded_script = re.sub(r'[^a-zA-Z0-9]+', ' ', combined_string)
+    
+    return decoded_script
+ 
+if __name__ == '__main__':
+    import sys
+    input = sys.stdin.read
+    data = input().strip().split('\n')
+    
+    # Read matrix dimensions
+    n, m = map(int, data[0].split())
+    
+    # Read matrix rows
+    matrix = [data[i+1] for i in range(n)]
+    
+    # Decode the matrix script
+    result = decode_matrix_script(n, m, matrix)
+    
+    # Print the result
+    print(result)
+
