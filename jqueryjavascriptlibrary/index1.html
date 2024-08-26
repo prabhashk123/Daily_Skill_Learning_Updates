@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Tutorial</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <p class="odd">This is my body1</p>
+    <p id="second">This is my body2</p>
+    <p class="odd">This is my body3</p>
+    <p>This is my body4</p>
+    <p>This is my body5</p>
+</body>
+<script src="js/jquery-3.7.1.min.js"></script>
+<!-- Use jQuery CDN -->
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
+<script>
+    //for big code thane write inside document ready use for problem se bachne ke liye
+    $(document).ready(function () {
+        // Your jQuery code here:-
+
+        //console.log($);
+        //console.log(jQuery);
+        console.log("We are using jQuery");
+        //This is jquery syntax
+        //$('selector').action();
+
+        // Element selector example like
+        $('p').click();
+        $('p').click(function () {
+            console.log('you clicked on p', this);
+            //$('p').hide();
+            //$('p').show();
+            //$(this).hide()
+            //for id and class selector
+            //$('#id').hide();
+            //$('.class').hide()
+        });//do this when click on p
+
+        // there are three main type of selector in jQuery
+        //1.Element Selector
+        //2.Id Selector
+        //3.Class Selector
+
+        // Id Selector example:-
+        //$('#second').click();
+
+        //Class Secector:-
+        //$('.odd').click();
+
+        // other selectors
+        //$('*').click() // click on all element
+        //$('p.odd').click() // p jiska class odd hai
+        //$('p:first').click() // first paragraph of p
+
+    });
+</script>
+
+</html>
