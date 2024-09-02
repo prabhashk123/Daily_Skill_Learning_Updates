@@ -808,7 +808,77 @@ print(c) # This-is-a-string
 
 # print(*cartesian_product) # print each tuple in the cartesian product with tuples seperated by space
 
+#
+# How to create user define list added index 0 se start
+user_list=[]
+no_of_element=int(input("Enter number of element which you added ion user_list: "))
+for i in range(no_of_element):
+    user_list.append(i)
+print(user_list)
 
+# Iterator is an obj that allows you to iterate over collections of data 
+# such as list ,tuples, dict and sets. also these are called iterable data.
+# class of an object.
+class MyNumbers:
+    def __iter__(self):
+        self.a = 1
+        return self
+    def __next__(self):
+        if self.a <=20:
+            x = self.a
+            self.a += 1
+            return x
+        else:
+            raise StopIteration
+myclass = MyNumbers()
+myiter = iter(myclass)
+for x in myiter:
+    print(x, end=" ")
+# out is 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 
+
+"""Generator"""
+# A generator function that yields 1 for first time,
+# 2 second time and 3 third time
+def simpleGeneratorFun():
+    yield 1            
+    yield 2            
+    yield 3            
+ 
+# Driver code to check above generator function
+for value in simpleGeneratorFun(): 
+    print(value, end=' ')
+# o/p is 1 2 3
+
+# A Python program to demonstrate use of 
+# generator object with next() 
+
+# A generator function
+def simpleGeneratorFun():
+    yield 1
+    yield 2
+    yield 3
+ 
+# x is a generator object
+x = simpleGeneratorFun()
+
+# Iterating over the generator object using next
+
+# In Python 3, __next__()
+print(next(x))
+print(next(x))
+print(next(x))
+
+"""fibonic"""
+def fib(limit):
+    a, b = 0, 1
+    while b < limit:
+        yield b
+        a, b = b, a + b
+# Create a generator object
+x = fib(200)
+# Iterate over the generator object and print each value
+for i in x:
+    print(i)
 
 
     
