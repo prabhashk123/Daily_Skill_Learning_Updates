@@ -943,3 +943,12 @@ def my_decorator(view_func):
 @my_decorator
 def my_view(request):
 """
+# Q array
+arr1=[1,2,3,4]
+arr2=arr1
+# : print whole element by default
+arr3=arr1[:]
+arr2.append(5)
+print(arr3)
+print(arr2)
+# o/p [1, 2, 3, 4] [1, 2, 3, 4, 5]
