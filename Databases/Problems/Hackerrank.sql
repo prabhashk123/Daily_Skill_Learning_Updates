@@ -118,3 +118,20 @@ SELECT ROUND(LONG_W, 4) FROM STATION WHERE LAT_N>38.778038 ORDER BY LAT_N LIMIT 
 -- Query the Manhattan Distance between points p1and p2 and round it to a cale of 4 decimal places.
 SELECT ROUND(ABS(MAX(LAT_N) - MIN(LAT_N)) + ABS(MAX(LONG_W) - MIN(LONG_W)), 2) AS distance
 FROM STATION;
+
+-- --------------------------------------------BASIC JOIN-----------------------------------------
+-- Given the CITY and COUNTRY tables, query the sum of the populations of all cities where the
+--  CONTINENT is 'Asia'.
+-- Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+SELECT SUM(CITY.POPULATION) FROM COUNTRY INNER JOIN CITY ON COUNTRY.CODE=CITY.COUNTRYCODE WHERE
+COUNTRY.CONTINENT="Asia";
+-- Given the CITY and COUNTRY tables, query the names of all cities where the CONTINENT is 'Africa'.
+-- Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+SELECT CITY.NAME FROM CITY INNER JOIN COUNTRY ON CITY.CountryCode=COUNTRY.Code WHERE COUNTRY.CONTINENT='Africa';
+-- 2nd soln in oracle
+select CITY.Name  from CITY,COUNTRY  where CITY.COUNTRYCODE = COUNTRY.CODE AND CONTINENT = 'Africa';
+-- Given the CITY and COUNTRY tables, query the names of all the continents (COUNTRY.Continent) and their respective average city populations
+-- (CITY.Population) rounded down to the nearest integer.
+-- Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+SELECT COUNTRY.Continent, FLOOR(AVG(CITY.Population)) FROM COUNTRY JOIN CITY ON 
+CITY.CountryCode=COUNTRY.Code GROUP BY COUNTRY.Continent;

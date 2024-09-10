@@ -347,9 +347,10 @@ df['month'] = df['date'].dt.month
 print(df)
 
 # How to convert string cooma sepertated value in list 
-str1= "Prabhash kumar"
-print(type(str1.split(" ")))
-print(type(str1)) # o/p ['Prabhash', 'kumar']
+str1= "Prabhash,kumar"
+str1=str1.split(",")
+print(type(str1))
+print(str1) # o/p = ['Prabhash', 'kumar']
 
 
 ## You are given a string and your task is to swap cases. In other words, convert all lowercase letters to uppercase letters and vice versa.
@@ -801,7 +802,7 @@ print("Squared list using map():", squared_list_map)
 """Different b/w split & join"""
 a = "This is a string"
 b = a.split(' ') # ' ' it is delemeter
-print(b) ['This', 'is', 'a', 'string']
+print(b) # o/p ['This', 'is', 'a', 'string']
 
 c = "-".join(b)
 print(c) # This-is-a-string
@@ -881,4 +882,64 @@ for i in x:
     print(i)
 
 
-    
+# Interview questions mynextfilm
+# transition,signal in django
+"""In Django, transactions refer to a set of operations that are executed as a single unit, ensuring data
+consistency and integrity in the database. Transactions allow developers to group multiple database queries
+into a single atomic operation,
+using set of query atomic
+from django.db import transaction
+@transaction.atomic
+def example_transaction():
+ # Your database operations here
+"""
+"""Signals in Django are a notification system that allows certain “senders” to notify a set of 
+“receivers” when certain actions take place."""
+# background job in django
+# make book model for seralizein
+from rest_framework import serializers
+from .import models
+class BookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=models.Book
+        fields='__all__'
+        # fields=['id','user','mobile','address','profile_img','categories']
+    def __init__(self,*args,**kwargs):
+        super(BookSerializer,self).__init__(*args, **kwargs)
+        # self.Meta.depth=1
+        # nested seralizer
+    def to_representation(self, instance):
+        response=super().to_representation(instance)
+        # response['user']=UserSerializer(instance.user).data
+        return response
+# what is decorator in django
+"""Ans=>Decorators in Django are a powerful tool for adding additional functionality to
+your views and functions. They can be used to implement common patterns such as authentication
+and authorization, caching, and logging.
+Authentication and authorization:
+Restricting access to views based on user permissions or login status 
+(e.g., @login_required, @permission_required).
+Caching:
+Improving the performance of views by caching their output (e.g., @cache_page).
+Logging:
+Tracking user actions or view execution details.
+HTTP method handling:
+Ensuring that a view only accepts specific HTTP methods (e.g., @require_POST).
+# builtin decorator
+from django.contrib.auth.decorators import login_required
+@login_required
+def my_view(request):
+    # This view will only be accessible to logged-in users
+    ...
+# Custom decorator
+def my_decorator(view_func):
+    def wrapper(request, *args, **kwargs):
+        # Add your custom logic here
+        print("Before view execution")
+        response = view_func(request, *args, **kwargs)
+        print("After view execution")
+        return response
+    return wrapper
+@my_decorator
+def my_view(request):
+"""
