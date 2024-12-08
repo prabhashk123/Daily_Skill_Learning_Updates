@@ -11,7 +11,7 @@
 # sqr_root=cmath.sqrt(n)
 # print(f"Square root of {n} is ", sqr_root.real,sqr_root.imag) 
 
-"""Q How to interchange first and last element list in python """
+"""Q create list using loops in python """
 # lst=[]
 # n=int(input("Enter the number of element in List :"))
 # for i in range(0,n):
@@ -20,6 +20,9 @@
 # print("lst =" ,lst)
 """Swap the lst element first and last interchange"""
 # lst[0],lst[len(lst)-1]=lst[len(lst)-1],lst[0]
+# print("new lst =" ,lst)
+# 2nd method
+# lst[0],lst[-1]=lst[-1],lst[0]
 # print("new lst =" ,lst)
 
 """How to check leap year in python"""
@@ -952,3 +955,22 @@ arr2.append(5)
 print(arr3)
 print(arr2)
 # o/p [1, 2, 3, 4] [1, 2, 3, 4, 5]
+
+"""Samsung RD interview"""
+# What is generator func.
+# how to create custom implementation of iterator
+# how the normal class is different from meta class.
+
+# lis=[1,2,3,3,5,6,7,7,7,9]
+from collections import Counter
+a = [1, 3, 2, 6, 3, 2, 8, 2, 9, 2, 7, 3]
+# Create a counter objects
+res = Counter(a)
+# Get count of 3
+print(res[3])
+
+a = [1, 3, 2, 6, 3, 2, 8, 2, 9, 2, 7, 3]
+# Count occurrences of 2
+print(a.count(2))
+# Count occurrences of 3
+print(a.count(3))
