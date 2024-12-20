@@ -974,3 +974,30 @@ a = [1, 3, 2, 6, 3, 2, 8, 2, 9, 2, 7, 3]
 print(a.count(2))
 # Count occurrences of 3
 print(a.count(3))
+
+# Macquarie (M-1)
+l=[1,2,3,3,4,5,6,6,6,7]
+# l=[1,2,3,3,3,4,5,6,6,6,7]
+def frq(l):
+    return max(set(l), key=l.count)
+print(frq(l))
+# M-2
+from collections import Counter
+def max_freq_num(lst):
+    return [num for num, count in Counter(lst).items() if count == max(Counter(lst).values())]
+my_list = [1,2,3,3,4,5,6,6,6,7]
+print(max_freq_num(my_list))
+
+# Deloitte
+#(Q1) print("My Name Is Prabhash Kumar")
+#(Q2) count each char in string
+from collections import Counter
+inp="My Name Is Prabhash Kumar"
+# using collections.Counter() to get  
+# count of each element in string  
+oup = Counter(inp) 
+print ("Occurrence of all characters in GeeksforGeeks is :\n "+ str(inp)) 
+print(Counter(inp))
+# Q(2) how to run javascript on browser.
+# Q(3)Multitherading how to do manage 4 thrade one by one
+# Q(4)]how to same S3 bucket one time ctreation
