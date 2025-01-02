@@ -665,7 +665,8 @@ print(list1 is list2)
 Output: True
 """
 
-"""Q What are Generators? Tell about their use in Python.
+# Q What are Generators? Tell about their use in Python.
+"""
 Generator:
     A generator in Python returns an iterator that produces sequences of values one at a time.
     We use the yield keyword to produce values. YIELD Keyword to produce value.
@@ -682,7 +683,8 @@ for number in count_up_to(10):
     print(number)
 """
 
-"""Q. What is Shallow Copy and Deep Copy in Python?
+# Q. What is Shallow Copy and Deep Copy in Python?
+"""
 In Python, deep copy and shallow copy are methods used to copy objects.
 We use the = operator, It only creates a new variable that shares the reference of the original object.
 In order to create "real copies" or "clones" of these objects, we can use the copy module in Python.
@@ -696,7 +698,8 @@ Deep copy: A deep copy is a process where we create a new object and add copy el
 The independent copy is created of the original object and its entire elements Changes made in one object do not affect the other.       
 """
 
-"""Q. Explain the use of lambda expressions in Python. When is it useful?
+# Q. Explain the use of lambda expressions in Python. When is it useful?
+"""
     The lambda is used to define a function without a name in Python.
     - They are useful in situations where you need a small, temporary function that
     you won't need to use elsewhere in your code.
@@ -708,7 +711,8 @@ print(add(4,5))                     o/p = 9
 Output =                            any number of arguement map,filterf
 """
 
-"""Q.What is the use of PASS keyword in Python?
+# Q.What is the use of PASS keyword in Python?
+"""
 Pass: Pass is a null statement that basically does nothing.
 Usage: It is often used as a placeholder where a statement is required syntactically,
 but no action needs to be taken. 
@@ -1001,3 +1005,79 @@ print(Counter(inp))
 # Q(2) how to run javascript on browser.
 # Q(3)Multitherading how to do manage 4 thrade one by one
 # Q(4)]how to same S3 bucket one time ctreation
+
+# check out put will be 6
+def check(x,y):
+    if x == y:
+        return False
+    elif x < y :
+        x,y = y,x
+        if x==6 or y==6:
+            return True
+        elif x+y ==6:
+            return True
+        elif x-y==6:
+            return True
+        else:
+            return False
+    else:
+        return True
+print(check(-1,-7))
+
+# For decorator
+def smart_plus(funn):
+    def inner(*args):
+        for ele in args:
+            if isinstance(ele, int):
+                print(f"{ele} is integer")
+            elif isinstance(ele, float):
+                print(f"{ele} is float")
+            elif isinstance(ele, str):
+                print(f"{ele} is String")
+            else:
+                print("not int not float")
+        return funn(*args)
+    return inner
+@smart_plus
+def plus(*args):
+    pass
+plus(4,2.2,4.5, "Prabhas")
+
+# 2nd decorator check sum type
+def smart_plus(funn):
+    def inner(a,b):
+        add = funn(a,b)
+        if isinstance(add, int):
+            print(f"The result {add} is integer")
+        elif isinstance(add, float):
+            print(f"The result {add} is float")
+        else:
+            print("not int not float")
+        return add
+    return inner
+@smart_plus
+def plus(a,b):
+    return a + b
+
+# without built in function use for  of count of each string
+def char_count(s):
+    count_dist = {}
+    for char in s:
+        if char in count_dist:
+            count_dist[char] += 1
+        else:
+            count_dist[char] = 1
+    return count_dist
+input = 'bbbbcccaad'
+output = char_count(input)
+print(output)
+
+# without built in function use for reverse of array/string
+# Abstarction 
+# Abstract class method ABC method
+# Polymorphisam/Inheritence/Comperihensions like list
+# List and Tuple which consumed memory and which Fast
+# Overloading/Overridding/dynamicalliy/copy
+# set/tuple/list
+# print(1 to 100) using function
+
