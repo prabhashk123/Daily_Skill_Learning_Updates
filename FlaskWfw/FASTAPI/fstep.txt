@@ -25,3 +25,4 @@ async def root():
 #Database connection  postgres
 pip install sqlalchemy
 pip install alembic
+pip install psycopg2
