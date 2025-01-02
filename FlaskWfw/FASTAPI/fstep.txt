@@ -1,9 +1,9 @@
 #FastApi=>FastAPI is a modern, fast (high-performance), web framework for 
 building APIs with Python based on standard Python type hints
-#Step1>Create venv and install= pip install FastAPI and pip install unicron
+#Step1>Create venv and install= "pip install FastAPI" and "pip install unicron"
 #unicron se run karte hai browser
-#Step2>Create Main.Py file
-#Step3>Put quickstart structure of fast api
+#Step2>Create "Main.Py" file
+#Step3>Start Put quickstart structure of fast api 
 """
 from fastapi import FastAPI
 app = FastAPI()
