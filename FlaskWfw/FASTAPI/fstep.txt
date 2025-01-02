@@ -21,3 +21,7 @@ async def root():
 # added template make folder or directory
 =>pip install jinja2
 # added staticfiles make folder
+
+#Database connection  postgres
+pip install sqlalchemy
+pip install alembic
