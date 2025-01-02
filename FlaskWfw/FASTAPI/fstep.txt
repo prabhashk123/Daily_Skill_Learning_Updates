@@ -1,7 +1,7 @@
 #FastApi=>FastAPI is a modern, fast (high-performance), web framework for 
 building APIs with Python based on standard Python type hints
-#Step1>Create venv and install= "pip install FastAPI" and "pip install unicron"
-#unicron se run karte hai browser
+#Step1>Create venv and install= "pip install FastAPI" and "pip install uvicorn"
+#uvicorn se run karte hai browser pe
 #Step2>Create "Main.Py" file
 #Step3>Start Put quickstart structure of fast api 
 """
@@ -11,3 +11,5 @@ app = FastAPI()
 async def root():
     return {"message": "Hello World"}
 """
+#Step4=>Run fastapi using "uvicorn main:app"   
+=>Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
