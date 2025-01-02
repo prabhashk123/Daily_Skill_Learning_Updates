@@ -13,3 +13,11 @@ async def root():
 """
 #Step4=>Run fastapi using "uvicorn main:app"   
 =>Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+
+# on check type checking mode setting in vs code 
+#step>from pydantic import BaseModel
+#First, you need to import BaseModel from pydantic:
+
+# added template make folder or directory
+=>pip install jinja2
+# added staticfiles make folder
