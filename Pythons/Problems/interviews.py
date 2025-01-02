@@ -244,18 +244,63 @@ in python icrement and decrement operator are assignment operator.
 
 """Accolite interview"""
 # make class for statice method and class method
+# What is Class Method in Python? 
+# The @classmethod decorator is a built-in function decorator that is an expression 
+# that gets evaluated after your function is defined. The result of that evaluation shadows your function definition. A class method receives the class as an implicit first argument, just like an instance method receives the instance 
+# Syntax Python Class Method: 
+class C(object):
+    @classmethod
+    def fun(cls, arg1, arg2,):
+       pass
+"""fun: function that needs to be converted into a class method
+returns: a class method for function.
+A class method is a method that is bound to the class and not the object of the class.
+They have the access to the state of the class as it takes a class parameter that points to the class and not the object instance.
+It can modify a class state that would apply across all the instances of the class. 
+For example, it can modify a class variable that will be applicable to all the instances."""
+class MyClass:
+    def __init__(self, value):
+        self.value = value
+    def get_value(self):
+        return self.value
+# Create an instance of MyClass
+obj = MyClass(10)
+# Call the get_value method on the instance
+print(obj.get_value())  # Output: 10
+
+# What is the Static Method in Python?
+"""A static method does not receive an implicit first argument. A static method 
+is also a method that is bound to the class and not the object of the class. 
+This method can’t access or modify the class state. It is present in a class because it makes sense for the method to be present in class.
+Syntax Python Static Method: """
+class C(object):
+    @staticmethod
+    def fun(arg1, arg2,):
+        pass
+# returns: a static method for function fun.
+# example sm
+class MyClass:
+    def __init__(self, value):
+        self.value = value
+    @staticmethod
+    def get_max_value(x, y):
+        return max(x, y)
+# Create an instance of MyClass
+obj = MyClass(10)
+print(MyClass.get_max_value(20, 30))  
+print(obj.get_max_value(20, 30))
 # make one decorator
 # make lambda function
 # input :[29,02,2024] convert
 # output: 29-02-2024
 """Here's how to convert the input list [29, 02, 2024] to the
  formatted string "29-02-2024" in Python:"""
-# from datetime import date
+from datetime import date
 # Create a date object from the list
-# date_obj = date(2024, 2, 29)
-# # Format the date as desired
-# formatted_date = date_obj.strftime("%d-%m-%Y")
-# print(formatted_date)
+date_obj = date(2024, 2, 29)
+# Format the date as desired
+formatted_date = date_obj.strftime("%d-%m-%Y")
+print(formatted_date)
 
 """"""
 # arr=[1,2,3,4,5]
