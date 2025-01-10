@@ -1126,3 +1126,22 @@ print(output)
 # set/tuple/list
 # print(1 to 100) using function
 
+## Airtel Interview questions:-
+"""
+(1)datatypes in Python
+(2)List and Tuple difference
+(3)List and which cane more memory conusme=>List more beacuse dynemic but tuple fixed so less
+(4)Django connect multiple database and if apply migration thane effect each database or not and how to connect
+   Ans=>yes both
+(5)input = [1, 2, 1, 2, 3, 4, 5, 1, 1, 2, 5, 6, 7, 8, 9, 9]
+   output = [1, 2, 5, 9]
+   soln=>
+    input = [1, 2, 1, 2, 3, 4, 5, 1, 1, 2, 5, 6, 7, 8, 9, 9]
+    # print(set(input)) {1, 2, 3, 4, 5, 6, 7, 8, 9}
+    s=set(input)
+    l=list(s)
+    print([l[0],l[1],l[4],l[8]])
+    # output = [1, 2, 5, 9]
+"""
+ 
+

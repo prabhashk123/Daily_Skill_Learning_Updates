@@ -24,8 +24,9 @@ from fastapi.templating import Jinja2Templates
 app = FastAPI()
 
 # Model data
-from sqlalchemy import Column,BIGINT,VARCHAR
-from db_setup import Base
+from sqlalchemy import Column,BIGINT,VARCHAR,engine
+from db_setup import Base, engine
+
 
 # Create Table
 class Employee(Base):
@@ -35,7 +36,7 @@ class Employee(Base):
     employee_contact_no = Column(BIGINT)
     
 # Then migration create
-Base.Meta()
+Base.metadata.create_all(bind=engine)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
