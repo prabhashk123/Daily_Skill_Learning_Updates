@@ -1144,4 +1144,15 @@ print(output)
     # output = [1, 2, 5, 9]
 """
  
+ # (Q) Merge Two Sorted List and Output will become sorted list
+list1 = [1,3,5]
+list2 = [2,4,6]
+merge=list1.extend(list2)
+print(sorted(list1))
+# # output : [1,2,3,4,5,6]
+
+# Find misssing element in list use function and comperihensiton
+li=[1,2,4,5]
+missing=[ele for ele in range(1,max(li)+1) if ele not in li]
+print("missing ele : " + str(missing))
 
