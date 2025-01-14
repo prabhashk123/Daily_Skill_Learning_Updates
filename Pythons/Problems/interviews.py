@@ -1128,6 +1128,18 @@ for i in strings:
         counts[i]=counts.get(i,0)+1
 print(counts)
 
+# Method-3
+l1=["Prabhash Kumar"]
+l="".join(l1)
+vowel='aeiouAEIOU'
+d={}
+for i in l:
+    if i in vowel:
+        if i not in d:
+            d[i]=0
+        d[i]+=1
+print(d)
+
 ## Method-2 Using str.count() in a loop
 s = "Python is fun!"
 vowels = "aeiouAEIOU"
@@ -1233,7 +1245,6 @@ column_value=['a']
 # df = pd.DataFrame(data=arr,index=index_values,columns=column_value)
 df = pd.DataFrame(data=arr,columns=column_value)
 print(df)
-
 
     
 
