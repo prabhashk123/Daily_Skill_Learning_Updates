@@ -1246,5 +1246,11 @@ column_value=['a']
 df = pd.DataFrame(data=arr,columns=column_value)
 print(df)
 
-    
-
+"""# now each word complete present capital first"""
+l=["Today is wednesday","Yesterday was tuesday", "Tomorrow is thursday"]
+# M-1 Using List Comprehension:- by title method for list of string
+capitalfirst_each_word = [i.title() for i in l]
+print(capitalfirst_each_word)
+# Using str method .split() and .capitalize()
+capital_fl=[" ".join([word.capitalize() for word in i.split()]) for i in l]
+print(capital_fl)
