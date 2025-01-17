@@ -1254,3 +1254,22 @@ print(capitalfirst_each_word)
 # Using str method .split() and .capitalize()
 capital_fl=[" ".join([word.capitalize() for word in i.split()]) for i in l]
 print(capital_fl)
+
+'''Print every 3rd element of list '''
+l=[0,1,2,3,4,5,6,7,8]
+# M-1 slice method
+print(l[0::3])
+# M-2
+for i in range(0,len(l),3):
+    print(l[i])
+    
+"""Django authenti cation"""
+# built in method are:-
+# Username And Password default method.,Email and Password same as prev,
+# Third Pairty Library:-
+# (a) Social Authentication: through like social media pf like google, FB, library ""django-allauth""
+# (b) JWT(JSON Web Tokens) as json object
+# (c) OAuth and OpenID Connect
+# Django use HTTP Basic Authentication for testing, DRF provide OAuth2.0
+
+
