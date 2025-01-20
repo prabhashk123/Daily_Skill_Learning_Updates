@@ -100,11 +100,11 @@ for example: MADAM,RACECAR
 
 """How to read file in python"""
 # M-1
-# with open("Pythons//Problems//file.text") as f:
+# with open("Pythons//Problems//file.text",'r') as f:
 #     line=f.read()
 #     print(line)
 # M-2
-# f=open("Pythons//Problems//file.text")
+# f=open("Pythons//Problems//file.text","r")
 # line=f.read()
 # print(line)
 # f.close()
@@ -1271,5 +1271,21 @@ for i in range(0,len(l),3):
 # (b) JWT(JSON Web Tokens) as json object
 # (c) OAuth and OpenID Connect
 # Django use HTTP Basic Authentication for testing, DRF provide OAuth2.0
+
+"""Cal area using oops using class"""
+r=int(input("value of r "))
+class Circle:
+    def __init__(self,r):
+        self.r=r
+    def cal_area(self):
+        pi=3.14
+        r=self.r
+        return pi*r*r
+c=Circle(r)
+d=c.cal_area()
+print("The area of circle is ",d)
+
+"""Github Copilot, AWS"""
+
 
 
