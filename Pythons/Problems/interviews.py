@@ -144,7 +144,7 @@ if number divide by 3 than call Fizz,divide by 5 call buzz ,divide by 15 call Fi
 """
 # def fizzbuzz(n):
 #     for i in range(1,n+1):
-#         if i%3==0 and 1%5 ==0: #i%15 ==0
+#         if i%3==0 and i%5 ==0: #i%15 ==0
 #             print("FizzBuzz")
 #         elif i%3==0:
 #             print("Fizz")
@@ -489,7 +489,7 @@ def is_prime(num):
     if num<2:
         return False
 # check for factor from 2 to the square root of the number
-    for i in range(2, int(num**0.5+1)): 
+    for i in range(2, int(num**0.5)+1): 
         if num % i==0:
             return False
 # If no factor are found number is a prime number
@@ -1286,6 +1286,78 @@ d=c.cal_area()
 print("The area of circle is ",d)
 
 """Github Copilot, AWS"""
+"""Ey Technologies Int"""
+"""(Q) find greater element of each lement after """
+arr = [2, 3, 1, 2, 4]
+output = []
+for i in range(len(arr)):
+    found = False
+    for j in range(i + 1, len(arr)):
+        if arr[j] > arr[i]:
+            output.append(arr[j])
+            found = True
+            break
+    if not found:
+        output.append(-1)
+print(output) # op=[3,4,2,4,-1]
+
+"""
+(Q) In Python, you can apply multiple decorators to a single function by stacking them on top of
+one another. Each decorator wraps the function it decorates, starting from the innermost to 
+the outermost."""
+def decorator_one(func):
+    def wrapper(*args, **kwargs):
+        print("Decorator One: Before the function call")
+        result = func(*args, **kwargs)
+        print("Decorator One: After the function call")
+        return result
+    return wrapper
+ 
+def decorator_two(func):
+    def wrapper(*args, **kwargs):
+        print("Decorator Two: Before the function call")
+        result = func(*args, **kwargs)
+        print("Decorator Two: After the function call")
+        return result
+    return wrapper
+ 
+@decorator_one
+@decorator_two
+def my_function(name):
+    print(f"My function is called with {name}")
+
+# Call the decorated function
+my_function("John")
+
+"""
+Explanation:
+Order of Execution:
+The function is first passed through "decorator_two", then the result of 
+that is passed through "decorator_one".
+Execution happens from the "outermost decorator" (decorator_one) to the "innermost" (decorator_two) 
+when the function is called.
+@decorator_one: Wraps the function decorated by @decorator_two.
+@decorator_two: Wraps the original my_function.
+"""
+
+class A:
+    def hello(self):
+        print("Hello from A")
+class B:
+    def hello(self):
+        print("Hello from B")
+class C(A, B):  # Class C inherits from A and B
+    pass
+# Create an instance of C
+c = C()
+c.hello() 
+# o/p = Hello from A
+# IF C(B,A)
+# then o/p=Hello from B depend order of classes in heritence using 
+# MRO rule check mro print(C.__mro__) or print(C.mro())
+# o/p class C->A->B for C(A,B)
+
+
 
 
 
