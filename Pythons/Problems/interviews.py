@@ -1338,6 +1338,12 @@ Execution happens from the "outermost decorator" (decorator_one) to the "innermo
 when the function is called.
 @decorator_one: Wraps the function decorated by @decorator_two.
 @decorator_two: Wraps the original my_function.
+o/p=>
+Decorator One: Before the function call
+Decorator Two: Before the function call
+My function is called with John
+Decorator Two: After the function call
+Decorator One: After the function call
 """
 
 class A:
