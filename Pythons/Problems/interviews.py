@@ -1363,6 +1363,24 @@ c.hello()
 # MRO rule check mro print(C.__mro__) or print(C.mro())
 # o/p class C->A->B for C(A,B)
 
+"""(Q)Advantage of Django """
+# cost-effective nature, scalability, security, and flexibility
+# Supports multiple databases, Easy to learn, Integrates machine learning
+# disadvantage:- Performance issues, Slow websites
+"""Rest Api and Api"""
+# An API (application programming interface) is a general term, while REST API is a specific
+# type of API that uses HTTP requests. REST APIs are the most common type of API used on the web. 
+# REST APIs are a specific type of API that adheres to the constraints of the REST architecture. 
+# RESTful APIs use HTTP requests to interact with data, while traditional APIs can use a variety of protocols.
+"""Api method"""
+# API methods are requests made to an Application Programming Interface (API) endpoint.
+# The type of method used depends on the function of the request. For example,
+# a GET method retrieves data, while a POST method creates data. 
+# Examples of API methods
+# POST: Creates a new resource on a server, such as a new database record 
+# PUT: Updates an existing resource on a server, such as a user account or blog post 
+# GET: Retrieves data from a server 
+
 
 
 

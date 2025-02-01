@@ -57,6 +57,35 @@ SELECT * FROM EMPLOYEE WHERE ID=(SELECT MAX(ID) FROM EMPLOYEE);
 -- Functions.
 -- Triggers.
 -- Joins.
+ 
+"""EMPLOYEE
+Id sal  name   dob     dept_code
+1 20000 aeds 01-oct-1991 11
+2 20000 blre 01-jan-1993 13
+3 19000 cfgf 01-jan-1992 14
+4 18000 dhtr 01-jan-1989 14
+5 19500 embn 01-jan-1995 11
+6 21000 cdmk 01-jan-1985 12
+7 21000 efjh 01-jan-1987 12
+ 
+dept_code dept_name
+11		hr
+12		main
+13		it
+14		admin
+ 
+1) Delete duplicate records from the table.
+2) Update query to update the salaries by adding 5000 for employees whose name contains h in it
+3) After removing dept_code for one of the employee Write query to display Id, salary, name, dob,
+ dept_code, dept_name by combining two tables """
+
+-- (1) soln
+DELETE FROM EMPLOYEE WHERE ID NOT IN (SELECT MIN(ID) FROM EMPLOYEE GROUP BY SAL, NAME, DOB, dept_code);
+-- (2) soln
+UPDATE EMPLOYEE SET SAL = SAL + 5000 WHERE NAME LIKE '%h%';
+-- (3) soln dept_code is NULL
+SELECT e.id,e.sal, e.name, e.dob, e.dept_code, e.dept_name FROM EMPLOYEE e LEFT JOIN DEPARTMENT d ON e.dept_code = d.dept_code;
+
 
 
 
