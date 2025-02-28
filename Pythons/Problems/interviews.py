@@ -1381,6 +1381,81 @@ c.hello()
 # PUT: Updates an existing resource on a server, such as a user account or blog post 
 # GET: Retrieves data from a server 
 
+"""(Q)"""
+class Fruit:
+    def __init__(self, price, quantity):
+        self.price=price
+        self.quantity=quantity
+    def cost(self):
+        cost = self.price * self.quantity
+        return cost
+    
+f=Fruit(100, 5)
+TotalPrice=f.cost()
+print(TotalPrice)
+
+# Tcs Interview Questions 28/02/2025
+# Python Data Strcture
+# List and Tuple Difference
+# Overloading and Overading
+"""(Q1 M1)"""
+arr = ["cat", "dog", "text"]
+# Reverse each string in the list
+arr = [s[::-1] for s in arr]
+# Reverse the order of the list
+arr = arr[::-1]
+print(arr)
+
+"""M2"""
+arr = ["cat", "dog", "text"]
+# Reverse each string using map() and reversed()
+arr = list(map(lambda s: s[::-1], arr))
+# Reverse the order of the list using reversed()
+arr = list(reversed(arr))
+print(arr)
+
+"""(Q2)"""
+str1 = ["arr", "str1", "Arr"]
+# Filter strings that end with 'arr' (case-insensitive)
+result = [s for s in str1 if s.lower().endswith("arr")]
+# Print the result
+print(result)
+
+"""M2"""
+import re
+str1 = ["arr", "str1", "Arr"]
+# Filter strings that end with 'arr' (case-insensitive) using regular expressions
+result = [s for s in str1 if re.search(r"arr$", s, re.IGNORECASE)]
+# Print the result
+print(result)
+"""Explanation:
+The re.search(r"arr$", s, re.IGNORECASE) looks for strings that end with "arr", 
+with re.IGNORECASE making the search case-insensitive.
+The $ in the regular expression ensures that it matches only the end of the string.
+"""
+
+"""(Q)print sum of
+arr = [1,2,[3,[2,3,4],4],5,[6,7]] using python"""
+def sum_nested(arr):
+    total = 0
+    for item in arr:
+        if isinstance(item, list):
+            total += sum_nested(item)  # Recursively sum sublists
+        else:
+            total += item  # Add the number to the total
+    return total
+arr = [1, 2, [3, [2, 3, 4], 4], 5, [6, 7]]
+result = sum_nested(arr)
+print(result)
+
+
+
+
+
+
+
+        
+
 
 
 
