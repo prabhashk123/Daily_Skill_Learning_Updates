@@ -1448,6 +1448,22 @@ arr = [1, 2, [3, [2, 3, 4], 4], 5, [6, 7]]
 result = sum_nested(arr)
 print(result)
 
+"""paravisht"""
+# Difference b/w Authentication and Autharaization
+# Explain JWT Token and How it is created
+# What is MiddleWare in django and how to create custom midleware 
+# checking for balanced parentheses in python 
+"""input_str="ABC(D)E["
+def checkbalanced(input_str):
+	if input_str=="()[]":
+		print("True")
+	else:
+		print("false")
+	
+checkbalanced(input_str)
+		
+  """
+
 
 
 
